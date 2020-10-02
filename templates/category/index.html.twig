@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories - Solitude accompagnée{% endblock %}
+
+{% block body %}
+    <h2>Toutes les catégories </h2>
+
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for category in categories %}
+            <div class="col mb-4">
+
+                {% include 'category/_card.html.twig'with {'category' : category} only %}
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
