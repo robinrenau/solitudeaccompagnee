@@ -1,43 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Activity index{% endblock %}
+{% block title %}Les activités - Solitude accompagnée{% endblock %}
 
 {% block body %}
-    <h1>Activity index</h1>
+    <h2>Les dernieres activités proposées </h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Eventdate</th>
-                <th>Created_at</th>
-                <th>Address</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row row-cols-1 row-cols-md-3">
         {% for activity in activities %}
-            <tr>
-                <td>{{ activity.id }}</td>
-                <td>{{ activity.title }}</td>
-                <td>{{ activity.description }}</td>
-                <td>{{ activity.eventdate ? activity.eventdate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ activity.createdAt ? activity.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ activity.address }}</td>
-                <td>
-                    <a href="{{ path('activity_show', {'id': activity.id}) }}">show</a>
-                    <a href="{{ path('activity_edit', {'id': activity.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col mb-4">
 
-    <a href="{{ path('activity_new') }}">Create new</a>
+                {% include 'activity/_card.html.twig'with {'activity' : activity} only %}
+
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

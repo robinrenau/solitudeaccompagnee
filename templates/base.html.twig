@@ -21,6 +21,12 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link navbar-item-colors link-header" href="{{ path('activity_index') }}">
+                        <i class="fa fa-map-marker icons-header"></i>
+                        Activites
+                    </a>
+                </li>
 
                 <li class="nav-item ">
                     <a class="nav-link navbar-item-colors link-header" href="#">
@@ -50,7 +56,7 @@
                             Administration</a></li>
                 {% endif %}
                 {% if app.user %}
-                <li class="nav-item "><a class="nav-link link-logout navbar-item-colors" href="#"><i
+                <li class="nav-item "><a class="nav-link link-logout navbar-item-colors" href="{{ path('app_logout') }}"><i
                                 class="fa fa-sign-out icons-header"></i> Deconnexion</a></li>
                 {% endif %}
                 <li class="nav-item dropdown">

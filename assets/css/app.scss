@@ -18,6 +18,17 @@ $fa-font-path: "~font-awesome/fonts";
 body {
     background-color: #F2E9E1;
 }
+.btn-home{
+    background-color: #F2E9E1;
+    font-family: Roboto;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.btn-home:hover {
+    background-color: black;
+    color: #F2E9E1;
+}
 .btn-index{
     background-color: #F2E9E1;
     color: #896E38;
