@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Activity
 {
@@ -93,6 +94,12 @@ class Activity
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist() {
+        $this->setCreatedAt(new \DateTime());
     }
 
     public function setDescription(string $description): self

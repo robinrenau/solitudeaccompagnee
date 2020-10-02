@@ -3,7 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Activity;
+use App\Entity\Category;
+use App\Entity\City;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,14 +17,32 @@ class ActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', TextType::class, [
+                'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Titre'
+                ]
+            ])
             ->add('description')
-            ->add('eventdate')
-            ->add('created_at')
-            ->add('address')
-            ->add('city')
-            ->add('user')
-            ->add('category')
+            ->add('eventdate', DateTimeType::class,[
+                'label'=>"Date et heure"
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse',
+                'attr' => [
+                    'placeholder' => 'Adresse'
+                ]
+            ])
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'multiple' => false,
+                'expanded' => true,
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'multiple' => false,
+                'expanded' => true,
+            ])
         ;
     }
 

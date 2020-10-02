@@ -36,6 +36,7 @@ class ActivityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $activity->setUser($this->getUser());
             $entityManager->persist($activity);
             $entityManager->flush();
 
