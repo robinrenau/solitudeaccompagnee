@@ -2,6 +2,67 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 
+
+@font-face {
+    font-family: "Moon";
+    src: url("../../public/uploads/fonts/Moon_Light.otf")
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("../../public/uploads/fonts/Roboto-Light.ttf")
+}
+@font-face {
+    font-family: "Roboto-Thin";
+    src: url("../../public/uploads/fonts/Roboto-Thin.ttf")
+}
 body {
-    background-color: lightgray;
+    background-color: #F2E9E1;
+}
+.btn-index{
+    background-color: #F2E9E1;
+    color: #896E38;
+    font-family: Roboto;
+    margin-right: 30px;
+}
+.btn-index:hover {
+    background-color: #896E38;
+    color: #F2E9E1;
+}
+.navbar-colors {
+    background-color: #C1D4C7 ;
+}
+.navbar-item-colors{
+    color: #8A6E39;
+}
+
+.text-index{
+    color: #896E38;
+    font-family: Roboto;
+}
+.icons-header{
+    margin-right: 4px;
+}
+
+.link-logout{
+    font-family: Moon;
+    color:#ff6961;
+    margin-left: 35px;
+}
+.link-logout:hover{
+    background-color: #ff6961;
+    color: white;
+    border-radius: 15px;
+}
+
+.link-header{
+    margin-left: 35px;
+    color: #896E38;
+    font-family: Moon;
+}
+
+
+.link-header:hover{
+    background-color: #896E38 ;
+    color: #C1D4C7;
+    border-radius: 15px;
 }

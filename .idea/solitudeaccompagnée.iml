@@ -111,7 +111,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="femories" />
-    <orderEntry type="module" module-name="initiaville" />
   </component>
 </module>

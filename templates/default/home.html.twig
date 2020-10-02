@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Solitude Accompagnée{% endblock %}
+
+{% block body %}
+    <div class="jumbotron" style="background-color: #F5D5CB">
+        <h1 class="display-4" style="font-family: Roboto">Solitude Accompagnée</h1>
+        <p class="lead" style="font-family: Roboto">Partagez des beaux moments de vies avec Solitude Accompagnée!</p>
+
+    </div>
+    <h2>Les dernieres activités proposées </h2>
+
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for activity in activities %}
+            <div class="col mb-4">
+
+                {% include 'activity/_card.html.twig'with {'activity' : activity} only %}
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

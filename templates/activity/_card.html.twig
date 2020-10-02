@@ -1,0 +1,29 @@
+<div class="card">
+    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card-img-top"
+         alt="{{ activity.title }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ activity.title }}</h5>
+
+
+    </div>
+
+    <div class="card-footer">
+
+
+            <span class="badge badge-pill badge-primary" title="Catégorie">
+                        <i class="fa fa-tag"></i>{{ activity.category.label }}
+                    </span>
+
+
+        <span class="badge badge-pill badge-secondary" title="Ville">
+                        <i class="fa fa-map-marker"></i>
+                        {{ activity.city.name }}
+                    </span>
+        <span class="badge badge-pill badge-info" title="Date de l'activité">
+                        <i class="fa fa-calendar"></i>
+                        {{ activity.CreatedAt|date ("m/d/Y") }}
+                    </span>
+
+    </div>
+
+</div>
