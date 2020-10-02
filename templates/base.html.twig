@@ -10,9 +10,9 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-colors  mb-4">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('logo-header.png') }}" width="90" height="60"
+        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('logo-header.png') }}" width="100" height="90"
                                                                    title="Logo Femories" alt="logo"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,20 @@
                     </a>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link navbar-item-colors link-header" href="{{ path('category_index') }}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  link-header" id="navbarDropdown"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                         <i class="fa fa-map-marker icons-header"></i>
                         Categories
                     </a>
+                    <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdown">
+                        {{ render(controller('App\\Controller\\DefaultController::searchCategory')) }}
+                    </div>
+
                 </li>
+
                 <li class="nav-item ">
-                    <a class="nav-link navbar-item-colors link-header" href="#">
+                    <a class="nav-link  link-header" href="#">
                         <i class="fa fa-map-marker icons-header"></i>
                         Villes
                     </a>

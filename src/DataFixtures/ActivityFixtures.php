@@ -28,7 +28,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $palet = new Activity();
         $palet->setUser($this->getReference("user-mmartin"));
-        $palet->setTitle("Tournoi de palais breton");
+        $palet->setTitle("Tournoi de palets breton");
         $palet->setCity($this->getReference("city-fougeres"));
         $palet->setCreatedAt(new \DateTime('04/10/2020'));
         $palet ->setEventdate(new \DateTime('08/10/2020 13:00:00'));
@@ -42,13 +42,13 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $rencontre = new Activity();
         $rencontre->setUser($this->getReference("user-jdupont"));
-        $rencontre->setTitle("Matinée discussion/débat/rencontre");
+        $rencontre->setTitle("Matinée discussion et débat");
         $rencontre->setCity($this->getReference("city-redon"));
         $rencontre->setCreatedAt(new \DateTime('04/10/2020'));
         $rencontre ->setEventdate(new \DateTime('08/10/2020 08:00:00'));
         $rencontre->setDescription("Bonjour. Ce samedi, j'organise à la salle de la commune de Redon, une petite matinée discussion, debat ou encore rencontre pour échanger sur nos déboires de tout les jours, mais aussi pour ceux qui peuvent se sentir seul au quotidien !  ");
         $rencontre->setCategory($this->getReference("cat-renc"));
-        $rencontre ->setAddress("maison des fêtes, 9 rue de Galerne, 35600 REDON");
+        $rencontre ->setAddress("Maison des fêtes, 9 rue de Galerne, 35600 REDON");
 
         $manager->persist($rencontre);
 

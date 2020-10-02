@@ -1,29 +1,31 @@
-<div class="card card-body-color">
-    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card-img-top"
+<div class="card " aria-labelledby="event card">
+    <div class="card__filter">
+        <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card__photo"
          alt="{{ activity.title }}">
-    <div class="card-body ">
-        <h5 class="card-title">{{ activity.title }}</h5>
-
-
     </div>
-
-    <div class="card-footer">
-
-
-            <span class="badge badge-pill badge-primary" title="Catégorie">
+    <div class="card__container">
+        <h4 class="card-title">{{ activity.title }}</h4>
+        <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
+        <p>{{ activity.address }}</p><br>
+        <span class="badge badge-pill badge-primary" title="Catégorie">
                         <i class="fa fa-tag"></i>{{ activity.category.label }}
-                    </span>
-
-
-        <span class="badge badge-pill badge-secondary" title="Ville">
-                        <i class="fa fa-map-marker"></i>
-                        {{ activity.city.name }}
-                    </span>
+                    </span><br>
         <span class="badge badge-pill badge-info" title="Date de l'activité">
                         <i class="fa fa-calendar"></i>
-                        {{ activity.CreatedAt|date ("m/d/Y") }}
+                        {{ activity.eventdate|date('d/m/Y') }}
                     </span>
+        <div class="card__buttons">
+            <a href="#" class="card__buttons btn primary" role="button" aria-haspopup="false">
+                Details
+                <div class="card__fill"></div>
+            </a>
 
+        </div>
     </div>
 
+
+
 </div>
+
+
+

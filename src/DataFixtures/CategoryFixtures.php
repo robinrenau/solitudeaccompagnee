@@ -11,7 +11,7 @@ class CategoryFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $rencontre = new Category();
-        $rencontre ->setLabel("rencontre");
+        $rencontre ->setLabel("Rencontre");
         $rencontre->setPicture("rencontre.jpg");
         $manager->persist($rencontre);
         $this->addReference("cat-renc", $rencontre);

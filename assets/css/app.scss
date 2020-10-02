@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~mdbootstrap/css/bootstrap.css";
+@import "~mdbootstrap/css/mdb.css";
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 
@@ -30,27 +32,21 @@ body {
     color: #F2E9E1;
 }
 .btn-index{
-    background-color: #F2E9E1;
-    color: #896E38;
+    background-color:#FFBFAE ;
+    color: black;
     font-family: Roboto;
     margin-right: 30px;
 }
 .btn-index:hover {
-    background-color: #896E38;
+    background-color: #AB66CC;
     color: #F2E9E1;
 }
 .card-body-color{
     background-color:#C1D4C7 ;
 }
-.navbar-colors {
-    background-color: #C1D4C7 ;
-}
-.navbar-item-colors{
-    color: #8A6E39;
-}
 
 .text-index{
-    color: #896E38;
+    color: black;
     font-family: Roboto;
 }
 .icons-header{
@@ -64,19 +60,178 @@ body {
 }
 .link-logout:hover{
     background-color: #ff6961;
-    color: white;
     border-radius: 15px;
 }
 
 .link-header{
     margin-left: 35px;
-    color: #896E38;
     font-family: Moon;
 }
 
 
-.link-header:hover{
-    background-color: #896E38 ;
-    color: #C1D4C7;
-    border-radius: 15px;
+
+
+// scss card activity
+
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
+
+// Colors
+$white: #fff;
+$emperor: #535353;
+
+$lavendar-magenta: #EC51DE;
+$shocking-pink: #EB0EC7;
+$governor-bay: #3023AE;
+$persian-blue: #3022AD;
+$curious-blue: #1897E1;
+$dodger-blue: #53A0FD;
+$red-violet: #CC19BF;
+$mariner: #405CD2;
+$seance: #7623A2;
+
+@mixin font($family, $weight, $size) {
+    font-family: $family, sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+}
+
+.card {
+    padding: 13px;
+    max-width: 318px;
+    width: 100%;
+    background: linear-gradient(-120deg, $lavendar-magenta 0%, $dodger-blue 60%, $governor-bay 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &__filter {
+        height: 212px;
+        overflow: hidden;
+        position: relative;
+        object-fit: cover;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            mix-blend-mode: multiply;
+            background: linear-gradient(-150deg, $shocking-pink 0%, $curious-blue 100%);
+            z-index: 1;
+        }
+    }
+    &__photo {
+        width: 100%;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+    }
+    &__container {
+        background: $white;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1em;
+        box-sizing: border-box;
+    }
+    h4 {
+        @include font('Poppins', regular, 20px);
+        color: $mariner;
+        letter-spacing: -1.06px;
+        margin: 0 0.4em 0.4em 0;
+    }
+    time, p, .card__location {
+        @include font('IBM Plex Mono', regular, 14px);
+        color: $emperor;
+        margin: 0.18em;
+    }
+    &__location {
+        text-decoration-color: $shocking-pink;
+        -webkit-text-decoration-color: $shocking-pink;
+        transition: all 250ms ease;
+        max-width: 13.3em;
+        &:hover {
+            background-color: rgba($shocking-pink, 0.2);
+            text-decoration-color: rgba($shocking-pink, 0.2);
+        }
+    }
+    &__buttons {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 1.5em 0 0.5em 0;
+        flex-direction: row;
+        .btn {
+            @include font('IBM Plex Mono', regular, 15px);
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-align: center;
+            display: block;
+            flex: 1 1 100%;
+            color: $white;
+            padding: 1em;
+            &:hover {
+                -webkit-animation: gradient 1.3s ease infinite;
+                -moz-animation: gradient 1.3s ease infinite;
+                animation: gradient 1.3s ease infinite;
+            }
+
+            &:hover i{
+                -webkit-animation: levitate 1.3s ease infinite;
+                -moz-animation: levitate 1.3s ease infinite;
+                animation: levitate 1.3s ease infinite;
+            }
+        }
+        .primary {
+            position: relative;
+            background-image: linear-gradient(to right, $curious-blue, $persian-blue);
+            background-size: 150% 150%;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+        .secondary {
+            position: relative;
+            background-image: linear-gradient(to right, $red-violet, $seance);
+            background-size: 150% 150%;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes levitate {
+    0% {
+        padding-left: 0px;
+    }
+    50% {
+        padding-left: 5px;
+    }
+    100% {
+        padding-left: 0px;
+    }
+}
+
+@media (max-width: 400px) {
+    .fas {
+        display: none;
+    }
+
+    .card__buttons {
+        display: inline;
+    }
 }
