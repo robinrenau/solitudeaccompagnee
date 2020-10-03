@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-
+    <div id="map"></div>
 
     <h1>Liste des villes </h1>
 
@@ -15,10 +15,10 @@
             <div class="col mb-4 ">
                 <div class="card">
 
-                        <a href="{{ path('city_show', {'id': city.id} ) }}">
-                            <img src="{{ asset('uploads/cities/' ~ city.picture) }}" class="card-img-top"
-                                 alt="{{ city.name }}">
-                        </a>
+                    <a href="{{ path('city_show', {'id': city.id} ) }}">
+                        <img src="{{ asset('uploads/cities/' ~ city.picture) }}" class="card-img-top"
+                             alt="{{ city.name }}">
+                    </a>
 
                     <div class="card-body">
                         <h5 class="card-title">{{ city.name }}</h5>
@@ -30,7 +30,7 @@
                     <div class="card-footer">
                             <span class="badge badge-pill badge-primary" title="Projets">
                                 <i class="fa fa-lightbulb-o"></i>
-                                {{ city.activities|length }} activité(s) dans la ville
+                                {{ city.activities|length }} activité(s)  dans la ville
                             </span>
                     </div>
                 </div>
@@ -39,4 +39,45 @@
 
 
     </div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            {% for city in cities %}
+            // The location of Rennes
+            var {{ city.name }} =
+            {
+                lat: {{ city.lat }},
+                lng: {{ city.lng }}}
+            ;
+            {% endfor %}
+            // The map, centered at Rennes
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 8, center: {lat: 48.1113387, lng: -1.6800198}});
+
+            {% for city in cities %}
+            const contentString{{ city.name }}= "{{ city.activities|length }} activité(s) proposée(s) dans la ville";
+            const infowindow{{ city.name }} = new google.maps.InfoWindow({
+                content: contentString{{ city.name }},
+            });
+            {% endfor %}
+
+            // The marker, positioned at Rennes
+            {% for city in cities %}
+            var marker{{ city.name }} = new google.maps.Marker({position: {{ city.name }}, map: map});
+            marker{{ city.name }}.addListener('click', () => {
+                infowindow{{ city.name }}.open(map, marker{{ city.name }});
+
+            });
+            {% endfor %}
+        }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlmJxKkG3koTn3nug1lnuFvbsAOFCXnPI&callback=initMap">
+    </script>
 {% endblock %}
+

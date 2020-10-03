@@ -34,6 +34,16 @@ class City
      */
     private $activities;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lng;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -101,5 +111,29 @@ class City
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
+
+        return $this;
     }
 }
