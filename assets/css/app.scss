@@ -40,6 +40,17 @@ body {
 .btn-index:hover {
     background-color: #AB66CC;
     color: #F2E9E1;
+    font-family: Roboto;
+}
+.btn-map{
+    background-color: #AB66CC;
+    color:white;
+    font-family: Roboto;
+}
+
+.btn-map:hover{
+    background-color:white ;
+    color:#AB66CC;
 }
 .card-body-color{
     background-color:#C1D4C7 ;
@@ -47,6 +58,9 @@ body {
 
 .text-index{
     color: black;
+    font-family: Roboto;
+}
+.text-map{
     font-family: Roboto;
 }
 .icons-header{

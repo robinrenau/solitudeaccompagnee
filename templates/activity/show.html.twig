@@ -1,42 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Activity{% endblock %}
+{% block title %}
+    Solitude Accompagnée -
+    {{ activity.title }}
+{% endblock %}
 
 {% block body %}
-    <h1>Activity</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" alt="{{ activity.title }}" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ activity.title }}</h1>
+            <div class="bg-light rounded p-2">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ activity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ activity.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ activity.description }}</td>
-            </tr>
-            <tr>
-                <th>Eventdate</th>
-                <td>{{ activity.eventdate ? activity.eventdate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ activity.createdAt ? activity.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ activity.address }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <span class="badge badge-pill badge-info" title="Date de proposition">
+                    <i class="fa fa-calendar"></i>
+                     {{ activity.CreatedAt|date ("m/d/Y") }}
+                </span>
+                <span class="badge badge-pill badge-warning" title="Coût du projet">
+                    <i class="fa fa-euro"></i>
+                    {{ activity.category }}
+                </span>
+            </div>
+            <p>{{activity.description}}</p>
+        </div>
+    </div>
 
-    <a href="{{ path('activity_index') }}">back to list</a>
+    <hr>
 
-    <a href="{{ path('activity_edit', {'id': activity.id}) }}">edit</a>
+    <form class="bg-light rounded p-2">
+        <h2>Ajouter un commentaire</h2>
+        <div class="form-group">
+            <label for="input-title">Titre</label>
+            <input type="text" class="form-control" id="input-title" placeholder="Titre">
+        </div>
+        <div class="form-group">
+            <label for="texatrea-comment">Contenu</label>
+            <textarea class="form-control" id="texatrea-comment" placeholder="Contenu de votre message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
 
-    {{ include('activity/_delete_form.html.twig') }}
+    <section class="list-group mt-4">
+
+        {% for comment in activity.comments %}
+            <article class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ comment.title }}</h5>
+                    <small>{{ comment.createdAt|date ("m/d/Y") }}</small>
+                </div>
+                <p class="mb-1"></p>
+                <small>{{ comment.content }}</small>
+            </article>
+        {% endfor %}
+
+
+    </section>
 {% endblock %}
