@@ -3,17 +3,17 @@
 {% block title %}Solitude Accompagnée{% endblock %}
 
 {% block body %}
-    <div class="jumbotron" style="background-color: #F5D5CB">
-        <h1 class="display-4" style="font-family: Roboto">Solitude Accompagnée</h1>
+    <div class="jumbotron" style="background-color: #F5D5CB; margin-top: 25px">
+        <h1 class="display-4 title-style" >Solitude Accompagnée</h1>
         <p class="lead" style="font-family: Roboto">Partagez des beaux moments de vies avec Solitude Accompagnée !</p>
         {% if app.user %}
         <a class="btn btn-lg btn-home"  href="{{ path('activity_new') }}" role="button">
             <i class="fa fa-th-large"></i>
-            Créer une nouvelle activité
+            Proposer une nouvelle activité
         </a>
         <a class="btn btn-lg btn-home" href="{{ path('activity_index') }}" role="button">
             <i class="fa fa-plus-circle"></i>
-            Voir les activités
+            Voir toutes les activités
         </a>
         {% endif %}
     </div>

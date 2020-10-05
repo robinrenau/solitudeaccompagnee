@@ -1,9 +1,9 @@
 {% extends 'base_index.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Solitude accompnée{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="title-style" style="margin-top: 20px">Création de votre compte : </h1>
 
     {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.email) }}
@@ -12,6 +12,6 @@
     {{ form_row(registrationForm.plainPassword) }}
     {{ form_row(registrationForm.dateofbirth) }}
 
-    <button type="submit" class="btn-primary">Créer ton compte</button>
+    <button type="submit" class="btn btn-index" >Créer ton compte</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
