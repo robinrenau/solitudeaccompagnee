@@ -24,9 +24,9 @@ class ActivityController extends AbstractController
         $donnees = $this->getDoctrine()->getRepository(Activity::class)->findBy([],['createdAt' => 'desc']);
 
         $activities = $paginator->paginate(
-            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $donnees, // Requête contenant les données à paginer (ici nos activités)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            2 // Nombre de résultats par page
+            3 // Nombre de résultats par page
         );
 
         return $this->render('activity/index.html.twig', [

@@ -3,12 +3,17 @@
 {% block title %}Les activités - Solitude accompagnée{% endblock %}
 
 {% block body %}
-
-    <a class="btn btn btn-home"  href="{{ path('activity_new') }}" role="button">
-        <i class="fa fa-th-large"></i>
-        Proposer une nouvelle activité
-    </a>
-    {{ knp_pagination_render(activities) }}
+    <div class="row row-cols-1 row-cols-md-3 ">
+        <div class="col-mb-4 col-sm-12">
+            <a class="btn btn btn-home" href="{{ path('activity_new') }}" role="button">
+                <i class="fa fa-th-large"></i>
+                Proposer une nouvelle activité
+            </a>
+        </div>
+        <div style="margin-top: 10px" class="col-mb-4 col-sm-12">
+            {{ knp_pagination_render(activities) }}
+        </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-3">
         {% for activity in activities %}
             <div class="col mb-4">
