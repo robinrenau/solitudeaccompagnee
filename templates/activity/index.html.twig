@@ -8,6 +8,7 @@
         <i class="fa fa-th-large"></i>
         Proposer une nouvelle activité
     </a>
+    {{ knp_pagination_render(activities) }}
     <div class="row row-cols-1 row-cols-md-3">
         {% for activity in activities %}
             <div class="col mb-4">

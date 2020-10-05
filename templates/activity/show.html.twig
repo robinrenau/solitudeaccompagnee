@@ -12,8 +12,8 @@
                  class="img-fluid">
         </div>
         <div class="col-md-8">
-            <h1>{{ activity.title }}</h1>
-            <div class="bg-light rounded p-2">
+            <h1 class="title-style">{{ activity.title }}</h1>
+            <div>
 
                 <span class="badge badge-pill badge-info" title="Date de l'activité">
                     <i class="fa fa-calendar"></i>
@@ -27,7 +27,7 @@
                     <i class="fa fa-building"></i>
                     {{ activity.city.label }}
                 </span>
-            </div>
+            </div><br>
             <h5>Description de l'activité :</h5>
             <p>{{ activity.description }}</p>
 

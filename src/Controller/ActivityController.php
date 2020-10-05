@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Form\ActivityType;
-use App\Repository\ActivityRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +18,19 @@ class ActivityController extends AbstractController
     /**
      * @Route("/", name="activity_index", methods={"GET"})
      */
-    public function index(ActivityRepository $activityRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
+        $donnees = $this->getDoctrine()->getRepository(Activity::class)->findBy([],['createdAt' => 'desc']);
+
+        $activities = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            2 // Nombre de résultats par page
+        );
+
         return $this->render('activity/index.html.twig', [
-            'activities' => $activityRepository->findAll(),
+            'activities' => $activities,
         ]);
     }
 
