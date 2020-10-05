@@ -15,13 +15,17 @@
             <h1>{{ activity.title }}</h1>
             <div class="bg-light rounded p-2">
 
-                <span class="badge badge-pill badge-info" title="Date de proposition">
+                <span class="badge badge-pill badge-info" title="Date de l'activité">
                     <i class="fa fa-calendar"></i>
                      {{ activity.eventdate|date ('d-m-Y H:i:s') }}
                 </span>
-                <span class="badge badge-pill badge-warning" title="Coût du projet">
-                    <i class="fa fa-euro"></i>
+                <span class="badge badge-pill badge-warning" title="Catégorie de l'activité">
+                    <i class="fa fa-google-wallet"></i>
                     {{ activity.category }}
+                </span>
+                <span class="badge badge-pill badge-secondary" title="Ville de l'activité">
+                    <i class="fa fa-building"></i>
+                    {{ activity.city.label }}
                 </span>
             </div>
             <h5>Description de l'activité :</h5>

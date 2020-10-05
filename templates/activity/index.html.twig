@@ -3,8 +3,11 @@
 {% block title %}Les activités - Solitude accompagnée{% endblock %}
 
 {% block body %}
-    <h2>Les dernieres activités proposées </h2>
 
+    <a class="btn btn btn-home"  href="{{ path('activity_new') }}" role="button">
+        <i class="fa fa-th-large"></i>
+        Proposer une nouvelle activité
+    </a>
     <div class="row row-cols-1 row-cols-md-3">
         {% for activity in activities %}
             <div class="col mb-4">

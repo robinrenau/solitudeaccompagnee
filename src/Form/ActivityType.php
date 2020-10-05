@@ -35,13 +35,16 @@ class ActivityType extends AbstractType
             ])
             ->add('city', EntityType::class, [
                 'class' => City::class,
+                'choice_label' => 'label',
                 'multiple' => false,
                 'expanded' => true,
+                'label' => "Ville de l'activité"
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'multiple' => false,
                 'expanded' => true,
+                'label' => "Catégorie de l'activité"
             ])
         ;
     }

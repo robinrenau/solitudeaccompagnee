@@ -44,6 +44,11 @@ class City
      */
     private $lng;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $label;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -133,6 +138,18 @@ class City
     public function setLng(float $lng): self
     {
         $this->lng = $lng;
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

@@ -17,11 +17,11 @@
 
                     <a href="{{ path('city_show', {'id': city.id} ) }}">
                         <img src="{{ asset('uploads/cities/' ~ city.picture) }}" class="card-img-top"
-                             alt="{{ city.name }}">
+                             alt="{{ city.label }}">
                     </a>
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ city.name }}</h5>
+                        <h5 class="card-title" style="color: white">{{ city.label }}</h5>
                         <a href="{{ path('city_show', {'id': city.id} ) }}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>
                             Voir les activités

@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Activity{% endblock %}
+{% block title %}Création Activité - Solitude acompagnée{% endblock %}
 
 {% block body %}
-    <h1>Create new Activity</h1>
+    <h1 class="title-style">Proposer une activité</h1>
 
     {{ include('activity/_form.html.twig') }}
+    <a  href="{{ path('homepage') }}"><i
+                class="fa fa-sign-out "></i> revenir à l' accueil</a>
 
-    <a href="{{ path('activity_index') }}">back to list</a>
 {% endblock %}
