@@ -8,7 +8,8 @@
 {% block body %}
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" alt="{{ activity.title }}" class="img-fluid">
+            <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" alt="{{ activity.title }}"
+                 class="img-fluid">
         </div>
         <div class="col-md-8">
             <h1>{{ activity.title }}</h1>
@@ -16,31 +17,31 @@
 
                 <span class="badge badge-pill badge-info" title="Date de proposition">
                     <i class="fa fa-calendar"></i>
-                     {{ activity.CreatedAt|date ("m/d/Y") }}
+                     {{ activity.eventdate|date ('d-m-Y H:i:s') }}
                 </span>
                 <span class="badge badge-pill badge-warning" title="Coût du projet">
                     <i class="fa fa-euro"></i>
                     {{ activity.category }}
                 </span>
             </div>
-            <p>{{activity.description}}</p>
+            <h5>Description de l'activité :</h5>
+            <p>{{ activity.description }}</p>
+
+            <h5>Adresse et/ou lieu de l'activité :</h5>
+            <p>{{ activity.address }}</p>
+
+            <h5>Contact :</h5>
+            <p>Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
+            <p>Email de l'hôte : {{ activity.user.email }}</p>
         </div>
     </div>
 
     <hr>
 
-    <form class="bg-light rounded p-2">
-        <h2>Ajouter un commentaire</h2>
-        <div class="form-group">
-            <label for="input-title">Titre</label>
-            <input type="text" class="form-control" id="input-title" placeholder="Titre">
-        </div>
-        <div class="form-group">
-            <label for="texatrea-comment">Contenu</label>
-            <textarea class="form-control" id="texatrea-comment" placeholder="Contenu de votre message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-    </form>
+    <a class="btn btn-lg btn-home" href="{{ path('comment_new') }}" role="button">
+        <i class="fa fa-book"></i>
+        Ajouter un commentaire
+    </a>
 
     <section class="list-group mt-4">
 
