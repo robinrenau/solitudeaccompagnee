@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use App\Repository\ActivityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -69,9 +70,15 @@ class Activity
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ActivityParticipation::class, mappedBy="activity")
+     */
+    private $participations;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -215,5 +222,48 @@ class Activity
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @return Collection|ActivityParticipation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(ActivityParticipation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(ActivityParticipation $participation): self
+    {
+        if ($this->participations->contains($participation)) {
+            $this->participations->removeElement($participation);
+            // set the owning side to null (unless already changed)
+            if ($participation->getActivity() === $this) {
+                $participation->setActivity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /*
+     *
+     *
+     */
+    public function participateByUser(User $user) :bool
+    {
+        foreach ($this->participations as $participation){
+            if($participation->getUser() === $user) return true;
+        }
+        return false;
     }
 }

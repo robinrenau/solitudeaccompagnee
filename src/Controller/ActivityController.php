@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Activity;
+use App\Entity\ActivityParticipation;
 use App\Form\ActivityType;
+use App\Repository\ActivityParticipationRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,6 +70,51 @@ class ActivityController extends AbstractController
             'activity' => $activity,
         ]);
     }
+    /**
+     * @Route("/{id}/participation", name="activity_participation")
+     */
+    public function participation(Activity $activity,  ActivityParticipationRepository $participationRepo) : Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user =$this->getUser();
+
+        if(!$user) return $this->json([
+            'code'=>403,
+            'message'=>"Unauthorized"
+
+        ], 403);
+        if($activity->participateByUser($user)){
+            $participation=$participationRepo->findOneBy([
+                'activity'=> $activity,
+                'user' => $user
+
+            ]);
+
+            $entityManager->remove($participation);
+            $entityManager->flush();
+
+            return $this->json([
+                'code'=>200,
+                'message' => 'Participation annulée',
+                'participations'=> $participationRepo->count(['activity' => $activity])
+                    ], 200);
+
+
+        }
+
+        $participation = new ActivityParticipation();
+        $participation->setActivity($activity)
+            ->setUser($user);
+        $entityManager->persist($participation);
+        $entityManager->flush();
+
+        return $this->json([
+            'code'=>200,
+            'message'=>"Participation bien prise en compte",
+            "participations"=>$participationRepo->count(['activity'=>$activity])
+        ], 200);
+
+    }
 
     /**
      * @Route("/{id}/edit", name="activity_edit", methods={"GET","POST"})
@@ -101,4 +149,6 @@ class ActivityController extends AbstractController
 
         return $this->redirectToRoute('activity_index');
     }
+
+
 }

@@ -37,6 +37,15 @@
             <h5>Contact :</h5>
             <p>Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
             <p>Email de l'hôte : {{ activity.user.email }}</p>
+            <a href="" class="btn btn-participation js-participation">
+                {% if app.user and activity.participateByUser(app.user) %}
+                    <i class="fa fa-calendar-minus"></i>
+                {% else %}
+                    <i class="fa fa-calendar-plus"></i>
+                {% endif %}
+                <span class="js-participations">{{ activity.participations | length}}</span>
+                <span class="js-label">Participez ? </span>
+            </a>
         </div>
     </div>
 

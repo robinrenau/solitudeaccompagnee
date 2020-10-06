@@ -63,10 +63,16 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ActivityParticipation::class, mappedBy="user")
+     */
+    private $participations;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -248,5 +254,36 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection|ActivityParticipation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(ActivityParticipation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(ActivityParticipation $participation): self
+    {
+        if ($this->participations->contains($participation)) {
+            $this->participations->removeElement($participation);
+            // set the owning side to null (unless already changed)
+            if ($participation->getUser() === $this) {
+                $participation->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
