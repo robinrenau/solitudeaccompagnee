@@ -9,33 +9,38 @@
 
 
     <h2>Liste de nos villes partenaires </h2>
-    <div class="row row-cols-1 row-cols-md-4">
+    <div class="row row-cols-1 row-cols-md-3">
 
         {% for city in cities %}
-            <div class="col mb-4 ">
-                <div class="card">
-
-                    <a href="{{ path('city_show', {'id': city.id} ) }}">
-                        <img src="{{ asset('uploads/cities/' ~ city.picture) }}" class="card-img-top"
-                             alt="{{ city.label }}">
-                    </a>
-
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: white">{{ city.label }}</h5>
-                        <a href="{{ path('city_show', {'id': city.id} ) }}" class="btn btn-primary">
-                            <i class="fa fa-eye"></i>
-                            Voir les activités
-                        </a>
-                    </div>
-                    <div class="card-footer">
-                            <span class="badge badge-pill badge-primary" title="Projets">
-                                <i class="fa fa-lightbulb-o"></i>
-                                {{ city.activities|length }} activité(s)  dans la ville
-                            </span>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="view overlay">
+                <img class="card-img-top" src="{{ asset('uploads/cities/' ~ city.picture) }}"
+                     alt="Card image cap">
+                <a href="{{ path('city_show', {'id': city.id} ) }}">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
             </div>
-        {% endfor %}
+
+            <!-- Card content -->
+            <div class="card-body">
+
+                <!-- Title -->
+                <h4 class="card-title">{{ city.label }}</h4>
+
+                <!-- Button -->
+                <a href="{{ path('city_show', {'id': city.id} ) }}" class="btn btn-primary">Voir les projets</a>
+
+            </div>
+            <div class="card-footer">
+                            <span class="badge badge-pill badge-primary" title="Activités">
+                                <i class="fa fa-lightbulb-o"></i>
+                                {{ city.activities|length }} activité(s) dans la ville
+                            </span>
+            </div>
+        </div>
+
+
+    {% endfor %}
 
 
     </div>

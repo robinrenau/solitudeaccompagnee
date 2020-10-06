@@ -115,7 +115,7 @@ $seance: #7623A2;
     font-size: $size;
 }
 
-.card {
+.card_activity {
     padding: 13px;
     max-width: 318px;
     width: 100%;
@@ -181,7 +181,7 @@ $seance: #7623A2;
         display: flex;
         align-items: center;
         width: 100%;
-        margin: 1.5em 0 0.5em 0;
+        margin: 1.0em 0 0.5em 0;
         flex-direction: row;
         .btn {
             @include font('IBM Plex Mono', regular, 15px);

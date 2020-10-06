@@ -29,12 +29,12 @@
     <div class="row row-cols-1 row-cols-md-2">
 
         {% for activity in user.activities %}
-            <div class="card " aria-labelledby="event card">
-                <div class="card__filter">
-                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card__photo"
+            <div class="card_activity " aria-labelledby="event card">
+                <div class="card_activity__filter">
+                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card_activity__photo"
                          alt="{{ activity.title }}">
                 </div>
-                <div class="card__container">
+                <div class="card_activity__container">
                     <h4 class="card-title">{{ activity.title }}</h4>
                     <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
                     <p>{{ activity.address }}</p><br>
@@ -45,13 +45,13 @@
                         <i class="fa fa-calendar"></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
-                    <div class="card__buttons">
-                        <a href="{{ path('activity_show', {'id': activity.id} ) }}" class="card__buttons btn primary"
+                    <div class="card_activity__buttons">
+                        <a href="{{ path('activity_show', {'id': activity.id} ) }}" class="card_activity__buttons btn primary"
                            role="button" aria-haspopup="false">
                             Details
                         </a>
                     </div>
-                    <div class="card__buttons">
+                    <div class="card_activity__buttons">
                         <a href="{{ path('activity_edit', {'id': activity.id} ) }}" class="btn btn-light-blue">
 
                             Modifier</a>
