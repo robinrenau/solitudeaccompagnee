@@ -6,67 +6,80 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-8 col-detail-activity">
-            <h1 class="title-style">{{ activity.title }}</h1>
-            <div>
 
-                <span class="badge badge-pill badge-info" title="Date de l'activité">
-                    <i class="fa fa-calendar"></i>
-                     {{ activity.eventdate|date ('d-m-Y H:i:s') }}
-                </span>
-                <span class="badge badge-pill badge-warning" title="Catégorie de l'activité">
-                    <i class="fa fa-google-wallet"></i>
-                    {{ activity.category }}
-                </span>
-                <span class="badge badge-pill badge-secondary" title="Ville de l'activité">
-                    <i class="fa fa-building"></i>
-                    {{ activity.city.label }}
-                </span>
-            </div><br>
-            <h5>Description de l'activité :</h5>
-            <p>{{ activity.description }}</p>
+    <div class="col-detail-activity jumbotron text-center hoverable p-4">
 
-            <h5>Adresse et/ou lieu de l'activité :</h5>
-            <p>{{ activity.address }}</p>
+        <!-- Grid row -->
+        <div class="row">
 
-            <h5>Contact :</h5>
-            <p>Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
-            <p>Email de l'hôte : {{ activity.user.email }}</p>
+            <!-- Grid column -->
+            <div class="col-md-4 offset-md-1 mx-3 my-3">
 
+                <!-- Featured image -->
+                <div class="view overlay">
+                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="img-fluid img-activity" alt="{{ activity.title }}">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
 
+            </div>
+            <!-- Grid column -->
 
-        </div>
-        <div class="col-md-4">
-            <img src="{{ asset('uploads/cities/' ~ activity.city.picture) }}" alt="{{ activity.title }}"
-                 class="img-fluid img-activity">
-            <span class="js-label">Participer ? </span>
+            <!-- Grid column -->
+            <div class="col-md-7 text-md-left ml-3 mt-3">
 
-            <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation">
-                {% if app.user and activity.participateByUser(app.user) %}
-                    <i class=" fa fa-times-circle"></i>
+                <!-- Excerpt -->
+                <div class="green-text">
+                    <h6 class="badge badge-pill badge-info"><i class="fa fa-calendar"></i>  {{ activity.eventdate|date ('d-m-Y H:i:s') }}</h6>
+
+                    <h6 class="badge badge-pill badge-warning"><i class="fa fa-google-wallet"></i> {{ activity.category }}</h6>
+
+                    <h6 class="badge badge-pill badge-secondary"><i class="fa fa-building"></i> {{ activity.city.label }}</h6>
+                </div>
+
+                <h4 class="h4 mb-4">{{ activity.title }}</h4>
+
+                <p class="font-weight-normal">{{ activity.description }}</p>
+                <h5 class="font-weight-normal">Adresse et/ou lieu de l'activité :</h5>
+                <p class="font-weight-normal">{{ activity.address }}</p>
+
+                <h5 class="font-weight-normal">Contact :</h5>
+                <p class="font-weight-normal">Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
+                <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
+
+                <div >
+                    <span class="js-label">Participer ? </span>
+
+                    <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation">
+                        {% if app.user and activity.participateByUser(app.user) %}
+                            <i class=" fa fa-times-circle"></i>
+
+                        {% else %}
+                            <i class="fa fa-check-circle">  </i>
+                        {% endif %}
+                        <span class="js-participations"> </span>
+
+                    </a>
+                </div>
+                {% if app.user != activity.user %}
 
                 {% else %}
-                    <i class="fa fa-check-circle">  </i>
+                    <ul class="title-style">Liste des participants</ul>
+                    {% for participation in activity.participations %}
+                        <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
+                        Contact : {{ participation.user.email }}
+                    {% endfor %}
+
                 {% endif %}
-                <span class="js-participations"> </span>
 
-            </a>
+            </div>
+            <!-- Grid column -->
 
-            {% if app.user != activity.user %}
-
-            {% else %}
-                <ul class="title-style">Liste des participants</ul>
-                {% for participation in activity.participations %}
-                    <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
-                     Contact : {{ participation.user.email }}
-                {% endfor %}
-
-            {% endif %}
         </div>
+        <!-- Grid row -->
 
     </div>
-
     <hr>
 
     <a class="btn btn-lg btn-home" href="{{ path('comment_new') }}" role="button">

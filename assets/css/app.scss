@@ -21,6 +21,7 @@ body {
     background-color: #F2E9E1;
     font-family: Roboto;
 }
+
 .btn-home{
     background-color: #AB66CC;
     color: white;
@@ -54,6 +55,9 @@ body {
     background-color:white ;
     color:#AB66CC;
 }
+.card-city{
+    margin-top: 15px;
+}
 .card-body-color{
     background-color:#C1D4C7 ;
 }
@@ -71,7 +75,7 @@ body {
     margin-right: 4px;
 }
 .img-activity{
-    border: 3px solid #FFBFAE;
+    border: 3px solid #F1E9E1;
     border-radius: 10%;
     margin-top: 20px;
 }
