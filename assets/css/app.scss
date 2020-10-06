@@ -57,7 +57,9 @@ body {
 .card-body-color{
     background-color:#C1D4C7 ;
 }
-
+.col-detail-activity{
+    margin-top: 20px;
+}
 .text-index{
     color: black;
     font-family: Roboto;
@@ -68,7 +70,11 @@ body {
 .icons-header{
     margin-right: 4px;
 }
-
+.img-activity{
+    border: 3px solid #FFBFAE;
+    border-radius: 10%;
+    margin-top: 20px;
+}
 .title-style{
     font-family: Roboto;
 }

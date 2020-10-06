@@ -85,6 +85,32 @@
 
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script> document.querySelectorAll('a.js-participation').forEach(function(link){
+        function OnClickBtnParticipation(event){
+            event.preventDefault();
+            const url = this.href;
+            const spanCount = this.querySelector('span.js-participations');
+            const icone = this.querySelector('i');
+
+            axios.get(url).then(function(response){
+
+                spanCount.textContent = response.data.participations;
+                if(icone.classList.contains('fa-times-circle'))
+                    icone.classList.replace('fa-times-circle','fa-check-circle');
+                else
+                    icone.classList.replace('fa-check-circle','fa-times-circle' )
+            }).catch(function (error) {
+                if (error.response.status=== 403){
+                    window.alert("Vous ne pouvez pas participer à un évenement si vous n'êtes pas connecté")
+                } else{
+                    window.alert("Une erreur s'est produite, veuillez réessayer plus tard")
+                }
+
+            });
+        }
+        link.addEventListener('click', OnClickBtnParticipation)
+        })</script>
 {% endblock %}
 
 </body>

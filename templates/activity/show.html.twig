@@ -7,11 +7,7 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-md-4">
-            <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" alt="{{ activity.title }}"
-                 class="img-fluid">
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-detail-activity">
             <h1 class="title-style">{{ activity.title }}</h1>
             <div>
 
@@ -37,16 +33,38 @@
             <h5>Contact :</h5>
             <p>Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
             <p>Email de l'hôte : {{ activity.user.email }}</p>
-            <a href="" class="btn btn-participation js-participation">
-                {% if app.user and activity.participateByUser(app.user) %}
-                    <i class="fa fa-calendar-minus"></i>
-                {% else %}
-                    <i class="fa fa-calendar-plus"></i>
-                {% endif %}
-                <span class="js-participations">{{ activity.participations | length}}</span>
-                <span class="js-label">Participez ? </span>
-            </a>
+
+
+
         </div>
+        <div class="col-md-4">
+            <img src="{{ asset('uploads/cities/' ~ activity.city.picture) }}" alt="{{ activity.title }}"
+                 class="img-fluid img-activity">
+            <span class="js-label">Participer ? </span>
+
+            <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation">
+                {% if app.user and activity.participateByUser(app.user) %}
+                    <i class=" fa fa-times-circle"></i>
+
+                {% else %}
+                    <i class="fa fa-check-circle">  </i>
+                {% endif %}
+                <span class="js-participations"> </span>
+
+            </a>
+
+            {% if app.user != activity.user %}
+
+            {% else %}
+                <ul class="title-style">Liste des participants</ul>
+                {% for participation in activity.participations %}
+                    <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
+                     Contact : {{ participation.user.email }}
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
     </div>
 
     <hr>
