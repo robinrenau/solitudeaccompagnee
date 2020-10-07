@@ -18,6 +18,7 @@ easy_admin:
     City:
       class: App\Entity\City
       image_base_path: '%uploads_url_cities%'
+
       list:
         fields:
           - 'Label'
@@ -34,6 +35,9 @@ easy_admin:
       edit:
         fields:
           - 'id'
+          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
+
+
     User:
       class: App\Entity\User
       list:
@@ -66,3 +70,14 @@ easy_admin:
           - 'user'
           - 'city'
           - 'category'
+    Comment:
+      class: App\Entity\Comment
+      list:
+        actions: ['-new', '-edit']
+        fields:
+          - 'title'
+          - 'content'
+        form:
+          fields:
+            - 'title'
+            - 'content'
