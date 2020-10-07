@@ -3,7 +3,8 @@
 {% block title %}Modifier l'activité - Solitude Accompagnée{% endblock %}
 
 {% block body %}
-    <a class=" btn btn-home" href="{{ path('user_show',{'id': app.user.id}) }}">Retourner a ton profil</a>
+    <a class=" btn btn-home" href="{{ path('user_show',{'id': app.user.id}) }}"><i
+                class="fa fa-sign-out "></i>Retourner a ton profil</a>
     <h1 style="font-family: Moon; margin-top: 20px">Modifier ton activite</h1>
 
     {{ include('activity/_form.html.twig', {'button_label': 'Modifier'}) }}

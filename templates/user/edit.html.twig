@@ -3,10 +3,12 @@
 {% block title %}Modification du profil{% endblock %}
 
 {% block body %}
+    <a class="btn btn-home" href="{{ path('user_show',{'id': app.user.id}) }}"><i
+                class="fa fa-sign-out "></i>Retourner a ton profil</a>
 
-    <h3>Modification de ton profil</h3>
+    <h3 style="font-family: Moon; margin-top: 20px">Modification de ton profil</h3>
 
     {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('user_show',{'id': app.user.id}) }}">Retourner a ton profil</a>
+
 {% endblock %}
