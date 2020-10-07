@@ -3,6 +3,8 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
     <h1>User index</h1>
 
     <table class="table">
@@ -42,4 +44,12 @@
     </table>
 
     <a href="{{ path('user_new') }}">Create new</a>
+    {% else %}
+    <div id="app">
+        <div>403</div>
+        <div class="txt">
+            Vous n'avez pas la permission<span class="blink">_</span>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

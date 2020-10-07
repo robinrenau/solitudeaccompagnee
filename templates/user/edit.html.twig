@@ -2,7 +2,17 @@
 
 {% block title %}Modification du profil{% endblock %}
 
+
 {% block body %}
+    {% if app.user.id != user.id %}
+    <div id="app">
+        <div>403</div>
+        <div class="txt">
+            Vous n'avez pas la permission<span class="blink">_</span>
+        </div>
+    </div>
+
+    {% else %}
     <a class="btn btn-home" href="{{ path('user_show',{'id': app.user.id}) }}"><i
                 class="fa fa-sign-out "></i>Retourner a ton profil</a>
 
@@ -10,5 +20,5 @@
 
     {{ include('user/_form.html.twig') }}
 
-
+{% endif %}
 {% endblock %}
