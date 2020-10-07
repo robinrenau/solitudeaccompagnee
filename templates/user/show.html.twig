@@ -4,7 +4,15 @@
 
 {% block body %}
 
+{% if app.user.id != user.id %}
+    <div id="app">
+        <div>403</div>
+        <div class="txt">
+            Vous n'avez pas la permission<span class="blink">_</span>
+        </div>
+    </div>
 
+    {% else %}
     <!-- Header -->
     <div class="jumbotron background-user ">
         <!-- Mask -->
@@ -26,9 +34,10 @@
     {% if user.activities | length > 0 %}
         <h3 style="font-family: Moon">Mes activites proposees</h3>
     {% endif %}
-    <div class="row row-cols-1 row-cols-md-2">
+    <div class="row row-cols-1 row-cols-md-3">
 
         {% for activity in user.activities %}
+        <div class="col mb-4">
             <div class="card_activity " aria-labelledby="event card">
                 <div class="card_activity__filter">
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card_activity__photo"
@@ -63,9 +72,9 @@
 
             </div>
 
-
+        </div>
         {% endfor %}
 
     </div>
-
+{% endif %}
 {% endblock %}
