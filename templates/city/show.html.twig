@@ -7,7 +7,7 @@
 
 {% block body %}
     <main class="container">
-        <h2>{{ city.activities|length }} activité(s) à {{ city.name }}</h2>
+        <h2 style="font-family:'Roboto';margin-top: 20px" >Toutes les activités à {{  city.label }} ({{ city.activities|length }} {% if city.activities|length > 1 %} résultats{% else %} résultat{% endif %})</h2>
 
         <section class="row projects">
             {% for activity in city.activities %}

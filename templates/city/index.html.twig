@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block body %}
+    <h2 style="font-family: Moon; margin-top: 30px"> La carte de nos villes </h2>
     <div id="map"></div>
 
 
-    <h2>Liste de nos villes partenaires </h2>
+    <h2 style="font-family: Moon; margin-top: 30px">Liste de nos villes partenaires </h2>
     <div class="row row-cols-1 row-cols-md-3">
 
         {% for city in cities %}
@@ -27,15 +28,7 @@
                 <!-- Title -->
                 <h4 class="card-title">{{ city.label }}</h4>
 
-                <!-- Button -->
-                <a href="{{ path('city_show', {'id': city.id} ) }}" class="btn btn-primary">Voir les projets</a>
 
-            </div>
-            <div class="card-footer">
-                            <span class="badge badge-pill badge-primary" title="Activités">
-                                <i class="fa fa-lightbulb-o"></i>
-                                {{ city.activities|length }} activité(s) dans la ville
-                            </span>
             </div>
         </div>
 

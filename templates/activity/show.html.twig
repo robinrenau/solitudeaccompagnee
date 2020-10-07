@@ -21,6 +21,7 @@
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
+
                 </div>
 
             </div>
@@ -38,18 +39,18 @@
                     <h6 class="badge badge-pill badge-secondary"><i class="fa fa-building"></i> {{ activity.city.label }}</h6>
                 </div>
 
-                <h4 class="h4 mb-4">{{ activity.title }}</h4>
+                <h4 class="h4 mb-4" style="font-size: 30px">{{ activity.title }}</h4>
 
                 <p class="font-weight-normal">{{ activity.description }}</p>
-                <h5 class="font-weight-normal">Adresse et/ou lieu de l'activité :</h5>
+                <h5 class="font-weight-bold">Adresse et/ou lieu de l'activité </h5>
                 <p class="font-weight-normal">{{ activity.address }}</p>
 
-                <h5 class="font-weight-normal">Contact :</h5>
+                <h5 class="font-weight-bold">Contact </h5>
                 <p class="font-weight-normal">Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
                 <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
 
-                <div >
-                    <span class="js-label">Participer ? </span>
+                <div class="badge badge-participation">
+                    <span class="js-label" style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
 
                     <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation">
                         {% if app.user and activity.participateByUser(app.user) %}
@@ -62,16 +63,7 @@
 
                     </a>
                 </div>
-                {% if app.user != activity.user %}
 
-                {% else %}
-                    <ul class="title-style">Liste des participants</ul>
-                    {% for participation in activity.participations %}
-                        <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
-                        Contact : {{ participation.user.email }}
-                    {% endfor %}
-
-                {% endif %}
 
             </div>
             <!-- Grid column -->
@@ -80,6 +72,16 @@
         <!-- Grid row -->
 
     </div>
+    {% if app.user != activity.user %}
+
+    {% else %}
+        <ul class="title-style">Liste des participants</ul>
+        {% for participation in activity.participations %}
+            <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
+            Contact : {{ participation.user.email }}
+        {% endfor %}
+
+    {% endif %}
     <hr>
 
     <a class="btn btn-lg btn-home" href="{{ path('comment_new') }}" role="button">
