@@ -3,6 +3,7 @@
 {% block title %}Edit City{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
     <h1>Edit City</h1>
 
     {{ include('city/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +11,12 @@
     <a href="{{ path('city_index') }}">back to list</a>
 
     {{ include('city/_delete_form.html.twig') }}
+    {% else %}
+        <div id="app">
+            <div>403</div>
+            <div class="txt">
+                Vous n'avez pas la permission<span class="blink">_</span>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
