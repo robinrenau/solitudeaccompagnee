@@ -3,10 +3,11 @@
 {% block title %}Création Activité - Solitude acompagnée{% endblock %}
 
 {% block body %}
-    <h1 class="title-style">Proposer une activité</h1>
+    <a class=" btn btn-home" href="{{ path('homepage') }}"><i
+                class="fa fa-sign-out "></i> Revenir à l' accueil</a>
+    <h1 class="title-style" style="font-family: Moon; margin-top: 15px">Proposer une activite</h1>
 
     {{ include('activity/_form.html.twig') }}
-    <a  href="{{ path('homepage') }}"><i
-                class="fa fa-sign-out "></i> revenir à l' accueil</a>
+
 
 {% endblock %}

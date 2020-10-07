@@ -25,7 +25,7 @@ class ActivityType extends AbstractType
             ])
             ->add('description')
             ->add('eventdate', DateTimeType::class,[
-                'label'=>"Date et heure"
+                'label'=>"Date et heure",
             ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse',
