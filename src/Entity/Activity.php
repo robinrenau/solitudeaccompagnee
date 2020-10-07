@@ -71,7 +71,8 @@ class Activity
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity=ActivityParticipation::class, mappedBy="activity")
+     * @ORM\OneToMany(targetEntity=ActivityParticipation::class, mappedBy="activity", cascade={"persist", "remove"})
+     *
      */
     private $participations;
 

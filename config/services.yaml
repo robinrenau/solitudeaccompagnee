@@ -6,6 +6,8 @@
 parameters:
         uploads_url_cities: 'uploads/cities'
         uploads_directory_cities: '%kernel.project_dir%/public/uploads/cities'
+        uploads_url_categories: 'uploads/categories'
+        uploads_directory_categories: '%kernel.project_dir%/public/uploads/categories'
 
 services:
     # default configuration for services in *this* file
@@ -34,3 +36,7 @@ services:
     App\Service\FileUploaderCities:
         arguments:
             $targetDirectory_cities: '%uploads_directory_cities%'
+
+    App\Service\FileUploaderCategories:
+        arguments:
+            $targetDirectory_categories: '%uploads_directory_categories%'

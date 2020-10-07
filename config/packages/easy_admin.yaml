@@ -3,12 +3,15 @@ easy_admin:
     #        # List the entity class name you want to manage
     Category:
       class: App\Entity\Category
+      image_base_path: '%uploads_url_categories%'
       list:
         fields:
           - 'Label'
+          - { property: 'picture', type: 'image' }
       form:
         fields:
           - 'label'
+          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
       edit:
         fields:
           - 'id'
@@ -17,12 +20,17 @@ easy_admin:
       image_base_path: '%uploads_url_cities%'
       list:
         fields:
-          - 'name'
+          - 'Label'
           - { property: 'picture', type: 'image' }
+
       form:
         fields:
-          - 'name'
+          - 'label'
           - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
+          - 'name'
+          - 'lat'
+          - 'lng'
+
       edit:
         fields:
           - 'id'
