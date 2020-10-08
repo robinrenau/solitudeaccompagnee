@@ -3,15 +3,21 @@
 {% block title %}Inscription - Solitude accompnée{% endblock %}
 
 {% block body %}
-    <h1 class="title-style" style="margin-top: 20px">Création de votre compte : </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 m-auto">
+            <h2 style="margin-top: 20px; font-family: Moon">Creation de compte</h2>
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.firstname) }}
-    {{ form_row(registrationForm.lastname) }}
-    {{ form_row(registrationForm.plainPassword) }}
-    {{ form_row(registrationForm.dateofbirth) }}
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.dateofbirth) }}
 
-    <button type="submit" class="btn btn-index" >Créer ton compte</button>
-    {{ form_end(registrationForm) }}
+            <button type="submit" class="btn btn-index" >Créer ton compte</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
 {% endblock %}

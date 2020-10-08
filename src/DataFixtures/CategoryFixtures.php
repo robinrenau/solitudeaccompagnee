@@ -16,6 +16,18 @@ class CategoryFixtures extends Fixture
         $manager->persist($rencontre);
         $this->addReference("cat-renc", $rencontre);
 
+        $voyage = new Category();
+        $voyage ->setLabel("Voyage");
+        $voyage->setPicture("voyage.jpg");
+        $manager->persist($voyage);
+        $this->addReference("cat-voy", $voyage);
+
+        $activitenature = new Category();
+        $activitenature ->setLabel("Activité nature");
+        $activitenature->setPicture("activitenature.jpg");
+        $manager->persist($activitenature);
+        $this->addReference("cat-actnat", $activitenature);
+
         $loisir = new Category();
         $loisir ->setLabel("Loisir");
         $loisir->setPicture("loisir.jpg");

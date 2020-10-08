@@ -11,10 +11,10 @@
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                <h1 class="title-style" style="margin-top: 20px">Connexion : </h1>
-                <label for="inputEmail">Email</label>
+                <h2 style="margin-top: 20px; font-family: Moon">Connexion  </h2>
+                <label style="margin-top: 20px" for="inputEmail"><i style="margin-right: 10px" class="fa fa-envelope prefix"></i>Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                <label for="inputPassword">Mot de passe</label>
+                <label style="margin-top: 20px" for="inputPassword"><i style="margin-right: 10px" class="fa fa-lock prefix"></i>Mot de passe</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" required>
 
                 <input type="hidden" name="_csrf_token"
