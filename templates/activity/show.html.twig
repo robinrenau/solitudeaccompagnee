@@ -54,32 +54,34 @@
                     : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
                 <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
 
-                <div class="badge badge-participation">
-                    <span class="js-label"
-                          style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
+                <div class="row">
+                    <div class="badge badge-participation">
+                        <span class="js-label"
+                              style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
 
-                    <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
-                        {% if app.user and activity.participateByUser(app.user) and  activity.participations | length == activity.maxParticipants %}
+                        <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
+                            {% if app.user and activity.participateByUser(app.user) and  activity.participations | length == activity.maxParticipants %}
 
-                        {% elseif activity.participations | length == activity.maxParticipants %}
-                            disabled
-                        {% endif %}
-                        ">
+                            {% elseif activity.participations | length == activity.maxParticipants %}
+                                disabled
+                            {% endif %}
+                            ">
 
-                        {% if app.user and activity.participateByUser(app.user) %}
-                            <i class=" fa fa-times-circle"></i>
+                            {% if app.user and activity.participateByUser(app.user) %}
+                                <i class=" fa fa-times-circle"></i>
 
-                        {% else %}
-                            <i class="fa fa-check-circle"> </i>
-                        {% endif %}
-                        <span class="js-participations"> </span>
+                            {% else %}
+                                <i class="fa fa-check-circle"> </i>
+                            {% endif %}
+                            <span class="js-participations"> </span>
 
-                    </a>
-                </div>
-                <div>
-                    <p> Nombre de participants :</p>
-                    <p> {{ activity.participations | length }} / {{ activity.maxParticipants }}</p>
-                </div>
+                        </a>
+                    </div>
+                    <div style="margin-left: 20px">
+                        <p class="font-weight-bold"> Nombre de participants</p>
+                        <p> {{ activity.participations | length }} / {{ activity.maxParticipants }}</p>
+                    </div>
+            </div>
 
 
             </div>
