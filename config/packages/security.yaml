@@ -39,4 +39,5 @@ security:
          - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/category/new, roles: ROLE_ADMIN }
          - { path: ^/city/new, roles: ROLE_ADMIN }
+         - { path: ^/activity/new, roles: IS_AUTHENTICATED_FULLY }
 

@@ -29,7 +29,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $palet = new Activity();
         $palet->setUser($this->getReference("user-mmartin"));
-        $palet->setMaxParticipants(8);
+        $palet->setMaxParticipants(3);
         $palet->setTitle("Tournoi de palets breton");
         $palet->setCity($this->getReference("city-fougeres"));
         $palet->setCreatedAt(new \DateTime('04/10/2020'));

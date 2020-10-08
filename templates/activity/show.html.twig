@@ -17,7 +17,8 @@
 
                 <!-- Featured image -->
                 <div class="view overlay">
-                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="img-fluid img-activity" alt="{{ activity.title }}">
+                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
+                         class="img-fluid img-activity" alt="{{ activity.title }}">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -32,11 +33,14 @@
 
                 <!-- Excerpt -->
                 <div class="green-text">
-                    <h6 class="badge badge-pill badge-info"><i class="fa fa-calendar"></i>  {{ activity.eventdate|date ('d-m-Y H:i:s') }}</h6>
+                    <h6 class="badge badge-pill badge-info"><i
+                                class="fa fa-calendar"></i> {{ activity.eventdate|date ('d-m-Y H:i:s') }}</h6>
 
-                    <h6 class="badge badge-pill badge-warning"><i class="fa fa-google-wallet"></i> {{ activity.category }}</h6>
+                    <h6 class="badge badge-pill badge-warning"><i
+                                class="fa fa-google-wallet"></i> {{ activity.category }}</h6>
 
-                    <h6 class="badge badge-pill badge-secondary"><i class="fa fa-building"></i> {{ activity.city.label }}</h6>
+                    <h6 class="badge badge-pill badge-secondary"><i
+                                class="fa fa-building"></i> {{ activity.city.label }}</h6>
                 </div>
 
                 <h4 class="h4 mb-4" style="font-size: 30px">{{ activity.title }}</h4>
@@ -46,22 +50,35 @@
                 <p class="font-weight-normal">{{ activity.address }}</p>
 
                 <h5 class="font-weight-bold">Contact </h5>
-                <p class="font-weight-normal">Nom de l'hôte : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
+                <p class="font-weight-normal">Nom de l'hôte
+                    : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
                 <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
 
                 <div class="badge badge-participation">
-                    <span class="js-label" style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
+                    <span class="js-label"
+                          style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
 
-                    <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation">
+                    <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
+                        {% if app.user and activity.participateByUser(app.user) and  activity.participations | length == activity.maxParticipants %}
+
+                        {% elseif activity.participations | length == activity.maxParticipants %}
+                            disabled
+                        {% endif %}
+                        ">
+
                         {% if app.user and activity.participateByUser(app.user) %}
                             <i class=" fa fa-times-circle"></i>
 
                         {% else %}
-                            <i class="fa fa-check-circle">  </i>
+                            <i class="fa fa-check-circle"> </i>
                         {% endif %}
                         <span class="js-participations"> </span>
 
                     </a>
+                </div>
+                <div>
+                    <p> Nombre de participants :</p>
+                    <p> {{ activity.participations | length }} / {{ activity.maxParticipants }}</p>
                 </div>
 
 
