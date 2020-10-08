@@ -27,11 +27,10 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="comment_new", methods={"GET","POST"})
      */
-    public function new( Request $request, Activity $activity_id): Response
+    public function new(Request $request, Activity $activity): Response
     {
-        $activity = $this->getActivity($activity_id);
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -43,7 +42,7 @@ class CommentController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('activity_show', ['id' => $activity->getId()]);
         }
         return $this->render('comment/new.html.twig', [
             'comment' => $comment,

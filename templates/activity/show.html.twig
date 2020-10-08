@@ -84,7 +84,7 @@
     {% endif %}
     <hr>
 
-    <a class="btn btn-lg btn-home" href="{{ path('comment_new') }}" role="button">
+    <a class="btn btn-lg btn-home" href="{{ path('comment_new', {'id': activity.id}) }}" role="button">
         <i class="fa fa-book"></i>
         Ajouter un commentaire
     </a>
