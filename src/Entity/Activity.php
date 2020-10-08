@@ -76,6 +76,11 @@ class Activity
      */
     private $participations;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $maxParticipants;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -266,5 +271,17 @@ class Activity
             if($participation->getUser() === $user) return true;
         }
         return false;
+    }
+
+    public function getMaxParticipants(): ?int
+    {
+        return $this->maxParticipants;
+    }
+
+    public function setMaxParticipants(int $maxParticipants): self
+    {
+        $this->maxParticipants = $maxParticipants;
+
+        return $this;
     }
 }

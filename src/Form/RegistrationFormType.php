@@ -45,7 +45,7 @@ class RegistrationFormType extends AbstractType
                 'label'=>"Nom"
             ])
             ->add('dateofbirth', BirthdayType::class,[
-            'label'=>"Date de naissance",
+                'label'=>"Date de naissance",
 
         ]);
     }

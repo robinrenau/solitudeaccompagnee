@@ -14,6 +14,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
     {
         $couture = new Activity();
         $couture->setUser($this->getReference("user-bloulin"));
+        $couture->setMaxParticipants(10);
         $couture->setTitle("Après-midi couture");
         $couture->setCity($this->getReference("city-vitre"));
         $couture->setCreatedAt(new \DateTime('04/10/2020'));
@@ -28,6 +29,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $palet = new Activity();
         $palet->setUser($this->getReference("user-mmartin"));
+        $palet->setMaxParticipants(8);
         $palet->setTitle("Tournoi de palets breton");
         $palet->setCity($this->getReference("city-fougeres"));
         $palet->setCreatedAt(new \DateTime('04/10/2020'));
@@ -42,6 +44,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $rencontre = new Activity();
         $rencontre->setUser($this->getReference("user-jdupont"));
+        $rencontre->setMaxParticipants(14);
         $rencontre->setTitle("Matinée discussion et débat");
         $rencontre->setCity($this->getReference("city-redon"));
         $rencontre->setCreatedAt(new \DateTime('04/10/2020'));
