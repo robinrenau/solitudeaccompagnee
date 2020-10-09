@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Comment{% endblock %}
+{% block title %}Nouveau commentaire - Solitude accompagnée{% endblock %}
 
 {% block body %}
-    <h1>Create new Comment</h1>
+    <a class=" btn btn-home" href="{{ path('activity_index') }}"><i
+                class="fa fa-sign-out "></i> Revenir aux activités </a>
+    <h1  style="font-family: Moon; margin-top: 15px">Nouveau commentaire </h1>
 
     {{ include('comment/_form.html.twig') }}
 
-    <a href="{{ path('comment_index') }}">back to list</a>
+
 {% endblock %}
