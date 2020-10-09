@@ -65,7 +65,7 @@ class CommentController extends AbstractController
      */
     public function edit(Request $request, Comment $comment): Response
     {
-        $form = $this->createForm(Comment1Type::class, $comment);
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

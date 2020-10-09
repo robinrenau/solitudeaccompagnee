@@ -3,11 +3,19 @@
 {% block title %}Edit Comment{% endblock %}
 
 {% block body %}
-    <h1>Edit Comment</h1>
+    {% if app.user.id != comment.user.id %}
+        <div id="app">
+            <div>403</div>
+            <div class="txt">
+                Vous n'avez pas la permission<span class="blink">_</span>
+            </div>
+        </div>
+    {% else %}
+        <h1>Edit Comment</h1>
 
-    {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('comment_index') }}">back to list</a>
+        <a href="{{ path('comment_index') }}">back to list</a>
 
-    {{ include('comment/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

@@ -3,6 +3,7 @@
 {% block title %}Comment{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
     <h1>Comment</h1>
 
     <table class="table">
@@ -31,4 +32,12 @@
     <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
 
     {{ include('comment/_delete_form.html.twig') }}
+    {% else %}
+        <div id="app">
+            <div>403</div>
+            <div class="txt">
+                Vous n'avez pas la permission<span class="blink">_</span>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
