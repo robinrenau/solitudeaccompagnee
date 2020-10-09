@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Comment{% endblock %}
+{% block title %}Modification commentaire{% endblock %}
 
 {% block body %}
+    <a class=" btn btn-home" href="{{ path('activity_index') }}"><i
+                class="fa fa-sign-out "></i> Revenir aux activités </a>
     {% if app.user.id != comment.user.id %}
         <div id="app">
             <div>403</div>
@@ -11,11 +13,11 @@
             </div>
         </div>
     {% else %}
-        <h1>Edit Comment</h1>
+        <h1 style="font-family: Moon; margin-top: 15px">Modifier votre commentaire</h1>
 
-        {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('comment/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-        <a href="{{ path('comment_index') }}">back to list</a>
+
 
     {% endif %}
 {% endblock %}
