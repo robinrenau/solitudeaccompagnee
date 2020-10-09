@@ -108,16 +108,22 @@
         Ajouter un commentaire
     </a>
 
-    <section class="list-group mt-4">
+    <section class="list-group  mt-4">
 
         {% for comment in activity.comments %}
-            <article class="list-group-item">
+            <article class="list-group-item comment-block">
+                <div class="comment-small">
+                    <small>{{ comment.user.firstname }} {{ comment.user.lastname }}</small>
+                    <small>{{ comment.createdAt|date ("m/d/Y") }}</small>
+                </div>
+                
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ comment.title }}</h5>
-                    <small>{{ comment.createdAt|date ("m/d/Y") }}</small>
+
                 </div>
                 <p class="mb-1"></p>
                 <small>{{ comment.content }}</small>
+
             </article>
         {% endfor %}
 
