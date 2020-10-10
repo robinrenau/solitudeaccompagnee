@@ -12,7 +12,6 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $comment1 = new Comment();
-        $comment1->setTitle("Je serai bien présent !");
         $comment1->setUser($this->getReference("user-bloulin"));
         $comment1->setContent("Je suis très content de participer avec vous à ce tournoi même si mon niveau laisse à désirer .");
         $comment1->setActivity($this->getReference("act-palet"));
@@ -20,7 +19,6 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($comment1);
 
         $comment2 = new Comment();
-        $comment2->setTitle("Très bonne idée !");
         $comment2->setUser($this->getReference("user-jdupont"));
         $comment2->setContent("Je serai ravi de participer à cet atelier mais malheureusement je ne pourrai pas être présent :( ");
         $comment2->setActivity($this->getReference("act-couture"));
