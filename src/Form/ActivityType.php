@@ -7,7 +7,6 @@ use App\Entity\Category;
 use App\Entity\City;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,23 +25,24 @@ class ActivityType extends AbstractType
                 ]
             ])
             ->add('description')
-            ->add('eventdate', DateTimeType::class,[
-                'label'=>"Date et heure",
-            ])
+            ->add('eventdate', DateTimeType::class, [
+            
+        ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse',
                 'attr' => [
                     'placeholder' => 'Adresse'
                 ]
             ])
-            ->add('city', ChoiceType::class, [
-
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'label',
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'multiple' => false,
-                'expanded' => true,
-                'label' => "Catégorie de l'activité"
+                'choice_label' => 'label',
+
+
             ])
             ->add('maxParticipants', IntegerType::class, [
 

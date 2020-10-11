@@ -4,117 +4,122 @@
 
 {% block body %}
 
-{% if app.user.id != user.id %}
-    <div id="app">
-        <div>403</div>
-        <div class="txt">
-            Vous n'avez pas la permission<span class="blink">_</span>
+    {% if app.user.id != user.id %}
+        <div id="app">
+            <div>403</div>
+            <div class="txt">
+                Vous n'avez pas la permission<span class="blink">_</span>
+            </div>
         </div>
-    </div>
 
     {% else %}
-    <!-- Header -->
-    <div class="jumbotron background-user ">
-        <!-- Mask -->
-        <span class="mask bg-gradient-default opacity-8"></span>
-        <!-- Header container -->
-        <div class="container-fluid d-flex align-items-center">
-            <div class="row">
-                <div class="col-lg-7 col-md-10">
-                    <h5 class="display-4 title-style">Bonjour {{ user.firstname }}</h5>
-                    <p class="lead text-user">Ceci est votre page de profil. Vous pouvez ici modifier votre profil, ou
-                        encore voir l'historique et éditer vos activités proposées. </p>
-                    <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-user">Modifier votre
-                        profil</a>
+        <!-- Header -->
+        <div class="jumbotron background-user ">
+            <!-- Mask -->
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <!-- Header container -->
+            <div class="container-fluid d-flex align-items-center">
+                <div class="row">
+                    <div class="col-lg-7 col-md-10">
+                        <h5 class="display-4 title-style">Bonjour {{ user.firstname }}</h5>
+                        <p class="lead text-user">Ceci est votre page de profil. Vous pouvez ici modifier votre profil,
+                            ou
+                            encore voir l'historique et éditer vos activités proposées. </p>
+                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-user">Modifier votre
+                            profil</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {% if user.activities | length > 0 %}
-        <h3 style="font-family: Moon">Mes activites proposees</h3>
-    {% endif %}
-    <div class="row row-cols-1 row-cols-md-3">
+        {% if user.activities | length > 0 %}
+            <h3 style="font-family: Moon">Mes activites proposees</h3>
+        {% endif %}
+        <div class="row row-cols-1 row-cols-md-3">
 
-        {% for activity in user.activities %}
-        <div class="col mb-4">
-            <div class="card_activity " aria-labelledby="event card">
-                <div class="card_activity__filter">
-                    <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card_activity__photo"
-                         alt="{{ activity.title }}">
-                </div>
-                <div class="card_activity__container">
-                    <h4 class="card-title">{{ activity.title }}</h4>
-                    <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
-                    <p>{{ activity.address }}</p><br>
-                    <span class="badge badge-pill badge-primary" title="Catégorie">
+            {% for activity in user.activities %}
+                <div class="col mb-4">
+                    <div class="card_activity " aria-labelledby="event card">
+                        <div class="card_activity__filter">
+                            <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
+                                 class="card_activity__photo"
+                                 alt="{{ activity.title }}">
+                        </div>
+                        <div class="card_activity__container">
+                            <h4 class="card-title">{{ activity.title }}</h4>
+                            <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
+                            <p>{{ activity.address }}</p><br>
+                            <span class="badge badge-pill badge-primary" title="Catégorie">
                         <i class="fa fa-tag"></i>{{ activity.category.label }}
                     </span><br>
-                    <span class="badge badge-pill badge-info" title="Date de l'activité">
+                            <span class="badge badge-pill badge-info" title="Date de l'activité">
                         <i class="fa fa-calendar"></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
-                    <div class="card_activity__buttons">
-                        <a href="{{ path('activity_show', {'id': activity.id} ) }}" class="card_activity__buttons btn primary"
-                           role="button" aria-haspopup="false">
-                            Details
-                        </a>
-                    </div>
-                    <div class="card_activity__buttons">
-                        <a href="{{ path('activity_edit', {'id': activity.id} ) }}" class="btn btn-light-blue">
+                            <div class="card_activity__buttons">
+                                <a href="{{ path('activity_show', {'id': activity.id} ) }}"
+                                   class="card_activity__buttons btn primary"
+                                   role="button" aria-haspopup="false">
+                                    Details
+                                </a>
+                            </div>
+                            <div class="card_activity__buttons">
+                                <a href="{{ path('activity_edit', {'id': activity.id} ) }}" class="btn btn-light-blue">
 
-                            Modifier</a>
-                        {{ include('activity/_delete_form.html.twig') }}
-                     </div>
+                                    Modifier</a>
+                                {{ include('activity/_delete_form.html.twig') }}
+                            </div>
+
+                        </div>
+
+
+                    </div>
 
                 </div>
-
-
-            </div>
+            {% endfor %}
 
         </div>
-        {% endfor %}
 
-    </div>
+        {% if user.participations | length > 0 %}
+            <h3 style="font-family: Moon">Mes participations aux activites</h3>
+        {% endif %}
+        <div class="row row-cols-1 row-cols-md-3">
 
-    {% if user.participations | length > 0 %}
-        <h3 style="font-family: Moon">Mes participations aux activites</h3>
-    {% endif %}
-    <div class="row row-cols-1 row-cols-md-3">
-
-        {% for participation in user.participations %}
-            <div class="col mb-4">
-                <div class="card_activity " aria-labelledby="event card">
-                    <div class="card_activity__filter">
-                        <img src="{{ asset('uploads/categories/' ~ participation.activity.category.picture) }}" class="card_activity__photo"
-                             alt="{{ participation.activity.title }}">
-                    </div>
-                    <div class="card_activity__container">
-                        <h4 class="card-title">{{ participation.activity.title }}</h4>
-                        <time> Créé le : {{ participation.activity.CreatedAt|date ("d/m/Y") }} </time>
-                        <p>{{ participation.activity.address }}</p><br>
-                        <span class="badge badge-pill badge-primary" title="Catégorie">
+            {% for participation in user.participations %}
+                <div class="col mb-4">
+                    <div class="card_activity " aria-labelledby="event card">
+                        <div class="card_activity__filter">
+                            <img src="{{ asset('uploads/categories/' ~ participation.activity.category.picture) }}"
+                                 class="card_activity__photo"
+                                 alt="{{ participation.activity.title }}">
+                        </div>
+                        <div class="card_activity__container">
+                            <h4 class="card-title">{{ participation.activity.title }}</h4>
+                            <time> Créé le : {{ participation.activity.CreatedAt|date ("d/m/Y") }} </time>
+                            <p>{{ participation.activity.address }}</p><br>
+                            <span class="badge badge-pill badge-primary" title="Catégorie">
                         <i class="fa fa-tag"></i>{{ participation.activity.category.label }}
                     </span><br>
-                        <span class="badge badge-pill badge-info" title="Date de l'activité">
+                            <span class="badge badge-pill badge-info" title="Date de l'activité">
                         <i class="fa fa-calendar"></i>
                         {{ participation.activity.eventdate|date('d/m/Y') }}
                     </span>
-                        <div class="card_activity__buttons">
-                            <a href="{{ path('activity_show', {'id': participation.activity.id} ) }}" class="card_activity__buttons btn primary"
-                               role="button" aria-haspopup="false">
-                                Details
-                            </a>
+                            <div class="card_activity__buttons">
+                                <a href="{{ path('activity_show', {'id': participation.activity.id} ) }}"
+                                   class="card_activity__buttons btn primary"
+                                   role="button" aria-haspopup="false">
+                                    Details
+                                </a>
+                            </div>
+
                         </div>
+
 
                     </div>
 
-
                 </div>
+            {% endfor %}
 
-            </div>
-        {% endfor %}
-
-    </div>
-{% endif %}
+        </div>
+    {% endif %}
 {% endblock %}
