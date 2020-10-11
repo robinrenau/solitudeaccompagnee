@@ -97,6 +97,7 @@
             axios.get(url).then(function(response){
 
                 spanCount.textContent = response.data.participations;
+
                 if(icone.classList.contains('fa-times-circle'))
                     icone.classList.replace('fa-times-circle','fa-check-circle');
                 else

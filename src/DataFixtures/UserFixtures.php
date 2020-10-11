@@ -45,7 +45,7 @@ class UserFixtures extends Fixture
         $user2->setDateofbirth(new \DateTime("1956/04/03"));
         $user2->setPassword($this->encoder->encodePassword($user, "mmartin35"));
         $manager->persist($user2);
-        $this->addReference("user-mmartin", $user);
+        $this->addReference("user-mmartin", $user2);
 
         $user3 = new User();
         $user3->setFirstname("Beatrice");

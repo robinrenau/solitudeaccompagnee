@@ -76,5 +76,45 @@
         {% endfor %}
 
     </div>
+
+    {% if user.participations | length > 0 %}
+        <h3 style="font-family: Moon">Mes participations aux activites</h3>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-md-3">
+
+        {% for participation in user.participations %}
+            <div class="col mb-4">
+                <div class="card_activity " aria-labelledby="event card">
+                    <div class="card_activity__filter">
+                        <img src="{{ asset('uploads/categories/' ~ participation.activity.category.picture) }}" class="card_activity__photo"
+                             alt="{{ participation.activity.title }}">
+                    </div>
+                    <div class="card_activity__container">
+                        <h4 class="card-title">{{ participation.activity.title }}</h4>
+                        <time> Créé le : {{ participation.activity.CreatedAt|date ("d/m/Y") }} </time>
+                        <p>{{ participation.activity.address }}</p><br>
+                        <span class="badge badge-pill badge-primary" title="Catégorie">
+                        <i class="fa fa-tag"></i>{{ participation.activity.category.label }}
+                    </span><br>
+                        <span class="badge badge-pill badge-info" title="Date de l'activité">
+                        <i class="fa fa-calendar"></i>
+                        {{ participation.activity.eventdate|date('d/m/Y') }}
+                    </span>
+                        <div class="card_activity__buttons">
+                            <a href="{{ path('activity_show', {'id': participation.activity.id} ) }}" class="card_activity__buttons btn primary"
+                               role="button" aria-haspopup="false">
+                                Details
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
 {% endif %}
 {% endblock %}
