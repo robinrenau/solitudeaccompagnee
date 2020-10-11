@@ -57,6 +57,70 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
         $this->addReference("act-rencontre", $rencontre);
 
+        $footing = new Activity();
+        $footing->setUser($this->getReference("user-jdupont"));
+        $footing->setMaxParticipants(7);
+        $footing->setTitle("Footing tranquille au parc Bréquigny");
+        $footing->setCity($this->getReference("city-rennes"));
+        $footing->setCreatedAt(new \DateTime('04/10/2020'));
+        $footing ->setEventdate(new \DateTime('10/16/2020 08:00:00'));
+        $footing->setDescription("Bonjour. Jeudi prochain, j'organise un petit footing tranquille au parc de Bréquign pour les amateurs de sport :) ");
+        $footing->setCategory($this->getReference("cat-loisir"));
+        $footing ->setAddress("Rue d'Angleterre, 35200 RENNES");
+
+        $manager->persist($footing);
+
+        $this->addReference("act-footing", $footing);
+
+        $lithotherapie = new Activity();
+        $lithotherapie->setUser($this->getReference("user-bloulin"));
+        $lithotherapie->setMaxParticipants(10);
+        $lithotherapie->setTitle("Découverte de la lithotherapie ");
+        $lithotherapie->setCity($this->getReference("city-vitre"));
+        $lithotherapie->setCreatedAt(new \DateTime('04/10/2020'));
+        $lithotherapie ->setEventdate(new \DateTime('10/22/2020 13:00:00'));
+        $lithotherapie->setDescription("Atelier pour la découverte de soi et pour confectionner le bracelet qui vous ressemble et qui vous accompagnera  ");
+        $lithotherapie->setCategory($this->getReference("cat-atelier"));
+        $lithotherapie ->setAddress("12 rue des lilas, 35500 VITRE");
+
+        $manager->persist($lithotherapie);
+
+        $this->addReference("act-lithotherapie", $lithotherapie);
+
+
+        $theatre = new Activity();
+        $theatre->setUser($this->getReference("user-mmartin"));
+        $theatre->setMaxParticipants(6);
+        $theatre->setTitle("Pièce de theatre");
+        $theatre->setCity($this->getReference("city-rennes"));
+        $theatre->setCreatedAt(new \DateTime('04/10/2020'));
+        $theatre ->setEventdate(new \DateTime('10/20/2020 20:00:00'));
+        $theatre->setDescription("Venez partager avec moi une pièce de theatre, la comédie 'Bonsoir Madame Pinson'. rendz-vous devant le theatre de Rennes dimanche prochain !  ");
+        $theatre->setCategory($this->getReference("cat-loisir"));
+        $theatre ->setAddress("1 Rue Saint-Hélier, 35000 RENNES");
+
+        $manager->persist($theatre);
+
+        $this->addReference("act-theatre", $theatre);
+
+
+        $rencontre2 = new Activity();
+        $rencontre2->setUser($this->getReference("user-jdupont"));
+        $rencontre2->setMaxParticipants(9);
+        $rencontre2->setTitle("Petit verre du lundi");
+        $rencontre2->setCity($this->getReference("city-redon"));
+        $rencontre2->setCreatedAt(new \DateTime('04/10/2020'));
+        $rencontre2 ->setEventdate(new \DateTime('10/12/2020 20:00:00'));
+        $rencontre2->setDescription("Pourquoi ne pas commencer la semaine par venir boire un verre, histoire de se détendre de la plus dure journée de la semaine, mais aussi de parler du week-end écoulé.Pour rappel, prenez bien votre masque (obligatoire dans Rennes).
+La sortie pourra évoluer selon les règles sanitaires demandées.  ");
+        $rencontre2->setCategory($this->getReference("cat-renc"));
+        $rencontre2 ->setAddress("10 Rue des Douves, 35600 REDON");
+
+        $manager->persist($rencontre2);
+
+        $this->addReference("act-rencontre2", $rencontre2);
+
+
 
         $manager->flush();
 

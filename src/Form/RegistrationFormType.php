@@ -46,6 +46,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('dateofbirth', BirthdayType::class,[
                 'label'=>"Date de naissance",
+                'data' => new \DateTime(),
+                'format' => 'dd-M-yyyy',
 
         ]);
     }
