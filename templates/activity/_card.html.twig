@@ -7,11 +7,11 @@
         <h4 class="card-title">{{ activity.title }}</h4>
         <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
         <p>{{ activity.address }}</p><br>
-        <span class="badge badge-pill badge-primary" title="Catégorie">
-                        <i class="fa fa-tag"></i>{{ activity.category.label }}
+        <span class="badge badge-pill badge-primary"  title="Catégorie">
+                        <i class="fa fa-tag" style="margin-right: 10px"></i>{{ activity.category.label }}
                     </span><br>
         <span class="badge badge-pill badge-info" title="Date de l'activité">
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-calendar" style="margin-right: 10px"></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
         <div class="card_activity__buttons">

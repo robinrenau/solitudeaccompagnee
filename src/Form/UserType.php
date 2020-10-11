@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,6 +29,7 @@ class UserType extends AbstractType
                 'label'=>"Date de naissance",
 
             ])
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -44,6 +46,10 @@ class UserType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('profilPicture', FileType::class, [
+                'mapped' => false,
+                'label' => "Photo"
             ])
 
         ;

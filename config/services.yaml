@@ -8,6 +8,7 @@ parameters:
         uploads_directory_cities: '%kernel.project_dir%/public/uploads/cities'
         uploads_url_categories: 'uploads/categories'
         uploads_directory_categories: '%kernel.project_dir%/public/uploads/categories'
+        uploads_directory_users: '%kernel.project_dir%/public/uploads/users'
 
 services:
     # default configuration for services in *this* file
@@ -40,3 +41,6 @@ services:
     App\Service\FileUploaderCategories:
         arguments:
             $targetDirectory_categories: '%uploads_directory_categories%'
+    App\Service\FileUploaderUsers:
+        arguments:
+            $targetDirectory: '%uploads_directory_users%'
