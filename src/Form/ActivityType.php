@@ -26,7 +26,7 @@ class ActivityType extends AbstractType
             ])
             ->add('description')
             ->add('eventdate', DateTimeType::class, [
-
+                'label'=>"Date de l'évenement"
         ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse',
@@ -45,6 +45,10 @@ class ActivityType extends AbstractType
 
             ])
             ->add('maxParticipants', IntegerType::class, [
+                'label'=>"Nombre de participants",
+                'attr' => [
+                    'placeholder' => '4'
+                ]
 
             ])
         ;
