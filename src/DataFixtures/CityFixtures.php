@@ -14,6 +14,7 @@ class CityFixtures extends Fixture
         $vitre->setName("vitre");
         $vitre->setLabel("Vitré");
         $vitre->setPicture("vitre.jpg");
+        $vitre->setHeaderphoto("largevitre.jpg");
         $vitre->setLat(48.1244503);
         $vitre->setLng(-1.214331);
         $manager->persist($vitre);
@@ -23,6 +24,7 @@ class CityFixtures extends Fixture
         $rennes->setName("rennes");
         $rennes->setLabel("Rennes");
         $rennes->setPicture("rennes.jpg");
+        $rennes->setHeaderphoto("largerennes.jpg");
         $rennes->setLat(48.1113387);
         $rennes->setLng(-1.6800198);
         $manager->persist($rennes);
@@ -31,6 +33,7 @@ class CityFixtures extends Fixture
         $fougeres = new City();
         $fougeres->setName("fougeres");
         $fougeres->setLabel("Fougères");
+        $fougeres->setHeaderphoto("largefougeres.jpeg");
         $fougeres->setPicture("fougeres.jpg");
         $fougeres->setLat(48.3503362);
         $fougeres->setLng(-1.1958526);
@@ -41,6 +44,7 @@ class CityFixtures extends Fixture
         $redon->setName("redon");
         $redon->setLabel("Redon");
         $redon->setPicture("redon.jpg");
+        $redon->setHeaderphoto("largeredon.jpg");
         $redon->setLat(47.6510682);
         $redon->setLng(-2.0842143);
         $manager->persist($redon);

@@ -49,6 +49,11 @@ class City
      */
     private $label;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $headerphoto;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -150,6 +155,18 @@ class City
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getHeaderphoto(): ?string
+    {
+        return $this->headerphoto;
+    }
+
+    public function setHeaderphoto(string $headerphoto): self
+    {
+        $this->headerphoto = $headerphoto;
 
         return $this;
     }
