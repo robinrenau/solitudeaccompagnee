@@ -6,8 +6,22 @@
 {% endblock %}
 
 {% block body %}
+    <div class="card md-3" style="margin: 30px">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ asset('uploads/categories/' ~ category.picture) }}" class="card-img" style="max-height: 350px" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Catégorie {{ category.label }}</h5>
+                    <p class="card-text">Ici, retrouvez toutes les activités qui concernent la catégorie {{ category.label }}.</p>
+                    <p class="card-footer" >Toutes les activités dans la catégorie "{{  category.label }}" ({{ category.activities|length }} {% if category.activities|length > 1 %} résultats{% else %} résultat{% endif %})</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News jumbotron -->
     <main class="container">
-        <h2 style="font-family:'Roboto';margin-top: 20px" >Toutes les activités dans la catégorie "{{  category.label }}" ({{ category.activities|length }} {% if category.activities|length > 1 %} résultats{% else %} résultat{% endif %})</h2>
 
         <section class="row projects">
             {% for activity in category.activities %}
