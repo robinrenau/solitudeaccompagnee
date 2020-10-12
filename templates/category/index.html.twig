@@ -3,6 +3,7 @@
 {% block title %}Catégories - Solitude accompagnée{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
     <h2>Toutes les catégories </h2>
 
     <div class="row row-cols-1 row-cols-md-3">
@@ -14,4 +15,12 @@
             </div>
         {% endfor %}
     </div>
+    {% else %}
+        <div id="app">
+            <div>403</div>
+            <div class="txt">
+                Vous n'avez pas la permission<span class="blink">_</span>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

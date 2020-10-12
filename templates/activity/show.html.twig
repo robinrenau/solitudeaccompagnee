@@ -45,11 +45,12 @@
 
                 <h4 class="h4 mb-4" style="font-size: 30px; margin-top: 10px">{{ activity.title }}</h4>
 
+                <h6 class="font-weight-bold"style="font-family: Moon">Description </h6>
                 <p class="font-weight-normal">{{ activity.description }}</p>
-                <h5 class="font-weight-bold">Adresse et/ou lieu de l'activité </h5>
+                <h6 class="font-weight-bold" style="font-family: Moon">Adresse et / ou lieu </h6 class="font-weight-bold" >
                 <p class="font-weight-normal">{{ activity.address }}</p>
 
-                <h5 class="font-weight-bold">Contact </h5>
+                <h6 class="font-weight-bold"style="font-family: Moon">Contact </h6>
                 <p class="font-weight-normal">Nom de l'hôte
                     : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
                 <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
@@ -81,10 +82,12 @@
 
                         </a>
                     </div>
+
                     <div class="js-participation" style="margin-left: 20px">
                         <p class="font-weight-bold"> Nombre de participants</p>
                         <p class="js-participations"> {{ activity.participations | length }} / {{ activity.maxParticipants }}</p>
                     </div>
+
                 </div>
             </div>
             <!-- Grid column -->
@@ -93,11 +96,17 @@
     </div>
     {% if app.user != activity.user %}
     {% else %}
-        <ul class="title-style">Liste des participants</ul>
-        {% for participation in activity.participations %}
-            <li class="js-user">{{ participation.user.firstname }} {{ participation.user.lastname }}</li>
-            Contact : {{ participation.user.email }}
-        {% endfor %}
+         {% if activity.participations | length > 0 %}
+             <h4 style="font-family: Moon">Liste des participants</h4>
+            <div class="card hoverable" style="width: 22rem">
+                <ul class="list-group list-group-flush">
+            {% for participation in activity.participations %}
+                <li class="js-user list-group-item">{{ participation.user.firstname }} {{ participation.user.lastname }} ({{ participation.user.email }})</li>
+            {% endfor %}
+                </ul>
+            </div>
+         {% else %}
+         {% endif %}
     {% endif %}
     <hr>
 
