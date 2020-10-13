@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\ActivityParticipation;
+use App\Form\ActivitySearchType;
 use App\Form\ActivityType;
 use App\Repository\ActivityParticipationRepository;
+use App\Repository\ActivityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,23 +21,42 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActivityController extends AbstractController
 {
     /**
-     * @Route("/", name="activity_index", methods={"GET"})
+     * @Route("/", name="activity_index", methods={"GET","POST"})
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index(Request $request, ActivityRepository $repo,PaginatorInterface $paginator): Response
     {
+        $searchForm = $this->createForm(ActivitySearchType::class);
+        $searchForm->handleRequest($request);
+        $donnees = $repo->findAll();
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
-        $donnees = $this->getDoctrine()->getRepository(Activity::class)->findBy([],['createdAt' => 'desc']);
 
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+
+            $title = $searchForm->getData()->getTitle();
+
+            $donnees = $repo->search($title);
+
+
+            if ($donnees == null) {
+                $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
+
+            }
+
+        }
         $activities = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos activités)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
             6 // Nombre de résultats par page
         );
 
+
+
         return $this->render('activity/index.html.twig', [
             'activities' => $activities,
+            'searchForm' => $searchForm->createView()
         ]);
     }
+
 
     /**
      * @Route("/new", name="activity_new", methods={"GET","POST"})
