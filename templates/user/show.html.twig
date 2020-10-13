@@ -16,7 +16,7 @@
         <div class="container" style="margin-top: 20px">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="jumbotron hoverable p-4 col-detail-activity ">
 
                         <div class="card-body">
                             <div class="card-title mb-4">
@@ -100,10 +100,10 @@
         {% if user.activities | length > 0 %}
             <h3 style="font-family: Moon; margin-top: 20px">Mes activites proposees</h3>
         {% endif %}
-        <div class="row row-cols-1 row-cols-md-3">
+        <div class="row ">
 
             {% for activity in user.activities %}
-                <div class="col mb-4">
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 10px">
                     <div class="card_activity " aria-labelledby="event card">
                         <div class="card_activity__filter">
                             <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
@@ -148,10 +148,10 @@
         {% if user.participations | length > 0 %}
             <h3 style="font-family: Moon; margin-top: 20px">Mes participations aux activites</h3>
         {% endif %}
-        <div class="row row-cols-1 row-cols-md-3">
+        <div class="row ">
 
             {% for participation in user.participations %}
-                <div class="col mb-4">
+                <div class="col-md-6 col-lg-4" style="margin-bottom: 10px">
                     <div class="card_activity " aria-labelledby="event card">
                         <div class="card_activity__filter">
                             <img src="{{ asset('uploads/categories/' ~ participation.activity.category.picture) }}"

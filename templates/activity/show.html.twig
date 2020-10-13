@@ -42,20 +42,53 @@
                     <span class="badge badge-pill badge-secondary"><i
                                 class="fa fa-building"></i> {{ activity.city.label }}</span>
                 </div>
+                <div class="row" >
+                    <div class="col-12">
+                        <div class="tab-content ml-1" id="myTabContent">
+                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
 
-                <h4 class="h4 mb-4" style="font-size: 30px; margin-top: 10px">{{ activity.title }}</h4>
 
-                <h6 class="font-weight-bold"style="font-family: Moon">Description </h6>
-                <p class="font-weight-normal">{{ activity.description }}</p>
-                <h6 class="font-weight-bold" style="font-family: Moon">Adresse et / ou lieu </h6 class="font-weight-bold" >
-                <p class="font-weight-normal">{{ activity.address }}</p>
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12">
+                                        <label class="font-weight-bold"style="font-family: Moon">Description </label>
+                                    </div>
+                                    <div class="col-md-8 col-7 col-sm-12">
+                                        <p class="font-weight-normal" style="text-align: justify">{{ activity.description }}</p>
+                                    </div>
+                                </div>
+                                <hr />
 
-                <h6 class="font-weight-bold"style="font-family: Moon">Contact </h6>
-                <p class="font-weight-normal">Nom de l'hôte
-                    : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
-                <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12">
+                                        <label class="font-weight-bold" style="font-family: Moon">Adresse et / ou lieu </label>
+                                    </div>
+                                    <div class="col-md-8 col-6 col-sm-12">
+                                        <p class="font-weight-normal">{{ activity.address }}</p>
+                                    </div>
+                                </div>
+                                <hr />
 
-                <div class="row">
+
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12 ">
+                                        <label class="font-weight-bold"style="font-family: Moon">Contact </label>
+                                    </div>
+                                    <div class="col-md-8 col-6 col-sm-12">
+                                        <p class="font-weight-normal">Nom de l'hôte
+                                            : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
+                                        <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
+                                    </div>
+                                </div>
+                                <hr />
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" >
                     <div >
                         <span class="js-label"
                               style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
