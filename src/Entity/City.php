@@ -26,12 +26,6 @@ class City
     private $name;
 
     /**
-     * @Gedmo\Slug(fields={"label"})
-     * @ORM\Column(type="string", unique=true, length=255)
-     */
-    private $slug;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $picture;
@@ -45,6 +39,12 @@ class City
      * @ORM\Column(type="float")
      */
     private $lat;
+
+    /**
+     * @Gedmo\Slug(fields={"label"})
+     * @ORM\Column(type="string", unique=true, length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="float")

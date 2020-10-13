@@ -83,7 +83,7 @@ class ActivityController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="activity_show", methods={"GET"})
+     * @Route("/{slug}", name="activity_show", methods={"GET"})
      */
     public function show(Activity $activity): Response
     {

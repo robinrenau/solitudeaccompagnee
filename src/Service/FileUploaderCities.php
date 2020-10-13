@@ -9,9 +9,9 @@ class FileUploaderCities
 {
     private $targetDirectory;
 
-    public function __construct($targetDirectory_cities)
+    public function __construct($targetDirectory)
     {
-        $this->targetDirectoryCities = $targetDirectory_cities;
+        $this->targetDirectory = $targetDirectory;
     }
 
 
@@ -31,6 +31,6 @@ class FileUploaderCities
 
     public function getTargetDirectoryCities()
     {
-        return $this->targetDirectoryCities;
+        return $this->targetDirectory;
     }
 }

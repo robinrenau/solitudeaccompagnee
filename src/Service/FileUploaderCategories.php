@@ -11,9 +11,9 @@ class FileUploaderCategories
 {
     private $targetDirectory;
 
-    public function __construct($targetDirectory_categories)
+    public function __construct($targetDirectory)
     {
-        $this->targetDirectoryCategories = $targetDirectory_categories;
+        $this->targetDirectory = $targetDirectory;
     }
 
 
@@ -33,6 +33,6 @@ class FileUploaderCategories
 
     public function getTargetDirectoryCategories()
     {
-        return $this->targetDirectoryCategories;
+        return $this->targetDirectory;
     }
 }

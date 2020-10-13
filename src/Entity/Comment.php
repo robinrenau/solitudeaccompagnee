@@ -93,7 +93,10 @@ class Comment
         $this->activity = $activity;
 
         return $this;
+
     }
+
+
     /**
  * @ORM\PrePersist()
  */

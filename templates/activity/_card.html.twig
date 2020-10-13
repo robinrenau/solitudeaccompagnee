@@ -15,7 +15,7 @@
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
         <div class="card_activity__buttons">
-            <a href="{{ path('activity_show', {'id': activity.id} )}}" class="card_activity__buttons btn primary" role="button" aria-haspopup="false">
+            <a href="{{ path('activity_show', {'slug': activity.slug} )}}" class="card_activity__buttons btn primary" role="button" aria-haspopup="false">
                 Details
                 <div class="card__fill"></div>
             </a>

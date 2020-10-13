@@ -122,7 +122,7 @@
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
                             <div class="card_activity__buttons">
-                                <a href="{{ path('activity_show', {'id': activity.id} ) }}"
+                                <a href="{{ path('activity_show', {'slug': activity.slug} ) }}"
                                    class="card_activity__buttons btn primary"
                                    role="button" aria-haspopup="false">
                                     Details
@@ -170,7 +170,7 @@
                         {{ participation.activity.eventdate|date('d/m/Y') }}
                     </span>
                             <div class="card_activity__buttons">
-                                <a href="{{ path('activity_show', {'id': participation.activity.id} ) }}"
+                                <a href="{{ path('activity_show', {'slug': participation.activity.slug} ) }}"
                                    class="card_activity__buttons btn primary"
                                    role="button" aria-haspopup="false">
                                     Details

@@ -2,13 +2,17 @@ Activity : Activités
 Activities : Activités
 City : Ville
 Category : Catégorie
-User : Utilisateur
+User : Utilisateurs
 Name : Nom
 Picture : Photo
 Plain password: Mot de passe
 Lastname : Nom
 Firstname : Prénom
 Title : Titre
-Label : Nom
+Label : Label
 Comment : Commentaires
 Content : Contenu
+Eventdate : Date de l'activité
+Created at: Créée le
+Dateofbirth: Date de naissance
+Headerphoto : Photo d'en-tête

@@ -1,4 +1,7 @@
 easy_admin:
+  formats:
+    date: 'd/m/Y'
+    datetime: 'd/m/Y H:i'
   entities:
     #        # List the entity class name you want to manage
     Category:
@@ -32,6 +35,7 @@ easy_admin:
           - 'lat'
           - 'lng'
 
+
       edit:
         fields:
           - 'id'
@@ -46,6 +50,7 @@ easy_admin:
           - 'lastname'
           - 'firstname'
           - "Email"
+          - 'dateofbirth'
       form:
         fields:
           - 'firstname'
@@ -61,6 +66,8 @@ easy_admin:
         actions: ['-new', '-edit']
         fields:
           - 'title'
+          - 'eventdate'
+          - 'createdAt'
       form:
         fields:
           - 'title'
@@ -75,9 +82,11 @@ easy_admin:
       list:
         actions: ['-new', '-edit']
         fields:
-          - 'title'
           - 'content'
+          - 'activity'
+
         form:
           fields:
-            - 'title'
             - 'content'
+            - 'activity'
+

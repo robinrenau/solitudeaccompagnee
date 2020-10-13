@@ -42,7 +42,7 @@ class CommentController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('activity_show', ['id' => $activity->getId()]);
+            return $this->redirectToRoute('activity_show', ['slug' => $activity->getSlug()]);
         }
         return $this->render('comment/new.html.twig', [
             'comment' => $comment,

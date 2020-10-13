@@ -36,11 +36,11 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\FileUploaderCities:
         arguments:
-            $targetDirectory_cities: '%uploads_directory_cities%'
+            $targetDirectory: '%uploads_directory_cities%'
 
     App\Service\FileUploaderCategories:
         arguments:
-            $targetDirectory_categories: '%uploads_directory_categories%'
+            $targetDirectory: '%uploads_directory_categories%'
     App\Service\FileUploaderUsers:
         arguments:
             $targetDirectory: '%uploads_directory_users%'
