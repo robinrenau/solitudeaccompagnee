@@ -1,3 +1,3 @@
 {% for category in categories  %}
-    <a class="dropdown-item dropdown-style" href="{{ path('category_show', {'id': category.id}) }}"> {{category.label}}</a>
+    <a class="dropdown-item dropdown-style" href="{{ path('category_show', {'slug': category.slug}) }}"> {{category.label}}</a>
 {% endfor %}

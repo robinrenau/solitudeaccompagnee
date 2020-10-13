@@ -6,6 +6,7 @@ use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
@@ -23,6 +24,12 @@ class City
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"label"})
+     * @ORM\Column(type="string", unique=true, length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -167,6 +174,18 @@ class City
     public function setHeaderphoto(string $headerphoto): self
     {
         $this->headerphoto = $headerphoto;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

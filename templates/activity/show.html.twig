@@ -129,7 +129,7 @@
                         <div class="p-2"><img {% if comment.user.profilPicture is null %} src="{{asset('uploads/users/picturedefault.png')}}" {% else %} src="{{asset('uploads/users/'~ comment.user.profilPicture)}}" {% endif %} alt="user" width="50" class="rounded-circle"></div>
                         <div class="comment-text w-100">
                             <h6 class="font-medium">{{ comment.user.firstname }} {{ comment.user.lastname }}</h6> <span class="m-b-15 d-block">{{ comment.content }}</span>
-                            <div class="comment-footer"> <span class="text-muted float-right">{{ comment.createdAt|date ("d/m/Y") }}</span>{% if app.user.id != comment.user.id %}
+                            <div class="comment-footer"> <span class="text-muted float-right">{{ comment.createdAt|date ("d/m/Y H:i") }}</span>{% if app.user.id != comment.user.id %}
                             {% else %}
                                 <div class="btn-comment">
                                     <a href="{{ path('comment_edit', {'id': comment.id} ) }}" class="btn btn-light-blue"><i style="color: white" class="fa fa-edit"></i></a>
