@@ -79,8 +79,10 @@
 
                                         </div>
 
-                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-user">Modifier votre
+                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-index">Modifier votre
                                             profil</a>
+                                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-index">Modifier votre
+                                            Mot de passe</a>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +146,7 @@
         </div>
 
         {% if user.participations | length > 0 %}
-            <h3 style="font-family: Moon">Mes participations aux activites</h3>
+            <h3 style="font-family: Moon; margin-top: 20px">Mes participations aux activites</h3>
         {% endif %}
         <div class="row row-cols-1 row-cols-md-3">
 
