@@ -39,7 +39,7 @@
 
         <section class="row projects">
             {% for activity in city.activities %}
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     {% include 'activity/_card.html.twig' with {'activity': activity} only %}
                 </div>
             {% endfor %}
