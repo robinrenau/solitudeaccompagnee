@@ -23,7 +23,7 @@ class UserType extends AbstractType
                 'label'=>"Prénom"
             ])
             ->add('lastname', TextType::class,[
-                'label'=>"Nom"
+
             ])
             ->add('dateofbirth', BirthdayType::class,[
                 'label'=>"Date de naissance",
@@ -34,7 +34,8 @@ class UserType extends AbstractType
             ->add('profilPicture', FileType::class, [
                 'mapped' => false,
                 'required'=>false,
-                'label' => "Photo de profil"
+                'label' => "Photo de profil",
+                'attr'=>['class'=>"custom-file-input"]
             ])
 
         ;

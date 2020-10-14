@@ -1,4 +1,24 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.firstname, {
+        label: "Prénom"
+
+    }) }}
+    {{ form_row(form.lastname, {
+        label: "Nom"
+
+    }) }}
+    {{ form_row(form.email, {
+        label: "Email"
+
+    }) }}
+    {{ form_row(form.dateofbirth, {
+        label: "Date de naissance"
+
+    }) }}
+    {{ form_row(form.profilPicture, {
+        attr: {
+            'placeholder': 'Sélectionnez une photo de profil'
+        }
+    }) }}
     <button class="btn-index btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
