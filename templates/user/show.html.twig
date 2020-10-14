@@ -26,8 +26,8 @@
                                     </div>
                                     <div class="userData ml-3">
                                         <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{user.firstname}} {{user.lastname}}</h2>
-                                        <h6 class="d-block"> {{ user.participations | length }} participation(s) aux activités</h6>
-                                        <h6 class="d-block"> {{user.activities|length}} activité(s) créées</h6>
+                                        <h6 class="d-block"> {{ user.participations | length }} {% if user.participations|length > 1 %} participations{% else %} participation{% endif %} aux activités</h6>
+                                        <h6 class="d-block"> {{user.activities|length}} {% if user.activities|length > 1 %} activités{% else %} activité{% endif %} {% if user.activities|length > 1 %} créées{% else %} créée {% endif %}</h6>
                                     </div>
                                     <div class="ml-auto">
                                         <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
@@ -39,7 +39,7 @@
                                 <div class="col-12">
                                     <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Infos personnelles</a>
+                                            <a class="nav-link active disabled" style="background-color: #EEE6DE">Infos personnelles</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content ml-1" id="myTabContent">

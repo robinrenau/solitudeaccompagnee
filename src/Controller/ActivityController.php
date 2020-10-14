@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\ActivityParticipation;
+use App\Entity\User;
 use App\Form\ActivitySearchType;
 use App\Form\ActivityType;
 use App\Repository\ActivityParticipationRepository;
@@ -27,7 +28,8 @@ class ActivityController extends AbstractController
     {
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
-        $donnees = $repo->findAll();
+        $donnees = $repo->findBy([],['createdAt' => 'desc']);
+
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
@@ -148,7 +150,7 @@ class ActivityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('activity_index');
+            return $this->redirectToRoute('user_show', ['id' => $activity->getUser()->getId()]);
         }
 
         return $this->render('activity/edit.html.twig', [
@@ -162,13 +164,14 @@ class ActivityController extends AbstractController
      */
     public function delete(Request $request, Activity $activity): Response
     {
+
         if ($this->isCsrfTokenValid('delete'.$activity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($activity);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('activity_index');
+        return $this->redirectToRoute('user_show', ['id' => $activity->getUser()->getId()]);
     }
 
 

@@ -33,6 +33,7 @@ class UserFixtures extends Fixture
         $user->setFirstname("Jean");
         $user->setLastname("Dupont");
         $user->setEmail("jdupont@gmail.com");
+        $user->setProfilPicture('user.jpg');
         $user->setDateofbirth(new \DateTime("1956/04/03"));
         $user->setPassword($this->encoder->encodePassword($user, "jdupont35"));
         $manager->persist($user);
@@ -42,6 +43,7 @@ class UserFixtures extends Fixture
         $user2->setFirstname("Martial");
         $user2->setLastname("Martin");
         $user2->setEmail("mmartin@gmail.com");
+        $user2->setProfilPicture('user2.jpg');
         $user2->setDateofbirth(new \DateTime("1956/04/03"));
         $user2->setPassword($this->encoder->encodePassword($user, "mmartin35"));
         $manager->persist($user2);
@@ -51,6 +53,7 @@ class UserFixtures extends Fixture
         $user3->setFirstname("Beatrice");
         $user3->setLastname("Loulin");
         $user3->setEmail("Bloulin@gmail.com");
+        $user3->setProfilPicture('user3.jpg');
         $user3->setDateofbirth(new \DateTime("1956/04/03"));
         $user3->setPassword($this->encoder->encodePassword($user3, "bloulin35"));
         $manager->persist($user3);

@@ -71,7 +71,7 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('activity_show', ['slug' => $comment->getActivity()->getSlug()]);
         }
 
         return $this->render('comment/edit.html.twig', [
@@ -91,6 +91,6 @@ class CommentController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('activity_show', ['slug' => $comment->getActivity()->getSlug()]);
     }
 }

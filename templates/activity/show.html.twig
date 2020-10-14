@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Solitude Accompagnée -
-    {{ activity.title }}
+
+    {{ activity.title }} - Solitude Accompagnée
 {% endblock %}
 
 {% block body %}
@@ -16,8 +16,8 @@
             <div class="col-md-12 col-lg-5">
 
                 <!-- Featured image -->
-                <div class="view overlay ">
-                    <h3 class="h3">{{ activity.title }}</h3>
+                <div class="view overlay " style="margin-top: 15px">
+                    <h3 class="font-weight-bold h3">{{ activity.title }}</h3>
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
                          class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"  alt="{{ activity.title }}">
                     <a>
@@ -50,20 +50,20 @@
 
 
                                 <div class="row" style="margin-top: 20px">
-                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12">
+                                    <div class="col-sm-3 col-md-3 col-5 col-sm-12">
                                         <label class="font-weight-bold"style="font-family: Moon">Description </label>
                                     </div>
-                                    <div class="col-md-8 col-7 col-sm-12">
+                                    <div class="col-md-9 col-7 col-sm-12">
                                         <p class="font-weight-normal" style="text-align: justify">{{ activity.description }}</p>
                                     </div>
                                 </div>
                                 <hr />
 
                                 <div class="row">
-                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12">
-                                        <label class="font-weight-bold" style="font-family: Moon">Adresse et / ou lieu </label>
+                                    <div class="col-sm-3 col-md-3 col-5 col-sm-12">
+                                        <label class="font-weight-bold" style="font-family: Moon">Adresse </label>
                                     </div>
-                                    <div class="col-md-8 col-6 col-sm-12">
+                                    <div class="col-md-9 col-6 col-sm-12">
                                         <p class="font-weight-normal">{{ activity.address }}</p>
                                     </div>
                                 </div>
@@ -71,10 +71,10 @@
 
 
                                 <div class="row">
-                                    <div class="col-sm-3 col-md-4 col-5 col-sm-12 ">
+                                    <div class="col-sm-3 col-md-3 col-5 col-sm-12 ">
                                         <label class="font-weight-bold"style="font-family: Moon">Contact </label>
                                     </div>
-                                    <div class="col-md-8 col-6 col-sm-12">
+                                    <div class="col-md-9 col-6 col-sm-12">
                                         <p class="font-weight-normal">Nom de l'hôte
                                             : {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
                                         <p class="font-weight-normal">Email de l'hôte : {{ activity.user.email }}</p>
