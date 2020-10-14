@@ -13,12 +13,13 @@
         <div class="row">
 
             <!-- Grid column -->
-            <div class="col-md-4 offset-md-1 mx-3 my-3">
+            <div class="col-md-12 col-lg-5">
 
                 <!-- Featured image -->
-                <div class="view overlay">
+                <div class="view overlay ">
+                    <h3 class="h3">{{ activity.title }}</h3>
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
-                         class="img-fluid img-activity" alt="{{ activity.title }}">
+                         class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"  alt="{{ activity.title }}">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -29,11 +30,11 @@
             <!-- Grid column -->
 
             <!-- Grid column -->
-            <div class="col-md-7 text-md-left ml-3 mt-3">
+            <div class="col-md-12 col-lg-7 text-md-left ">
 
                 <!-- Excerpt -->
                 <div class="green-text">
-                    <span class="badge badge-pill badge-info" style="margin-right: 10px"><i
+                    <span class="badge badge-pill badge-info" style="margin-right: 10px; margin-top: 15px"><i
                                 class="fa fa-calendar"></i> {{ activity.eventdate|date ('d-m-Y H:i') }}</span>
 
                     <span class="badge badge-pill badge-warning" style="margin-right: 10px"><i
