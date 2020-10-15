@@ -28,22 +28,21 @@ class ActivityController extends AbstractController
     {
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
+
         $donnees = $repo->findBy([],['createdAt' => 'desc']);
 
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
 
+
             $title = $searchForm->getData()->getTitle();
-
             $donnees = $repo->search($title);
-
-
+            //$request->query->get('search', $searchForm);//
             if ($donnees == null) {
                 $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
 
             }
-
         }
         $activities = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos activités)
