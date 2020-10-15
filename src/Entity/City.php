@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
+ * @Vich\Uploadable
  */
 class City
 {
@@ -27,6 +30,7 @@ class City
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $picture;
 
@@ -57,9 +61,22 @@ class City
     private $label;
 
     /**
+     * @Vich\UploadableField(mapping="city_images", fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $headerphoto;
+
+    /**
+     * @Vich\UploadableField(mapping="city_images", fileNameProperty="headerphoto")
+     * @var File
+     */
+    private $headerphotoFile;
 
     public function __construct()
     {
@@ -88,11 +105,46 @@ class City
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
         return $this;
+    }
+    public function setPictureFile(File $picture = null)
+    {
+        $this->pictureFile = $picture;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($picture) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+
+    public function setHeaderphotoFile(File $headerphoto = null)
+    {
+        $this->headerphotoFile = $headerphoto;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($headerphoto) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getHeaderphotoFile()
+    {
+        return $this->headerphotoFile;
     }
 
     /**
@@ -171,7 +223,7 @@ class City
         return $this->headerphoto;
     }
 
-    public function setHeaderphoto(string $headerphoto): self
+    public function setHeaderphoto(?string $headerphoto): self
     {
         $this->headerphoto = $headerphoto;
 

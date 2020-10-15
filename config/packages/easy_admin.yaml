@@ -6,31 +6,30 @@ easy_admin:
     #        # List the entity class name you want to manage
     Category:
       class: App\Entity\Category
-      image_base_path: '%uploads_url_categories%'
       list:
         fields:
           - 'Label'
-          - { property: 'picture', type: 'image' }
+          - { property: 'picture', type: 'image', base_path: '%uploads_url_categories%' }
       form:
         fields:
           - 'label'
-          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_categories%', download_path: '%uploads_url_categories%' } }
+          - { property: 'pictureFile', type: 'vich_image' }
+
       edit:
         fields:
-          - 'id'
+          - 'label'
+          - { property: 'pictureFile', type: 'vich_image' }
     City:
       class: App\Entity\City
-      image_base_path: '%uploads_url_cities%'
-
       list:
         fields:
           - 'Label'
-          - { property: 'picture', type: 'image' }
-
+          - { property: 'picture', type: 'image', base_path: '%uploads_url_cities%' }
       form:
         fields:
           - 'label'
-          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
+          - { property: 'pictureFile', type: 'vich_image' }
+          - { property: 'headerphotoFile', type: 'vich_image' }
           - 'name'
           - 'lat'
           - 'lng'
@@ -39,7 +38,12 @@ easy_admin:
       edit:
         fields:
           - 'id'
-          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
+          - { property: 'pictureFile', type: 'vich_image' }
+          - { property: 'headerphotoFile', type: 'vich_image' }
+          - 'name'
+          - 'lat'
+          - 'lng'
+
 
 
     User:
