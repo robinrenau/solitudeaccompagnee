@@ -93,11 +93,13 @@
             event.preventDefault();
             const url = this.href;
             const spanCount = this.querySelector('span.js-participations');
+            const spanCount2 = document.querySelector('span#js-participations');
             const icone = this.querySelector('i');
 
             axios.get(url).then(function(response){
 
                 spanCount.textContent = response.data.participations;
+                spanCount2.textContent = response.data.participations;
 
                 if(icone.classList.contains('fa-times-circle'))
                     icone.classList.replace('fa-times-circle','fa-check-circle');

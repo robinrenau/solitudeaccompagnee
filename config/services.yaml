@@ -6,7 +6,7 @@
 parameters:
         uploads_url_cities: 'uploads/cities'
         uploads_directory_cities: '%kernel.project_dir%/public/uploads/cities'
-        uploads_url_categories: 'uploads/categories'
+        uploads_url_categories: '/uploads/categories'
         uploads_directory_categories: '%kernel.project_dir%/public/uploads/categories'
         uploads_directory_users: '%kernel.project_dir%/public/uploads/users'
 

@@ -144,6 +144,9 @@ class ActivityController extends AbstractController
      */
     public function edit(Request $request, Activity $activity): Response
     {
+        if ($this->getUser() != $activity->getUser()) {
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
+        }
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 

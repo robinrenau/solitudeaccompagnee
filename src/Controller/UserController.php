@@ -18,15 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/", name="user_index", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
@@ -66,6 +57,10 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, FileUploaderUsers $fileUploaderusers): Response
     {
+        if ($this->getUser() != $user) {
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

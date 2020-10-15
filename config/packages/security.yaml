@@ -37,9 +37,6 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/category/new, roles: ROLE_ADMIN }
-         - { path: ^/city/new, roles: ROLE_ADMIN }
          - { path: ^/activity/, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/city/, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/category/, roles: IS_AUTHENTICATED_FULLY }
 

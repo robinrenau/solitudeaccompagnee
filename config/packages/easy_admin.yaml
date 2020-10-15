@@ -14,7 +14,7 @@ easy_admin:
       form:
         fields:
           - 'label'
-          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_cities%', download_path: '%uploads_url_cities%' } }
+          - { property: 'picture', type: 'file_upload', type_options: { upload_dir: '%uploads_directory_categories%', download_path: '%uploads_url_categories%' } }
       edit:
         fields:
           - 'id'
