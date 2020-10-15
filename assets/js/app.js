@@ -14,9 +14,13 @@ import '../css/app.scss';
 import 'jquery';
 import 'bootstrap';
 import 'mdbootstrap';
-import 'jquery-datetimepicker'
-
+import 'axios/dist/axios';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
+// Code des selects formulaires
+
+
+
+// code du datepicker (à modifier)
 

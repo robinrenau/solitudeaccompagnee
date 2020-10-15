@@ -88,37 +88,40 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script> document.querySelectorAll('a.js-participation').forEach(function(link){
-        function OnClickBtnParticipation(event){
-            event.preventDefault();
-            const url = this.href;
-            const spanCount = this.querySelector('span.js-participations');
-            const spanCount2 = document.querySelector('span#js-participations');
-            const icone = this.querySelector('i');
+    <script>
+        document.querySelectorAll('a.js-participation').forEach(function(link){
+            function OnClickBtnParticipation(event){
+                event.preventDefault();
+                const url = this.href;
+                const spanCount2 = document.querySelector('span#js-participations');
+                const icone = this.querySelector('i');
 
-            axios.get(url).then(function(response){
+                axios.get(url).then(function(response){
 
-                spanCount.textContent = response.data.participations;
-                spanCount2.textContent = response.data.participations;
 
-                if(icone.classList.contains('fa-times-circle'))
-                    icone.classList.replace('fa-times-circle','fa-check-circle');
-                else
-                    icone.classList.replace('fa-check-circle','fa-times-circle' )
-            }).catch(function (error) {
-                if (error.response.status=== 403){
-                    window.alert("Vous ne pouvez pas participer à un évenement si vous n'êtes pas connecté")
-                } else{
-                    window.alert("Une erreur s'est produite, veuillez réessayer plus tard")
-                }
+                    spanCount2.textContent = response.data.participations;
 
-            });
-        }
-        link.addEventListener('click', OnClickBtnParticipation)
-        })</script>
+                    if(icone.classList.contains('fa-times-circle'))
+                        icone.classList.replace('fa-times-circle','fa-check-circle');
+                    else
+                        icone.classList.replace('fa-check-circle','fa-times-circle' )
+                }).catch(function (error) {
+                    if (error.response.status=== 403){
+                        window.alert("Vous ne pouvez pas participer à un évenement si vous n'êtes pas connecté")
+                    } else{
+                        window.alert("Une erreur s'est produite, veuillez réessayer plus tard")
+                    }
+
+                });
+            }
+            link.addEventListener('click', OnClickBtnParticipation)
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.fr.min.js"></script>
     <script>
         $('.dropdown-toggle').dropdown();
         $('.custom-file-input').on('change', function(event) {
@@ -128,8 +131,6 @@
                 .html(inputFile.files[0].name);
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.fr.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.js-datepicker').datepicker({
