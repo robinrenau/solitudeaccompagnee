@@ -14,15 +14,7 @@ import '../css/app.scss';
 import 'jquery';
 import 'bootstrap';
 import 'mdbootstrap';
-
-require('bootstrap-datepicker/js/bootstrap-datepicker');
-require('bootstrap-datepicker/js/locales/bootstrap-datepicker.fr');
-require('bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
-
-$(document).ready(function () {
-    $('.js-datepicker').datepicker()
-
-});
+import 'jquery-datetimepicker'
 
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

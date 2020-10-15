@@ -27,6 +27,11 @@ class ActivityType extends AbstractType
             ->add('description')
             ->add('eventdate', DateTimeType::class, [
                 'label'=>"Date de l'évenement",
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => [
+                    'class' => 'js-datepicker form-control',
+                ],
 
         ])
             ->add('address', TextType::class, [

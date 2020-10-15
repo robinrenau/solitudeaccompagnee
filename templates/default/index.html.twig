@@ -3,16 +3,22 @@
 {% block title %}Solitude Accompagnée{% endblock %}
 
 {% block body %}
-    <div  style="background-color: #F2E9E1; margin-top: 50px">
-
-        <img src="{{ asset('logo_index.png') }}" width="550" height="350"
-             title="Logo Solitude Accompagnée" alt="logo">
-
-        <p class="lead text-index"> Organisez des activités facilement avec des personnes de votre ville. </p>
-        <p class="lead text-index"> Ne restez pas seul, recherchez des moments de vie pour réchauffer votre quotidien. </p>
-        <a class="btn btn-lg btn-index" href="{{ path('app_login') }}">Connectez-vous </a>
-        <a class="btn btn-lg btn-index" href="{{ path('app_register') }}">Inscrivez-vous </a>
-
+    <div class="container" style="background-color: #F2E9E1; margin-top: 70px">
+        <div class="row">
+            <img src="{{ asset('logo_index.png') }}" width="400" height="200"
+                 title="Logo Solitude Accompagnée" style="margin-left: 15px" alt="logo">
+        </div>
+        <br>
+        <div class="row">
+            <p class="col-lg-9 lead text-index"> Organisez des activités facilement avec des personnes de votre
+                ville. </p>
+            <p class="col-lg-9 lead text-index"> Ne restez pas seul, recherchez des moments de vie pour réchauffer votre
+                quotidien. </p>
+        </div>
+        <div class="row">
+            <a class="btn btn-lg btn-index col-lg-3 col-md-5" href="{{ path('app_login') }}">Connectez-vous </a>
+            <a class="btn btn-lg btn-index col-lg-3 col-md-5" href="{{ path('app_register') }}">Inscrivez-vous </a>
+        </div>
 
 
     </div>
