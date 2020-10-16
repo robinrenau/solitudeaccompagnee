@@ -14,7 +14,7 @@ import '../css/app.scss';
 import 'jquery';
 import 'bootstrap';
 import 'mdbootstrap';
-import 'axios';
+import axios from 'axios';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 

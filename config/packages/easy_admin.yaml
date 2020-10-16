@@ -84,7 +84,7 @@ easy_admin:
     Comment:
       class: App\Entity\Comment
       list:
-        actions: ['-new', '-edit']
+        actions: ['-new']
         fields:
           - 'content'
           - 'activity'
@@ -93,4 +93,8 @@ easy_admin:
           fields:
             - 'content'
             - 'activity'
+        edit:
+          fields:
+            - 'content'
+
 

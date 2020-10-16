@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activity;
+use App\Entity\User;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,17 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('homepage');
+        }
+
         return $this->render("default/index.html.twig", [
 
 
         ]);
     }
+
+
     /**
      * @Route("/home", name="homepage")
      */
