@@ -29,7 +29,7 @@ class ActivityController extends AbstractController
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
 
-        $donnees = $repo->findBy([],['createdAt' => 'desc']);
+        $donnees = $repo->findBy([],['eventdate' => 'asc']);
 
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
 

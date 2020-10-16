@@ -18,7 +18,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $couture->setTitle("Après-midi couture");
         $couture->setCity($this->getReference("city-vitre"));
         $couture->setCreatedAt(new \DateTime('04/10/2020'));
-        $couture ->setEventdate(new \DateTime('08/10/2020 13:00:00'));
+        $couture ->setEventdate(new \DateTime('10/30/2020 13:00:00'));
         $couture->setDescription("Venez passer avec moi une petite après midi couture. Au programme, petit café en debut d'après midi puis atelier couture avec initiation pour les débutants ! ");
         $couture->setCategory($this->getReference("cat-atelier"));
         $couture->setAddress("12 rue des lilas, 35500 VITRE");
@@ -33,7 +33,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $palet->setTitle("Tournoi de palets breton");
         $palet->setCity($this->getReference("city-fougeres"));
         $palet->setCreatedAt(new \DateTime('04/10/2020'));
-        $palet ->setEventdate(new \DateTime('08/10/2020 13:00:00'));
+        $palet ->setEventdate(new \DateTime('11/02/2020 13:00:00'));
         $palet->setDescription("J'organise chez moi un petit tournoi de palets ce samedi ! ");
         $palet->setCategory($this->getReference("cat-loisir"));
         $palet->setAddress("14 bis lotissement des roseaux, 35300 FOUGERES");
@@ -48,7 +48,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $rencontre->setTitle("Matinée discussion et débat");
         $rencontre->setCity($this->getReference("city-redon"));
         $rencontre->setCreatedAt(new \DateTime('04/10/2020'));
-        $rencontre ->setEventdate(new \DateTime('08/10/2020 08:00:00'));
+        $rencontre ->setEventdate(new \DateTime('11/10/2020 08:00:00'));
         $rencontre->setDescription("Bonjour. Ce samedi, j'organise à la salle de la commune de Redon, une petite matinée discussion, debat ou encore rencontre pour échanger sur nos déboires de tout les jours, mais aussi pour ceux qui peuvent se sentir seul au quotidien !  ");
         $rencontre->setCategory($this->getReference("cat-renc"));
         $rencontre ->setAddress("Maison des fêtes, 9 rue de Galerne, 35600 REDON");
@@ -63,7 +63,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $footing->setTitle("Footing tranquille au parc Bréquigny");
         $footing->setCity($this->getReference("city-rennes"));
         $footing->setCreatedAt(new \DateTime('04/10/2020'));
-        $footing ->setEventdate(new \DateTime('10/16/2020 08:00:00'));
+        $footing ->setEventdate(new \DateTime('11/16/2020 08:00:00'));
         $footing->setDescription("Bonjour. Jeudi prochain, j'organise un petit footing tranquille au parc de Bréquign pour les amateurs de sport :) ");
         $footing->setCategory($this->getReference("cat-loisir"));
         $footing ->setAddress("Rue d'Angleterre, 35200 RENNES");
@@ -78,7 +78,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $lithotherapie->setTitle("Découverte de la lithotherapie ");
         $lithotherapie->setCity($this->getReference("city-vitre"));
         $lithotherapie->setCreatedAt(new \DateTime('04/10/2020'));
-        $lithotherapie ->setEventdate(new \DateTime('10/22/2020 13:00:00'));
+        $lithotherapie ->setEventdate(new \DateTime('11/03/2020 13:00:00'));
         $lithotherapie->setDescription("Atelier pour la découverte de soi et pour confectionner le bracelet qui vous ressemble et qui vous accompagnera  ");
         $lithotherapie->setCategory($this->getReference("cat-atelier"));
         $lithotherapie ->setAddress("12 rue des lilas, 35500 VITRE");
@@ -94,7 +94,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $theatre->setTitle("Pièce de theatre");
         $theatre->setCity($this->getReference("city-rennes"));
         $theatre->setCreatedAt(new \DateTime('04/10/2020'));
-        $theatre ->setEventdate(new \DateTime('10/20/2020 20:00:00'));
+        $theatre ->setEventdate(new \DateTime('11/09/2020 20:00:00'));
         $theatre->setDescription("Venez partager avec moi une pièce de theatre, la comédie 'Bonsoir Madame Pinson'. rendz-vous devant le theatre de Rennes dimanche prochain !  ");
         $theatre->setCategory($this->getReference("cat-loisir"));
         $theatre ->setAddress("1 Rue Saint-Hélier, 35000 RENNES");
@@ -110,7 +110,7 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $rencontre2->setTitle("Petit verre du lundi");
         $rencontre2->setCity($this->getReference("city-redon"));
         $rencontre2->setCreatedAt(new \DateTime('04/10/2020'));
-        $rencontre2 ->setEventdate(new \DateTime('10/12/2020 20:00:00'));
+        $rencontre2 ->setEventdate(new \DateTime('11/05/2020 20:00:00'));
         $rencontre2->setDescription("Pourquoi ne pas commencer la semaine par venir boire un verre, histoire de se détendre de la plus dure journée de la semaine, mais aussi de parler du week-end écoulé.Pour rappel, prenez bien votre masque (obligatoire dans Rennes).
 La sortie pourra évoluer selon les règles sanitaires demandées.  ");
         $rencontre2->setCategory($this->getReference("cat-renc"));

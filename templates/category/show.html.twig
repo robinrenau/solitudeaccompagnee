@@ -35,7 +35,7 @@
     <main class="container">
 
         <section class="row projects">
-            {% for activity in category.activities %}
+            {% for activity in category.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
                 <div class="col-md-6 col-lg-4">
                     {% include 'activity/_card.html.twig' with {'activity': activity} only %}
                 </div>
