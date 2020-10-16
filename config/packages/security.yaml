@@ -40,3 +40,4 @@ security:
          - { path: ^/activity/, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/city/, roles: IS_AUTHENTICATED_FULLY }
 
+

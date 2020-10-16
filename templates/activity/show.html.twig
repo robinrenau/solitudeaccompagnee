@@ -51,7 +51,7 @@
 
                                 <div class="row" style="margin-top: 20px">
                                     <div class="col-sm-3 col-md-3 col-5 col-sm-12">
-                                        <label class="font-weight-bold"style="font-family: Moon">Description </label>
+                                        <label class="font-weight-bold global-title">Description </label>
                                     </div>
                                     <div class="col-md-9 col-7 col-sm-12">
                                         <p class="font-weight-normal" style="text-align: justify">{{ activity.description }}</p>
@@ -61,7 +61,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3 col-md-3 col-5 col-sm-12">
-                                        <label class="font-weight-bold" style="font-family: Moon">Adresse </label>
+                                        <label class="font-weight-bold global-title" >Adresse </label>
                                     </div>
                                     <div class="col-md-9 col-6 col-sm-12">
                                         <p class="font-weight-normal">{{ activity.address }}</p>
@@ -72,7 +72,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3 col-md-3 col-5 col-sm-12 ">
-                                        <label class="font-weight-bold"style="font-family: Moon">Contact </label>
+                                        <label class="font-weight-bold global-title">Contact </label>
                                     </div>
                                     <div class="col-md-9 col-6 col-sm-12">
                                         <p class="font-weight-normal">Nom de l'hôte
@@ -91,8 +91,8 @@
 
                 <div class="row" >
                     <div >
-                        <span class="js-label"
-                              style="margin-left: 10px; font-family: Moon; color:black">Participer ? </span>
+                        <span class="js-label global-title"
+                              style="margin-left: 10px; color:black">Participer ? </span>
 
                         <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
                             {% if app.user.id != activity.user.id %}
@@ -131,7 +131,7 @@
     {% if app.user != activity.user %}
     {% else %}
          {% if activity.participations | length > 0 %}
-             <h4 style="font-family: Moon">Liste des participants</h4>
+             <h4 class="global-title">Liste des participants</h4>
             <div class="card hoverable" style="width: 22rem">
                 <ul class="list-group list-group-flush">
             {% for participation in activity.participations %}
@@ -154,7 +154,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body text-center">
-                    <h4 class="card-title"style="font-family: Moon">Derniers commentaires</h4>
+                    <h4 class="card-title global-title">Derniers commentaires</h4>
                 </div>
                 <div class="comment-widgets">
                     {% for comment in activity.comments %}
