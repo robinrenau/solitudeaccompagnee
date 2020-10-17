@@ -34,8 +34,6 @@ class ActivityType extends AbstractType
                 ],
                 'data' => new \DateTime('11/05/2020 20:00:00'),
 
-
-
         ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse',
