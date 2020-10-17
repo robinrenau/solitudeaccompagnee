@@ -6,7 +6,12 @@
     <title>{% block title %}Solitude Accompagnée{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <script type="text/javascript" src="/node_modules/jquery"></script>
+        <script type="text/javascript" src="/node_modules/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     {% endblock %}
 </head>
 <body>
@@ -125,7 +130,18 @@
                 .html(inputFile.files[0].name);
         });
     </script>
-
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker5').datetimepicker({
+                defaultDate: new DateTime("now"),
+                disabledDates: [
+                    moment("11/02/2020"),
+                    new Date(2020, 11 - 1, 21),
+                    "11/22/2020 00:53"
+                ]
+            });
+        });
+    </script>
 {% endblock %}
 
 </body>

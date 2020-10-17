@@ -38,12 +38,13 @@ class ActivityController extends AbstractController
 
             $title = $searchForm->getData()->getTitle();
             $donnees = $repo->search($title);
-            //$request->query->get('search', $searchForm);//
+            //$request->request->get('search', $title);
             if ($donnees == null) {
                 $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
 
             }
         }
+
         $activities = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos activités)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page

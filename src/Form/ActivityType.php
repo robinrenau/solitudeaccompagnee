@@ -26,11 +26,13 @@ class ActivityType extends AbstractType
             ])
             ->add('description')
             ->add('eventdate', DateTimeType::class, [
-                'label'=>"Date de l'évenement",
-                'html5' => false,
-                'date_format'=> 'dd-MM-yyyy',
-                'time_label' => 'Starts On',
-                'data' => new \DateTime("now"),
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'datetimepicker5',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ],
+                'data' => new \DateTime('11/05/2020 20:00:00'),
 
 
 
