@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,10 +22,15 @@ class ActivityType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'Titre'
+                    'placeholder' => "Titre de l'activité"
                 ]
             ])
-            ->add('description')
+            ->add('description', TextareaType::class,[
+                'label'=> 'Description',
+                'attr' => [
+                    'placeholder' => "Description de l'activité"
+                ]
+            ])
             ->add('eventdate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'attr' => [
@@ -32,13 +38,13 @@ class ActivityType extends AbstractType
                     'data-provide' => 'datetimepicker',
                     'html5' => false,
                 ],
-                'data' => new \DateTime('11/05/2020 20:00:00'),
+               'data'=> (new \DateTime('10/30/2020 13:00:00'))
 
-        ])
+            ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse',
+                'label' => "Adresse",
                 'attr' => [
-                    'placeholder' => 'Adresse'
+                    'placeholder' => "Adresse de l'activité"
                 ]
             ])
             ->add('city', EntityType::class, [
