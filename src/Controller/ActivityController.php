@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\ActivityParticipation;
-use App\Entity\User;
 use App\Form\ActivitySearchType;
 use App\Form\ActivityType;
 use App\Repository\ActivityParticipationRepository;
 use App\Repository\ActivityRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
