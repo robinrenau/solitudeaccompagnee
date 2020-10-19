@@ -4,6 +4,8 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 @import "~bootstrap/scss/variables";
+@import "~eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
 
 
@@ -164,6 +166,7 @@ $seance: #7623A2;
 .card_activity {
     padding: 13px;
     max-width: 318px;
+    min-height: 600px;
     width: 100%;
     background: linear-gradient(-120deg, $lavendar-magenta 0%, $dodger-blue 60%, $governor-bay 100%);
     display: flex;
@@ -201,6 +204,7 @@ $seance: #7623A2;
         justify-content: center;
         padding: 1em;
         box-sizing: border-box;
+        min-height: 350px;
     }
     h4 {
         @include font('Poppins', regular, 20px);
