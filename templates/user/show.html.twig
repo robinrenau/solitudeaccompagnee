@@ -22,15 +22,20 @@
                             <div class="card-title mb-4">
                                 <div class="d-flex justify-content-start">
                                     <div class="image-container">
-                                        <img class="img-thumbnail" style="width: 150px; height: 150px" {% if user.profilPicture is null %} src="{{asset('uploads/users/picturedefault.png')}}" {% else %} src="{{asset('uploads/users/'~ user.profilPicture)}}" {% endif %} alt="user" width="50" class="rounded-circle">
+                                        <img class="img-thumbnail"
+                                             style="width: 150px; height: 150px" {% if user.profilPicture is null %} src="{{ asset('uploads/users/picturedefault.png') }}" {% else %} src="{{ asset('uploads/users/'~ user.profilPicture) }}" {% endif %}
+                                             alt="user" width="50" class="rounded-circle">
                                     </div>
                                     <div class="userData ml-3">
-                                        <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{user.firstname}} {{user.lastname}}</h2>
-                                        <h6 class="d-block"> {{ user.participations | length }} {% if user.participations|length > 1 %} participations{% else %} participation{% endif %} aux activités</h6>
-                                        <h6 class="d-block"> {{user.activities|length}} {% if user.activities|length > 1 %} activités{% else %} activité{% endif %} {% if user.activities|length > 1 %} créées{% else %} créée {% endif %}</h6>
+                                        <h2 class="d-block"
+                                            style="font-size: 1.5rem; font-weight: bold">{{ user.firstname }} {{ user.lastname }}</h2>
+                                        <h6 class="d-block"> {{ user.participations | length }} {% if user.participations|length > 1 %} participations{% else %} participation{% endif %}
+                                            aux activités</h6>
+                                        <h6 class="d-block"> {{ user.activities|length }} {% if user.activities|length > 1 %} activités{% else %} activité{% endif %} {% if user.activities|length > 1 %} créées{% else %} créée {% endif %}</h6>
                                     </div>
                                     <div class="ml-auto">
-                                        <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                        <input type="button" class="btn btn-primary d-none" id="btnDiscard"
+                                               value="Discard Changes"/>
                                     </div>
                                 </div>
                             </div>
@@ -39,49 +44,53 @@
                                 <div class="col-12">
                                     <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active disabled" style="background-color: #EEE6DE">Infos personnelles</a>
+                                            <a class="nav-link active disabled" style="background-color: #E9ECEF"><i class="fa fa-drivers-license-o" style="margin-right: 5px"></i>Infos
+                                                personnelles</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content ml-1" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                             aria-labelledby="basicInfo-tab">
 
 
                                             <div class="row">
-                                                <div class="col-sm-3 col-md-2 col-5">
-                                                    <label class="title-user">Prénom & Nom</label>
+                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
+                                                    <label class="title-user"><i class="fa fa-user" style="margin-right: 5px"></i>Prénom & Nom</label>
                                                 </div>
                                                 <div class="col-md-8 col-6">
-                                                    {{user.firstname}} {{user.lastname}}
+                                                    {{ user.firstname }} {{ user.lastname }}
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr/>
 
                                             <div class="row">
-                                                <div class="col-sm-3 col-md-2 col-5">
-                                                    <label class="title-user">Date de naissance</label>
+                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
+                                                    <label class="title-user"><i class="fa fa-birthday-cake" style="margin-right: 5px"></i>Date de naissance</label>
                                                 </div>
                                                 <div class="col-md-8 col-6">
                                                     {{ user.dateofbirth|date ('d-m-Y') }}
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr/>
 
 
                                             <div class="row">
-                                                <div class="col-sm-3 col-md-2 col-5">
-                                                    <label class="title-user" >Adresse mail</label>
+                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
+                                                    <label class="title-user"><i class="fa fa-envelope" style="margin-right: 5px"></i>Adresse mail</label>
                                                 </div>
                                                 <div class="col-md-8 col-6">
-                                                    {{user.email}}
+                                                    {{ user.email }}
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr/>
 
                                         </div>
 
-                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-index">Modifier votre
+                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-index">Modifier
+                                            votre
                                             profil</a>
-                                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-home">Modifier votre
+                                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-home">Modifier
+                                            votre
                                             Mot de passe</a>
                                     </div>
                                 </div>

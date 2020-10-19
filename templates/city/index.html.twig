@@ -48,7 +48,7 @@
                 document.getElementById('map'), {zoom: 8, center: {lat: 48.1113387, lng: -1.6800198}});
 
             {% for city in cities %}
-            const contentString{{ city.name }}= "<p class='text-map ' style='margin-left:15px; margin-top:20px; font-size:15px'><i class='fa fa-calendar' style='margin-right:10px'></i>{{ city.activities|length }} {% if city.activities|length > 1 %} activités{% else %} activité {% endif %} {% if city.activities|length > 1 %} proposées{% else %} proposée {% endif %} à {{ city.label }}</p>" + "<br><a href=\"{{ path('city_show', {'slug': city.slug} ) }}\" class=\"btn btn-index\" style='margin-left:60px; margin-bottom:15px'>Voir plus" +
+            const contentString{{ city.name }}= "<p class='text-map ' style='margin-left:15px; margin-top:20px; font-size:15px'><i class='fa fa-calendar' style='margin-right:10px'></i>{{ city.activities|length }} {% if city.activities|length > 1 %} activités{% else %} activité {% endif %} {% if city.activities|length > 1 %} proposées{% else %} proposée {% endif %} à {{ city.label }}</p>" + "<br><a href=\"{{ path('city_show', {'slug': city.slug} ) }}\" class=\"btn btn-sm btn-index\" >Voir plus" +
                 "                        </a>";
             const infowindow{{ city.name }} = new google.maps.InfoWindow({
                 content: contentString{{ city.name }},
