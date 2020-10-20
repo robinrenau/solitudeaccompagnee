@@ -14,6 +14,10 @@ App\Entity\User:
           minMessage: 'Votre nom doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre nom ne peut pas être plus long que {{ limit }} caractères'
           allowEmptyString: false
+    dateofbirth:
+      - LessThan:
+          value: -50 years
+          message: "Vous devez avoir au moins 50 ans pour accéder à Solitude accompagnée"
 
 App\Entity\Activity:
   properties:
@@ -37,4 +41,17 @@ App\Entity\Activity:
           max: 100
           minMessage: 'Votre adresse doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre adresse ne peut pas être plus longue que {{ limit }} caractères'
+          allowEmptyString: false
+    eventdate:
+        - GreaterThan:
+            value: today
+            message: "La date de l'activité ne doit pas être dans le passé "
+App\Entity\Comment:
+  properties:
+    Content:
+      - Length:
+          min: 1
+          max: 300
+          minMessage: 'Votre prénom doit contenir plus de {{ limit }} caractères'
+          maxMessage: 'Votre prénom ne peut pas être plus long que {{ limit }} caractères'
           allowEmptyString: false
