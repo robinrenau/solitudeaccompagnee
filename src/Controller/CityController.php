@@ -22,6 +22,9 @@ class CityController extends AbstractController
      */
     public function index(CityRepository $cityRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('city/index.html.twig', [
             'cities' => $cityRepository->findAll(),
         ]);
@@ -33,6 +36,9 @@ class CityController extends AbstractController
      */
     public function show(City $city): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('city/show.html.twig', [
             'city' => $city,
         ]);

@@ -19,34 +19,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
 
-    /**
-     * @Route("/new", name="user_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
      */
     public function show(User $user): Response
     {
+        if ($this->getUser() != $user) {
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
+        }
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -58,7 +39,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, FileUploaderUsers $fileUploaderusers): Response
     {
         if ($this->getUser() != $user) {
-            throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier un profil qui n'est pas le vôtre !");
         }
 
         $form = $this->createForm(UserType::class, $user);

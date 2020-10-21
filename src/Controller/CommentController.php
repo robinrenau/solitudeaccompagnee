@@ -48,6 +48,9 @@ class CommentController extends AbstractController
      */
     public function edit(Request $request, Comment $comment): Response
     {
+        if ($this->getUser() != $comment->getUser()) {
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier ce commentaire !");
+        }
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 

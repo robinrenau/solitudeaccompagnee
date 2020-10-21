@@ -21,6 +21,9 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('category/show.html.twig', [
             'category' => $category,
         ]);

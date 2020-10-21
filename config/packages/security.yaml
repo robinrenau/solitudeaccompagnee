@@ -38,8 +38,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/activity/, roles: IS_AUTHENTICATED_FULLY }
-         - { path: ^/city/, roles: IS_AUTHENTICATED_FULLY }
+
+
 
 

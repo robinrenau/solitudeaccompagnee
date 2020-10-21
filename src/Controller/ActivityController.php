@@ -22,12 +22,13 @@ class ActivityController extends AbstractController
     /**
      * @Route("/", name="activity_index", methods={"GET","POST"})
      */
-    public function index(Request $request, ActivityRepository $repo,PaginatorInterface $paginator): Response
+    public function index(Request $request, ActivityRepository $repo, PaginatorInterface $paginator): Response
     {
+
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
 
-        $donnees = $repo->findBy([],['eventdate' => 'asc']);
+        $donnees = $repo->findBy([], ['eventdate' => 'asc']);
 
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
 
@@ -48,7 +49,6 @@ class ActivityController extends AbstractController
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
             6 // Nombre de résultats par page
         );
-
 
 
         return $this->render('activity/index.html.twig', [
@@ -91,38 +91,36 @@ class ActivityController extends AbstractController
             'activity' => $activity,
         ]);
     }
+
     /**
      * @Route("/{id}/participation", name="activity_participation")
      */
-    public function participation(Activity $activity,  ActivityParticipationRepository $participationRepo) : Response
+    public function participation(Activity $activity, ActivityParticipationRepository $participationRepo): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $user =$this->getUser();
+        $user = $this->getUser();
 
-        if(!$user) return $this->json([
-            'code'=>403,
-            'message'=>"Unauthorized"
+        if (!$user) return $this->json([
+            'code' => 403,
+            'message' => "Unauthorized"
 
         ], 403);
-        if($activity->participateByUser($user)){
-            $participation=$participationRepo->findOneBy([
-                'activity'=> $activity,
+        if ($activity->participateByUser($user)) {
+            $participation = $participationRepo->findOneBy([
+                'activity' => $activity,
                 'user' => $user
 
             ]);
-
             $entityManager->remove($participation);
             $entityManager->flush();
 
             return $this->json([
-                'code'=>200,
+                'code' => 200,
                 'message' => 'Participation annulée',
-                'participations'=> $participationRepo->count(['activity' => $activity])
-                    ], 200);
-
+                'participations' => $participationRepo->count(['activity' => $activity])
+            ], 200);
 
         }
-
         $participation = new ActivityParticipation();
         $participation->setActivity($activity)
             ->setUser($user);
@@ -130,9 +128,9 @@ class ActivityController extends AbstractController
         $entityManager->flush();
 
         return $this->json([
-            'code'=>200,
-            'message'=>"Participation bien prise en compte",
-            "participations"=>$participationRepo->count(['activity'=>$activity])
+            'code' => 200,
+            'message' => "Participation bien prise en compte",
+            "participations" => $participationRepo->count(['activity' => $activity])
         ], 200);
 
     }
@@ -143,7 +141,7 @@ class ActivityController extends AbstractController
     public function edit(Request $request, Activity $activity): Response
     {
         if ($this->getUser() != $activity->getUser()) {
-            throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
+            throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier cette activité !");
         }
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
@@ -166,7 +164,7 @@ class ActivityController extends AbstractController
     public function delete(Request $request, Activity $activity): Response
     {
 
-        if ($this->isCsrfTokenValid('delete'.$activity->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($activity);
             $entityManager->flush();

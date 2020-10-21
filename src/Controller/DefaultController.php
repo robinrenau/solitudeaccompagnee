@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\User;
 use App\Repository\CategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,6 +29,7 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/home", name="homepage")
+     * @IsGranted("ROLE_USER")
      */
     public function home()
     {
