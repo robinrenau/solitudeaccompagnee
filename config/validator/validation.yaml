@@ -48,10 +48,10 @@ App\Entity\Activity:
             message: "La date de l'activité ne doit pas être dans le passé "
 App\Entity\Comment:
   properties:
-    Content:
+    content:
       - Length:
           min: 1
           max: 300
-          minMessage: 'Votre prénom doit contenir plus de {{ limit }} caractères'
-          maxMessage: 'Votre prénom ne peut pas être plus long que {{ limit }} caractères'
+          minMessage: 'Votre commentaire doit contenir plus de {{ limit }} caractères'
+          maxMessage: 'Votre commentaire ne peut pas être plus long que {{ limit }} caractères'
           allowEmptyString: false
