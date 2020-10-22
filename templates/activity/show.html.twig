@@ -19,7 +19,8 @@
                 <div class="view overlay " style="margin-top: 15px">
                     <h3 class="font-weight-bold h3">{{ activity.title }}</h3>
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
-                         class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"  alt="{{ activity.title }}">
+                         class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"
+                         alt="{{ activity.title }}">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -44,44 +45,55 @@
             <div class="col-md-12 col-lg-7 text-md-left">
 
 
-                <div class="row" >
+                <div class="row">
                     <div class="col-12">
                         <div class="tab-content ml-1" id="myTabContent">
-                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                 aria-labelledby="basicInfo-tab">
 
 
                                 <div class="row" style="margin-top: 20px">
                                     <div class=" col-md-4 col-5 col-sm-4">
-                                        <label class="font-weight-bold global-title"><i class="fa fa-wpexplorer" style="margin-right: 5px"></i>Description </label>
+                                        <label class="font-weight-bold global-title"><i class="fa fa-wpexplorer"
+                                                                                        style="margin-right: 5px"></i>Description
+                                        </label>
                                     </div>
                                     <div class="col-md-8 col-7 col-sm-8">
-                                        <p class="font-weight-normal" style="text-align: justify">{{ activity.description }}</p>
+                                        <p class="font-weight-normal"
+                                           style="text-align: justify">{{ activity.description }}</p>
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
 
                                 <div class="row">
                                     <div class="col-sm-4 col-md-4 col-5 ">
-                                        <label class="font-weight-bold global-title" ><i class="fa fa-map-marker" style="margin-right: 5px"></i>Adresse </label>
+                                        <label class="font-weight-bold global-title"><i class="fi-xtluxl-map-marker"
+                                                                                        style="margin-right: 5px"></i>Adresse
+                                        </label>
                                     </div>
                                     <div class="col-md-8 col-6 col-sm-8">
                                         <p class="font-weight-normal">{{ activity.address }}</p>
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
 
 
                                 <div class="row">
                                     <div class="col-sm-4 col-md-4 col-5  ">
-                                        <label class="font-weight-bold global-title"> <i class="fa fa-drivers-license-o" style="margin-right: 5px"></i> Contact </label>
+                                        <label class="font-weight-bold global-title"> <i class="fi-xnluxl-address-card"
+                                                                                         style="margin-right: 5px"></i>
+                                            Contact </label>
                                     </div>
                                     <div class="col-md-8 col-6 col-sm-8">
-                                        <p class="font-weight-normal"><i class="fa fa-user-o" style="margin-right: 10px"></i>
-                                             {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
-                                        <p class="font-weight-normal"><i class="fa fa-envelope-o" style="margin-right: 10px"></i>  {{ activity.user.email }}</p>
+                                        <p class="font-weight-normal"><i class="fa fa-user-o"
+                                                                         style="margin-right: 10px"></i>
+                                            {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
+                                        <p class="font-weight-normal"><i class="fa fa-envelope-o"
+                                                                         style="margin-right: 10px"></i> {{ activity.user.email }}
+                                        </p>
                                     </div>
                                 </div>
-                                <hr />
+                                <hr/>
 
                             </div>
 
@@ -90,10 +102,11 @@
                     </div>
                 </div>
 
-                <div class="row" >
+                <div class="row">
                     <div>
                         <span class="js-label global-title font-weight-bold"
-                              style="margin-left: 10px; color:black"><i class="fa fa-ticket" style="margin-right: 5px"></i>Participer ? </span>
+                              style="margin-left: 10px; color:black"><i class="fi-xtluxl-user-plus"
+                                                                        style="margin-right: 5px"></i>Participer ? </span>
 
                         <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
                             {% if app.user.id != activity.user.id %}
@@ -120,7 +133,8 @@
 
                     <div class="js-participation" style="margin-left: 20px">
                         <p class="font-weight-bold"> Nombre de participants</p>
-                        <p> <span id="js-participations">{{ activity.participations | length }}</span> / {{ activity.maxParticipants }}</p>
+                        <p><span id="js-participations">{{ activity.participations | length }}</span>
+                            / {{ activity.maxParticipants }}</p>
                     </div>
 
                 </div>
@@ -131,57 +145,66 @@
     </div>
     {% if app.user != activity.user %}
     {% else %}
-         {% if activity.participations | length > 0 %}
-             <h4 class="global-title">Liste des participants</h4>
+        {% if activity.participations | length > 0 %}
+            <h4 class="global-title">Liste des participants</h4>
 
-             <div class="row">
+            <div class="row">
 
-            {% for participation in activity.participations %}
-                    <div class="col-md-6 col-lg-4 card hoverable " style=" text-align: center; justify-content: center; margin-top: 10px ">
-                        <p style="margin-top: 10px"> <i class="fa fa-user"style="margin-right: 10px"></i> {{ participation.user.firstname }} {{ participation.user.lastname }} </p>
-                        <p> <i class="fa fa-envelope" style="margin-right: 10px"></i>  {{ participation.user.email }}</p>
+                {% for participation in activity.participations %}
+                    <div class="col-md-6 col-lg-4 card hoverable "
+                         style=" text-align: center; justify-content: center; margin-top: 10px ">
+                        <p style="margin-top: 10px"><i class="fa fa-user"
+                                                       style="margin-right: 10px"></i> {{ participation.user.firstname }} {{ participation.user.lastname }}
+                        </p>
+                        <p><i class="fa fa-envelope" style="margin-right: 10px"></i> {{ participation.user.email }}</p>
                     </div>
-            {% endfor %}
+                {% endfor %}
 
-             </div>
-         {% else %}
-         {% endif %}
+            </div>
+        {% else %}
+        {% endif %}
     {% endif %}
     <hr>
 
     <a class="btn btn-lg btn-home" href="{{ path('comment_new', {'id': activity.id}) }}" role="button">
-        <i class="fa fa-book"></i>
+        <i class="fi-xnluxl-comment-square"></i>
         Ajouter un commentaire
     </a>
-    {% if activity.comments | length == 0  %}
+    {% if activity.comments | length == 0 %}
     {% else %}
-    <div class="row d-flex justify-content-center mt-100 mb-100">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h4 class="card-title global-title">Derniers commentaires</h4>
-                </div>
-                <div class="comment-widgets">
-                    {% for comment in activity.comments %}
-                    <!-- Comment Row -->
-                    <div class="d-flex flex-row comment-row m-t-0">
-                        <div class="p-2"><img {% if comment.user.profilPicture is null %} src="{{asset('uploads/users/picturedefault.png')}}" {% else %} src="{{asset('uploads/users/'~ comment.user.profilPicture)}}" {% endif %} alt="user" width="50" class="rounded-circle"></div>
-                        <div class="comment-text w-100">
-                            <h6 class="font-medium">{{ comment.user.firstname }} {{ comment.user.lastname }}</h6> <span class="m-b-15 d-block">{{ comment.content }}</span>
-                            <div class="comment-footer"> <span class="text-muted float-right">{{ comment.createdAt|date ("d/m/Y H:i") }}</span>{% if app.user.id != comment.user.id %}
-                            {% else %}
-                                <div class="btn-comment">
-                                    <a href="{{ path('comment_edit', {'id': comment.id} ) }}" class="btn btn-light-blue"><i style="color: white" class="fa fa-edit"></i></a>
-                                    {{ include('comment/_delete_form.html.twig') }}
-                                </div>
-                                {% endif %}  </div>
-                        </div>
+        <div class="row d-flex justify-content-center mt-100 mb-100">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title global-title">Derniers commentaires</h4>
                     </div>
-                    {% endfor %}
+                    <div class="comment-widgets">
+                        {% for comment in activity.comments %}
+                            <!-- Comment Row -->
+                            <div class="d-flex flex-row comment-row m-t-0">
+                                <div class="p-2">
+                                    <img {% if comment.user.profilPicture is null %} src="{{ asset('uploads/users/picturedefault.png') }}" {% else %} src="{{ asset('uploads/users/'~ comment.user.profilPicture) }}" {% endif %}
+                                            alt="user" width="50" class="rounded-circle"></div>
+                                <div class="comment-text w-100">
+                                    <h6 class="font-medium">{{ comment.user.firstname }} {{ comment.user.lastname }}</h6>
+                                    <span class="m-b-15 d-block">{{ comment.content }}</span>
+                                    <div class="comment-footer"><span
+                                                class="text-muted float-right">{{ comment.createdAt|date ("d/m/Y H:i") }}</span>{% if app.user.id != comment.user.id %}
+                                    {% else %}
+                                        <div class="btn-comment">
+                                            <a href="{{ path('comment_edit', {'id': comment.id} ) }}"
+                                               class="btn btn-light-blue"><i style="color: white"
+                                                                             class="fa fa-edit"></i></a>
+                                            {{ include('comment/_delete_form.html.twig') }}
+                                        </div>
+                                        {% endif %}  </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     {% endif %}
 
 {% endblock %}
