@@ -77,10 +77,10 @@
 
                                         </div>
 
-                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-index">Modifier
+                                        <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-md btn-index"><i class="fi-xtluhl-edit-thin" style="margin-right: 5px"></i>Modifier
                                             votre
                                             profil</a>
-                                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-home">Modifier
+                                        <a href="{{ path('app_forgot_password_request') }}" class="btn btn-md btn-home"> <i class="fi-xtluxl-key-alt-thin" style="margin-right: 5px"></i>Modifier
                                             votre
                                             Mot de passe</a>
                                     </div>
@@ -115,10 +115,10 @@
                             <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
                             <p>{{ activity.address }}</p><br>
                             <span class="badge badge-pill badge-primary" title="Catégorie">
-                        <i class="fa fa-tag"></i>{{ activity.category.label }}
+                        <i class="fa fa-tag"style="margin-right: 10px"></i>{{ activity.category.label }}
                     </span><br>
                             <span class="badge badge-pill badge-info" title="Date de l'activité">
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-calendar"style="margin-right: 10px"></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
                             <div class="card_activity__buttons">
@@ -163,10 +163,10 @@
                             <time> Créé le : {{ participation.activity.CreatedAt|date ("d/m/Y") }} </time>
                             <p>{{ participation.activity.address }}</p><br>
                             <span class="badge badge-pill badge-primary" title="Catégorie">
-                        <i class="fa fa-tag"></i>{{ participation.activity.category.label }}
+                        <i class="fa fa-tag"style="margin-right: 10px"></i>{{ participation.activity.category.label }}
                     </span><br>
                             <span class="badge badge-pill badge-info" title="Date de l'activité">
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-calendar" style="margin-right: 10px"></i>
                         {{ participation.activity.eventdate|date('d/m/Y') }}
                     </span>
                             <div class="card_activity__buttons">

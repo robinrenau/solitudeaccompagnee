@@ -1,5 +1,53 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+     {{ form_row(form.title, {
+         attr: {
+             'placeholder': "Titre de l'activité"
+         },
+         label: "Titre"
+     }) }}
+    {{ form_row(form.description, {
+        attr: {
+            'placeholder': "Description de l'activité"
+        },
+        label: "Description"
+    }) }}
+    {{ form_row(form.address, {
+        attr: {
+            'placeholder': "Adresse et lieu de l'activité"
+        },
+        label: "Adresse"
+    }) }}
+    <div class="form-row">
+        <div class="col-md-6">
+        {{ form_row(form.city, {
+
+                label: 'Ville'
+            }) }}
+        </div>
+        <div class="col-md-6">
+        {{ form_row(form.category, {
+
+            label: 'Categorie'
+        }) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6">
+            {{ form_row(form.eventdate, {
+
+                label: "Date de l'activité"
+            }) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.maxParticipants, {
+
+                attr: {
+                    'placeholder': "4"
+                },
+                label: "Nombre de participants"
+            }) }}
+        </div>
+    </div>
     <button class="btn-index btn">{{ button_label|default("Créer l'activité") }}</button>
 {{ form_end(form) }}
 
