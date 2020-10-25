@@ -29,7 +29,7 @@ class CategoryFixtures extends Fixture
         $this->addReference("cat-actnat", $activitenature);
 
         $loisir = new Category();
-        $loisir ->setLabel("Loisir");
+        $loisir ->setLabel("Loisirs");
         $loisir->setPicture("loisir.jpg");
         $manager->persist($loisir);
         $this->addReference("cat-loisir", $loisir);
