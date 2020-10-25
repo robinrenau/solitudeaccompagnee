@@ -15,6 +15,7 @@
                 <div class="row">
                     <div class="col-lg-9 col-md-10 col-sm-8 col-9">
                         <div class="form-group" >
+                            {# bloc recherche d'activité par mot clé dans le titre#}
                             {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
                             {{ form_start(searchForm) }}
                             {{ form_row(searchForm.title, {'label': " ", 'attr': {'placeholder': 'mot clé...'}}) }}
@@ -27,20 +28,18 @@
                 </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <div class="row ">
+        {# boucle sur toutes les activités créées#}
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4">
-
                 {% include 'activity/_card.html.twig'with {'activity' : activity} only %}
-
             </div>
         {% endfor %}
     </div>
+    {# bloc pagination#}
     <div style="margin-top: 20px" class="col-mb-4 col-sm-12">
         {{ knp_pagination_render(activities) }}
     </div>

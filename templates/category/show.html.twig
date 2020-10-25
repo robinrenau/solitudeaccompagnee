@@ -12,18 +12,21 @@
             <div class="col-md-12">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
-                            <img src="{{ asset('uploads/categories/' ~ category.picture) }}" class="card-img"  alt="...">
+                        <div class="col-md-3 ">
+                            <img src="{{ asset('uploads/categories/' ~ category.picture) }}" class="img-fluid" alt="...">
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-9 ">
                             <h5 class="card-title" style="font-size: 30px">Catégorie {{ category.label }}</h5>
-                            <p class="card-text"style="font-size: 20px">Ici, retrouvez toutes les activités qui concernent la catégorie {{ category.label }}.</p>
+                            <p class="card-text" style="font-size: 20px">Ici, retrouvez toutes les activités qui
+                                concernent la catégorie {{ category.label }}.</p>
                         </div>
 
                     </div>
                 </div>
                 <div class="card-footer">
-                    <p>Toutes les activités dans la catégorie "{{  category.label }}" ({{ category.activities|length }} {% if category.activities|length > 1 %} résultats{% else %} résultat{% endif %})</p>
+                    <p>Toutes les activités dans la catégorie "{{ category.label }}"
+                        ({{ category.activities|length }} {% if category.activities|length > 1 %} résultats{% else %} résultat{% endif %}
+                        )</p>
                 </div>
             </div>
         </div>
@@ -31,17 +34,15 @@
 
 
 
-    <!-- News jumbotron -->
-    <main class="container">
 
-        <section class="row projects">
-            {% for activity in category.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
-                <div class="col-md-6 col-lg-4">
-                    {% include 'activity/_card.html.twig' with {'activity': activity} only %}
-                </div>
-            {% endfor %}
-        </section>
 
-    </main>
+    <section class="row">
+        {% for activity in category.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
+            <div class="col-md-6 col-lg-4 ">
+                {% include 'activity/_card.html.twig' with {'activity': activity} only %}
+            </div>
+        {% endfor %}
+    </section>
+
 
 {% endblock %}

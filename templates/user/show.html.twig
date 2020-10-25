@@ -14,12 +14,12 @@
                                 <div class="d-flex justify-content-start">
                                     <div class="image-container">
                                         <img class="img-thumbnail"
-                                             style="width: 150px; height: 150px" {% if user.profilPicture is null %} src="{{ asset('uploads/users/picturedefault.png') }}" {% else %} src="{{ asset('uploads/users/'~ user.profilPicture) }}" {% endif %}
-                                             alt="user" width="50" class="rounded-circle">
+                                             style="width: 100px; height: 100px" {% if user.profilPicture is null %} src="{{ asset('uploads/users/picturedefault.png') }}" {% else %} src="{{ asset('uploads/users/'~ user.profilPicture) }}" {% endif %}
+                                             alt="user"  class="rounded-circle">
                                     </div>
                                     <div class="userData ml-3">
-                                        <h2 class="d-block"
-                                            style="font-size: 1.5rem; font-weight: bold">{{ user.firstname }} {{ user.lastname }}</h2>
+                                        <h4 class="h4-responsive"
+                                            >{{ user.firstname }} {{ user.lastname }}</h4>
                                         <h6 class="d-block"> {{ user.participations | length }} {% if user.participations|length > 1 %} participations{% else %} participation{% endif %}
                                             aux activités</h6>
                                         <h6 class="d-block"> {{ user.activities|length }} {% if user.activities|length > 1 %} activités{% else %} activité{% endif %} {% if user.activities|length > 1 %} créées{% else %} créée {% endif %}</h6>
@@ -40,37 +40,37 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content ml-1" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                        <div class="tab-pane fade show active text-md-left" id="basicInfo" role="tabpanel"
                                              aria-labelledby="basicInfo-tab">
 
 
                                             <div class="row">
-                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
-                                                    <label class="title-user"><i class="fi-xtluxl-user-thin" style="margin-right: 5px"></i>Prénom & Nom</label>
+                                                <div class="col-sm-12 col-md-4">
+                                                    <label class="font-weight-bold global-title"><i class="fi-xtluxl-user-thin" style="margin-right: 5px"></i>Identite</label>
                                                 </div>
-                                                <div class="col-md-8 col-6">
-                                                    {{ user.firstname }} {{ user.lastname }}
+                                                <div class="col-md-8 col-sm-12">
+                                                    <p class="font-weight-normal">{{ user.firstname }} {{ user.lastname }}</p>
                                                 </div>
                                             </div>
                                             <hr/>
 
                                             <div class="row">
-                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
-                                                    <label class="title-user"><i class="fi-xtluxl-balloon-thin" style="margin-right: 5px"></i>Date de naissance</label>
+                                                <div class="col-sm-12 col-md-4">
+                                                    <label class="font-weight-bold global-title"><i class="fi-xtluxl-balloon-thin" style="margin-right: 5px"></i>Date de naissance</label>
                                                 </div>
-                                                <div class="col-md-8 col-6">
-                                                    {{ user.dateofbirth|date ('d-m-Y') }}
+                                                <div class="col-md-8 col-sm-12">
+                                                    <p class="font-weight-normal">{{ user.dateofbirth|date ('d-m-Y') }}</p>
                                                 </div>
                                             </div>
                                             <hr/>
 
 
                                             <div class="row">
-                                                <div class="col-sm-5 col-md-4 col-5 col-lg-3">
-                                                    <label class="title-user"><i class="fi-xtluxl-envelope-thin" style="margin-right: 5px"></i>Adresse mail</label>
+                                                <div class="col-sm-12 col-md-4">
+                                                    <label class="font-weight-bold global-title"><i class="fi-xtluxl-envelope-thin" style="margin-right: 5px"></i>Email</label>
                                                 </div>
-                                                <div class="col-md-8 col-6">
-                                                    {{ user.email }}
+                                                <div class="col-md-8 col-sm-12">
+                                                    <p class="font-weight-normal">{{ user.email }}</p>
                                                 </div>
                                             </div>
                                             <hr/>
@@ -98,7 +98,8 @@
 
 
         {% if user.activities | length > 0 %}
-            <h3 class="global-title" style="margin-top: 20px">Mes activites proposees</h3>
+            <hr>
+            <h3 class="h3-responsive global-title" style="margin-top: 20px">Mes activites proposees</h3>
         {% endif %}
         <div class="row ">
 
@@ -144,9 +145,9 @@
             {% endfor %}
 
         </div>
-
+    <hr>
         {% if user.participations | length > 0 %}
-            <h3 class="global-title" style=" margin-top: 20px">Mes participations aux activites</h3>
+            <h3 class="h3-responsive global-title" style=" margin-top: 20px">Mes participations aux activites</h3>
         {% endif %}
         <div class="row ">
 

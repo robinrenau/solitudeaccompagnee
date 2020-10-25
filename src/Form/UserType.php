@@ -25,7 +25,8 @@ class UserType extends AbstractType
             ])
             ->add('dateofbirth', BirthdayType::class,[
                 'label'=>"Date de naissance",
-                'format' => 'dd-MM-yyyy'
+
+                'widget' => 'single_text',
 
             ])
 

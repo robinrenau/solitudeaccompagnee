@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8" id="grid-column">
                 <!-- Jumbotron -->
-                <div class="jumbotron p-0">
+                <div class="jumbotron p-0 ">
 
                     <!-- Card image -->
                     <div class="view overlay rounded-top">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <main class="container">
-        <h2 style="margin-top: 20px" >Toutes les activités à {{  city.label }} ({{ city.activities|length }} {% if city.activities|length > 1 %} résultats{% else %} résultat{% endif %})</h2>
+        <h2 class="h2-responsive" style="margin-top: 20px" >Toutes les activités à {{  city.label }} ({{ city.activities|length }} {% if city.activities|length > 1 %} résultats{% else %} résultat{% endif %})</h2>
 
         <section class="row projects">
             {% for activity in city.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}

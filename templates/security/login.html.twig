@@ -3,25 +3,26 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 m-auto">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 m-auto">
 
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-                <h2 style="margin-top: 20px; font-family: Moon">Connexion  </h2>
-                <label style="margin-top: 20px" for="inputEmail"><i style="margin-right: 10px" class="fa fa-envelope prefix"></i>Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                <label style="margin-top: 20px" for="inputPassword"><i style="margin-right: 10px" class="fa fa-lock prefix"></i>Mot de passe</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <h2 style="margin-top: 20px; font-family: Moon">Connexion </h2>
+                    <label style="margin-top: 20px" for="inputEmail"><i style="margin-right: 5px"
+                                                                        class="fi-xtluxl-envelope-thin"></i>Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
+                           required autofocus>
+                    <label style="margin-top: 20px" for="inputPassword"><i style="margin-right: 5px"
+                                                                           class="fi-xtluxl-lock-thin"></i>Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-
-
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
 
                     <div class="checkbox mb-3">
@@ -31,12 +32,14 @@
                     </div>
 
 
-                <button class="btn btn-index" style="margin-top: 10px" type="submit">
-                    Se connecter
-                </button>
-                <a href="{{ path('app_forgot_password_request') }}" class="btn btn-warning btn-rounded" style="margin-top: 10px">Mot de passe oublié ?</a>
-            </form>
+                    <button class="btn btn-index" style="margin-top: 10px" type="submit">
+                        <i class="fi-xtluxl-sign-in-thin" style="margin-right: 5px"></i>Se connecter
+                    </button>
+                    <a href="{{ path('app_forgot_password_request') }}" class="btn btn-warning btn-rounded"
+                       style="margin-top: 10px"><i class="fi-xtluxl-key-alt-thin" style="margin-right: 5px"></i>Mot de
+                        passe oublié ?</a>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
