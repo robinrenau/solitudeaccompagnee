@@ -22,10 +22,12 @@ class CommentController extends AbstractController
      */
     public function new(Request $request, Activity $activity): Response
     {
+        //création d'un nouveau commentaire
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
+        //Envoie de cette création dans la bdd
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());
@@ -48,6 +50,7 @@ class CommentController extends AbstractController
      */
     public function edit(Request $request, Comment $comment): Response
     {
+        // condition d'accès à l'edit d'un commentaire :
         if ($this->getUser() != $comment->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier ce commentaire !");
         }

@@ -27,17 +27,17 @@ class ActivityController extends AbstractController
 
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
-
+        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
         $donnees = $repo->findBy([], ['eventdate' => 'asc']);
 
-        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
 
+        //Recherche dans le titre des activités avec l'input saisie par l'utilisateur;
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
 
 
             $title = $searchForm->getData()->getTitle();
             $donnees = $repo->search($title);
-            //$request->request->get('search', $title);
+
             if ($donnees == null) {
                 $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
 
@@ -105,6 +105,7 @@ class ActivityController extends AbstractController
             'message' => "Unauthorized"
 
         ], 403);
+        // Annulation d'une participation :
         if ($activity->participateByUser($user)) {
             $participation = $participationRepo->findOneBy([
                 'activity' => $activity,
@@ -121,6 +122,7 @@ class ActivityController extends AbstractController
             ], 200);
 
         }
+        // Nouvelle participation :
         $participation = new ActivityParticipation();
         $participation->setActivity($activity)
             ->setUser($user);
@@ -140,6 +142,7 @@ class ActivityController extends AbstractController
      */
     public function edit(Request $request, Activity $activity): Response
     {
+        // condition d'accès à l'edit d'une activité :
         if ($this->getUser() != $activity->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier cette activité !");
         }

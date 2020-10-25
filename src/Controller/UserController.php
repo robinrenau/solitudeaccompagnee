@@ -25,6 +25,7 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
+        // condition d'accès sur la route /user/{id} :
         if ($this->getUser() != $user) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit !");
         }
@@ -38,6 +39,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, FileUploaderUsers $fileUploaderusers): Response
     {
+        // condition d'accès à l'édit d'un profil user :
         if ($this->getUser() != $user) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier un profil qui n'est pas le vôtre !");
         }
@@ -46,6 +48,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //gère l'enregistrement de la photo de profil uploadée par l'utilisateur
             /** @var UploadedFile $pictureFile */
             $pictureFile = $form['profilPicture']->getData();
 

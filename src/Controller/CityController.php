@@ -22,6 +22,7 @@ class CityController extends AbstractController
      */
     public function index(CityRepository $cityRepository): Response
     {
+        // Condition d'accès à la route /city
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_login');
         }
@@ -36,6 +37,7 @@ class CityController extends AbstractController
      */
     public function show(City $city): Response
     {
+        // Condition d'accès à la route /city/{slug}
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_login');
         }

@@ -21,6 +21,7 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
+        // Condition d'accès à la route /category/{slug}
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_login');
         }

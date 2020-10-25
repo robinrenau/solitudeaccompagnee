@@ -19,12 +19,14 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
+        //Création d'un nouvelle utilisateur
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        //Enregistrement dans la bdd du formulaire d'inscription remplie par l'utilisateur
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // encoding du mot de passe
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -35,13 +37,13 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
                 $authenticator,
-                'main' // firewall name in security.yaml
+                'main'
             );
         }
 

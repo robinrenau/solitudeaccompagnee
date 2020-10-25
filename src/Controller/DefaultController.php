@@ -16,6 +16,7 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
+        // Redirige l'utilisateur si il est deja connecté vers la page /home :
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('homepage');
         }
