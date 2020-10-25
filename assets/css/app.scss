@@ -25,15 +25,16 @@ body {
     background-color: #F2E9E1;
     font-family: Roboto;
 }
+.badge-participation{
+     background-color: white;
+     width: 160px;
+     margin-left: 15px;
+ }
 .btn-comment{
     display: flex;
 
 }
-.badge-participation{
-    background-color: white;
-    width: 160px;
-    margin-left: 15px;
-}
+
 .btn-home{
     background-color: #AB66CC;
     color: white;
@@ -85,16 +86,16 @@ body {
     justify-content: space-between;
     margin-bottom: 10px;
 }
+.container-index{
+    background-color: #F2E9E1;
+    margin-top: 70px
+}
 .dropdown-style:hover{
     background-color: #AB66CC;
     color:white !important;
 }
-.text-index{
-    color: black;
-    font-family: Roboto;
-}
-.text-map{
-    font-family: Roboto;
+.global-title {
+    font-family: Moon;
 }
 .icons-header{
     margin-right: 4px;
@@ -104,10 +105,6 @@ body {
     border-radius: 10%;
     margin-top: 20px;
 }
-.title-style{
-    font-family: Roboto;
-}
-
 .link-logout{
     font-family: Moon;
     color:#ff6961;
@@ -122,15 +119,18 @@ body {
     margin-left: 35px;
     font-family: Moon;
 }
-
-.global-title {
-    font-family: Moon;
+.text-index{
+    color: black;
+    font-family: Roboto;
+}
+.text-map{
+    font-family: Roboto;
 }
 
-.container-index{
-    background-color: #F2E9E1;
-    margin-top: 70px
+.title-style{
+    font-family: Roboto;
 }
+
 .title-user{
     font-weight:bold
 }
