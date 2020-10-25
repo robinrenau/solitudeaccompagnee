@@ -48,7 +48,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //gère l'enregistrement de la photo de profil uploadée par l'utilisateur
+            //Gère l'enregistrement de la photo de profil uploadée par l'utilisateur
             /** @var UploadedFile $pictureFile */
             $pictureFile = $form['profilPicture']->getData();
 

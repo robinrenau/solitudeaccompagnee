@@ -6,6 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-5 " style="margin-top: 15px">
+                {# Bouton nouvelle activité #}
                 <a class=" btn btn-home" href="{{ path('activity_new') }}" role="button">
                     <i class="fa fa-th-large"></i>
                     Créer une nouvelle activité
@@ -15,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-9 col-md-10 col-sm-8 col-9">
                         <div class="form-group" >
-                            {# bloc recherche d'activité par mot clé dans le titre#}
+                            {# bloc recherche d'activité par mot clé dans le titre #}
                             {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
                             {{ form_start(searchForm) }}
                             {{ form_row(searchForm.title, {'label': " ", 'attr': {'placeholder': 'mot clé...'}}) }}
@@ -35,6 +36,7 @@
         {# boucle sur toutes les activités créées#}
         {% for activity in activities %}
             <div class="col-md-6 col-lg-4">
+                {# Appel de mon template card d'une activité#}
                 {% include 'activity/_card.html.twig'with {'activity' : activity} only %}
             </div>
         {% endfor %}

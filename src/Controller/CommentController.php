@@ -27,7 +27,7 @@ class CommentController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        //Envoie de cette création dans la bdd
+        //Enregistrement de cette création dans la bdd
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());

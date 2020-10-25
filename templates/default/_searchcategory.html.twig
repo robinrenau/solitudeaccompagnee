@@ -1,3 +1,4 @@
+{# Boucle sur toutes les catégories de la base de donnée, pour l'affichage de mon dropdown de ma navigation#}
 {% for category in categories  %}
     <a class="dropdown-item dropdown-style" href="{{ path('category_show', {'slug': category.slug}) }}"> {{category.label}}</a>
 {% endfor %}

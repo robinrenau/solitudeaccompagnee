@@ -34,10 +34,9 @@ class DefaultController extends AbstractController
      */
     public function home()
     {
-        $em = $this->getDoctrine();
-        $activities =$em->getRepository(Activity::class)->findBy([], array('createdAt'=>"DESC"), 3);
+
         return $this->render("default/home.html.twig", [
-            "activities" => $activities
+
         ]);
     }
     public function searchCategory(CategoryRepository $categoryRepository)

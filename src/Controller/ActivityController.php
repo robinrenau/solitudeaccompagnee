@@ -24,7 +24,7 @@ class ActivityController extends AbstractController
      */
     public function index(Request $request, ActivityRepository $repo, PaginatorInterface $paginator): Response
     {
-
+        //création d'une variable pour le formulaire de recherche d'une activité via l'input search
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
@@ -63,10 +63,11 @@ class ActivityController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        //Création d'une nouvelle activité
         $activity = new Activity();
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
-
+        //Enregistrement de cette création dans la bdd
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $activity->setUser($this->getUser());
@@ -122,7 +123,7 @@ class ActivityController extends AbstractController
             ], 200);
 
         }
-        // Nouvelle participation :
+        // Nouvelle participation
         $participation = new ActivityParticipation();
         $participation->setActivity($activity)
             ->setUser($user);
@@ -142,13 +143,13 @@ class ActivityController extends AbstractController
      */
     public function edit(Request $request, Activity $activity): Response
     {
-        // condition d'accès à l'edit d'une activité :
+        // Condition d'accès à l'edit d'une activité :
         if ($this->getUser() != $activity->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier cette activité !");
         }
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
-
+        // Enregistrement dans la bdd des modifications de l'activité
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

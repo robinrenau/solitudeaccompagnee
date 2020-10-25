@@ -8,14 +8,16 @@
 {% block body %}
     <div class="card md-2" style="margin: 30px">
         <div class="row no-gutters">
-
             <div class="col-md-12">
+                {# Bloc info de la catégorie#}
                 <div class="card-body">
                     <div class="row">
+                        {# Affichage de l'image de la catégorie#}
                         <div class="col-md-3 ">
                             <img src="{{ asset('uploads/categories/' ~ category.picture) }}" class="img-fluid" alt="...">
                         </div>
                         <div class="col-md-9 ">
+                            {# Affichage du label de la catégorie#}
                             <h5 class="card-title" style="font-size: 30px">Catégorie {{ category.label }}</h5>
                             <p class="card-text" style="font-size: 20px">Ici, retrouvez toutes les activités qui
                                 concernent la catégorie {{ category.label }}.</p>
@@ -32,11 +34,8 @@
         </div>
     </div>
 
-
-
-
-
     <section class="row">
+        {# Affichage de toutes les activités qui concernent la catégorie#}
         {% for activity in category.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
             <div class="col-md-6 col-lg-4 ">
                 {% include 'activity/_card.html.twig' with {'activity': activity} only %}

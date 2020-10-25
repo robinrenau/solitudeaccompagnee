@@ -7,7 +7,7 @@
     <a class=" btn btn-home" href="{{ path('user_show',{'id': app.user.id}) }}"><i
                 class="fa fa-sign-out "></i>Retourner a ton profil</a>
     <h1 style="font-family: Moon; margin-top: 20px">Modifier ton activite</h1>
-
+{# Appel de mon template formulaire d'une activité #}
     {{ include('activity/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 

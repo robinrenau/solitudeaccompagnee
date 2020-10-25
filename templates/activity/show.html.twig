@@ -8,26 +8,22 @@
 {% block body %}
 
     <div class="col-detail-activity jumbotron text-center hoverable p-4">
-
-        <!-- Grid row -->
         <div class="row">
-
-            <!-- Grid column -->
             <div class="col-md-12 col-lg-5">
-
-                <!-- Featured image -->
+                {# Bloc informations d'une activité#}
                 <div class="view overlay " style="margin-top: 15px">
+                    {# Affichage du titre de l'activité#}
                     <h3 class="h3-responsive">{{ activity.title }}</h3>
+                    {# Affichage de la photo de la catégorie concerné par l'activité#}
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
                          class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"
                          alt="{{ activity.title }}">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
-
                 </div>
-                <!-- Excerpt -->
                 <div class="green-text">
+                    {# badge date de l'activité, catégorie et ville#}
                     <span class="badge badge-pill badge-info" style="margin-right: 10px; margin-top: 15px"><i
                                 class="fa fa-calendar"></i> {{ activity.eventdate|date ('d-m-Y H:i') }}</span>
 
@@ -39,9 +35,7 @@
                 </div>
 
             </div>
-            <!-- Grid column -->
 
-            <!-- Grid column -->
             <div class="col-md-12 col-lg-7 text-md-left">
                 <div class="row">
                     <div class="col-12">
@@ -51,6 +45,7 @@
 
                                 <div class="row" style="margin-top: 20px">
                                     <div class=" col-md-4 col-sm-12">
+                                        {# Affichage description de l'activité#}
                                         <label class="font-weight-bold global-title"><i class="fa fa-wpexplorer"
                                                                                         style="margin-right: 5px"></i>Description
                                         </label>
@@ -64,6 +59,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4 ">
+                                        {# Affichage de l'adresse de l'activité#}
                                         <label class="font-weight-bold global-title"><i class="fi-xtluxl-map-marker"
                                                                                         style="margin-right: 5px"></i>Adresse
                                         </label>
@@ -77,6 +73,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4 ">
+                                        {# Affichage du créateur de l'activité#}
                                         <label class="font-weight-bold global-title"> <i class="fi-xnluxl-address-card"
                                                                                          style="margin-right: 5px"></i>
                                             Contact </label>
@@ -91,14 +88,11 @@
                                     </div>
                                 </div>
                                 <hr/>
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
+                {# Bloc pour participer à une activité#}
                 <div class="row">
                     <div>
                         <span class="js-label global-title font-weight-bold"
@@ -136,10 +130,9 @@
 
                 </div>
             </div>
-            <!-- Grid column -->
         </div>
-        <!-- Grid row -->
     </div>
+    {# Bloc des participants à une activité seulement visible par le créateur de l'activité#}
     {% if app.user != activity.user %}
     {% else %}
         {% if activity.participations | length > 0 %}
@@ -162,7 +155,7 @@
         {% endif %}
     {% endif %}
     <hr>
-
+    {# Bloc commentaires et ajout d'un commentaire#}
     <a class="btn btn-lg btn-home" href="{{ path('comment_new', {'id': activity.id}) }}" role="button">
         <i class="fi-xnluxl-comment-square"></i>
         Ajouter un commentaire

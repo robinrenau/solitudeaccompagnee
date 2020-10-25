@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block body %}
+    {# Bloc Google Map #}
     <h2 class="global-title" style=" margin-top: 30px"> La carte de nos villes </h2>
     <div id="map"></div>
 
-
+    {# Bloc liste Villes #}
     <h2 class="global-title" style="margin-top: 30px">Liste de nos villes partenaires </h2>
     <div class="row row-cols-1 row-cols-md-3">
-
+        {# Boucle sur toutes les villes de la bdd#}
         {% for city in cities %}
         <div class="card card-city">
             <div class="view overlay">
@@ -22,31 +23,27 @@
                 </a>
             </div>
 
-            <!-- Card content -->
             <div class="card-body">
-
-                <!-- Title -->
                 <h4 class="card-title">{{ city.label }}</h4>
-
             </div>
         </div>
     {% endfor %}
     </div>
+    {# Bloc code Google Map#}
     <script>
-        // Initialize and add the map
+        // boucle sur toutes les villes en bdd et initialisation de leurs latitudes et longitudes
         function initMap() {
             {% for city in cities %}
-            // The location of Rennes
             var {{ city.name }} =
             {
                 lat: {{ city.lat }},
                 lng: {{ city.lng }}
             };
             {% endfor %}
-            // The map, centered at Rennes
+            // Initialisation et ajout de la map
             var map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 8, center: {lat: 48.1113387, lng: -1.6800198}});
-
+            // Boucle sur toutes les villes en bdd et création d'une infowindows pour chaque ville
             {% for city in cities %}
             const contentString{{ city.name }}= "<p class='text-map ' style='margin-left:15px; margin-top:20px; font-size:15px'><i class='fa fa-calendar' style='margin-right:10px'></i>{{ city.activities|length }} {% if city.activities|length > 1 %} activités{% else %} activité {% endif %} {% if city.activities|length > 1 %} proposées{% else %} proposée {% endif %} à {{ city.label }}</p>" + "<br><a href=\"{{ path('city_show', {'slug': city.slug} ) }}\" class=\"btn btn-sm btn-index\" >Voir plus" +
                 "                        </a>";
@@ -56,8 +53,7 @@
                 maxHeight : 150
             });
             {% endfor %}
-
-            // The marker, positioned at Rennes
+            // Boucle sur toutes les villes en bdd et ajout d'un marqueur pour chaque ville
             {% for city in cities %}
             var marker{{ city.name }} = new google.maps.Marker({position: {{ city.name }}, map: map});
             marker{{ city.name }}.addListener('click', () => {
@@ -67,11 +63,7 @@
             {% endfor %}
         }
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
+
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlmJxKkG3koTn3nug1lnuFvbsAOFCXnPI&callback=initMap">
     </script>

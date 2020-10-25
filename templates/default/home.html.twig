@@ -3,13 +3,14 @@
 {% block title %}Solitude Accompagnée{% endblock %}
 
 {% block body %}
-
+    {# Jumbotron Home Solitude accompagnée#}
     <div class="jumbotron bb card card-image" style=" margin-top: 20px">
         <div class="text-white text-center py-5 px-4">
             <div>
                 <h2 class="card-title h1-responsive display-4 pt-3 mb-5"><strong>Solitude Accompagnée</strong></h2>
                 <p class="mx-5 mb-5"> Créer, éditer, proposer des activités pour partager des beaux moments de vies avec Solitude Accompagnée !
                 </p>
+                {# Bouton qui redirige vers la route /activity et /activity/new#}
                 <a class="btn btn-outline-white btn-md" href="{{ path('activity_index') }}"><i class="fa fa-plus-circle"></i> Voir les activités</a>
                 <a class="btn btn-outline-white btn-md" href="{{ path('activity_new') }}"><i class="fa fa-th-large"></i> Proposer une activité</a>
             </div>
