@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Solitude Accompagnée{% endblock %}</title>
-    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+    <script defer src="https://friconix.com/cdn/friconix.js"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -13,7 +13,8 @@
 {# Header navigation#}
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
     <div class="container">
-        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('logo-header.png') }}" width="100" height="90"
+        <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('logo-header.png') }}" width="100"
+                                                                   height="90"
                                                                    title="Logo Femories" alt="logo"> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,20 +52,24 @@
 
             <ul class="navbar-nav">
                 {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link navbar-item-colors link-header" href="{{ path('user_show', {'id': app.user.id} )}}">
-                        <i class="fa fa-user icons-header"></i>
-                        Profil
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-item-colors link-header"
+                           href="{{ path('user_show', {'id': app.user.id} ) }}">
+                            <i class="fa fa-user icons-header"></i>
+                            Profil
+                        </a>
+                    </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item navbar-item-colors"><a class="nav-link navbar-item-colors link-header" href="{{ path('easyadmin') }}"><i class="fa fa-dashboard icons-header"></i>
+                    <li class="nav-item navbar-item-colors"><a class="nav-link navbar-item-colors link-header"
+                                                               href="{{ path('easyadmin') }}"><i
+                                    class="fa fa-dashboard icons-header"></i>
                             Administration</a></li>
                 {% endif %}
                 {% if app.user %}
-                <li class="nav-item "><a class="nav-link link-logout navbar-item-colors" href="{{ path('app_logout') }}"><i
-                                class="fa fa-sign-out icons-header"></i> Deconnexion</a></li>
+                    <li class="nav-item "><a class="nav-link link-logout navbar-item-colors"
+                                             href="{{ path('app_logout') }}"><i
+                                    class="fa fa-sign-out icons-header"></i> Deconnexion</a></li>
                 {% endif %}
                 <li class="nav-item dropdown">
 

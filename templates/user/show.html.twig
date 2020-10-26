@@ -49,23 +49,23 @@
 
                                         {# Affichage prénom/nom utilisateur#}
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-4">
-                                                <label class="font-weight-bold global-title"><i
+                                            <div class="col-7 col-lg-4 col-md-4">
+                                                <label class="font-weight-bold "><i
                                                             class="fi-xtluxl-user-thin" style="margin-right: 5px"></i>Identite</label>
                                             </div>
-                                            <div class="col-md-8 col-sm-12">
+                                            <div class="col-5 col-md-8 col-lg-8">
                                                 <p class="font-weight-normal">{{ user.firstname }} {{ user.lastname }}</p>
                                             </div>
                                         </div>
                                         <hr/>
                                         {# Affichage date de naissance utilisateur#}
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-4">
-                                                <label class="font-weight-bold global-title"><i
+                                            <div class="col-7 col-lg-4 col-md-4">
+                                                <label class="font-weight-bold"><i
                                                             class="fi-xtluxl-balloon-thin"
                                                             style="margin-right: 5px"></i>Date de naissance</label>
                                             </div>
-                                            <div class="col-md-8 col-sm-12">
+                                            <div class="col-5 col-md-8 col-lg-8">
                                                 <p class="font-weight-normal">{{ user.dateofbirth|date ('d-m-Y') }}</p>
                                             </div>
                                         </div>
@@ -73,12 +73,12 @@
 
                                         {# Affichage email de l'utilisateur#}
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-4">
-                                                <label class="font-weight-bold global-title"><i
+                                            <div class="col-5 col-lg-4 col-md-4">
+                                                <label class="font-weight-bold"><i
                                                             class="fi-xtluxl-envelope-thin"
                                                             style="margin-right: 5px"></i>Email</label>
                                             </div>
-                                            <div class="col-md-8 col-sm-12">
+                                            <div class="col-7 col-md-8 col-lg-8">
                                                 <p class="font-weight-normal">{{ user.email }}</p>
                                             </div>
                                         </div>
@@ -122,8 +122,6 @@
                     </div>
                     <div class="card_activity__container">
                         <h4 class="card-title">{{ activity.title }}</h4>
-                        <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
-                        <p>{{ activity.address }}</p><br>
                         <span class="badge badge-pill badge-primary" title="Catégorie">
                         <i class="fa fa-tag" style="margin-right: 10px"></i>{{ activity.category.label }}
                     </span><br>
@@ -144,12 +142,8 @@
                                 Modifier</a>
                             {{ include('activity/_delete_form.html.twig') }}
                         </div>
-
                     </div>
-
-
                 </div>
-
             </div>
         {% endfor %}
 
