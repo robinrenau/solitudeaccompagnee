@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="card md-2" style="margin: 30px">
+    <div class="card md-2 margin-category">
         <div class="row no-gutters">
             <div class="col-md-12">
                 {# Bloc info de la catégorie#}
@@ -27,7 +27,15 @@
                 </div>
                 <div class="card-footer">
                     <p>Toutes les activités dans la catégorie "{{ category.label }}"
-                        ({{ category.activities|length }} {% if category.activities|length > 1 %} résultats{% else %} résultat{% endif %})</p>
+                        {% set count = 0 %}
+                        {% for activity in category.activities %}
+
+                        {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                        {% endfor %}
+                        ({{ count }} {% if count > 1 %} résultats{% else %} résultat{% endif %})</p>
+
                 </div>
             </div>
         </div>
@@ -36,9 +44,13 @@
     <section class="row">
         {# Affichage de toutes les activités qui concernent la catégorie#}
         {% for activity in category.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
+            {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
             <div class="col-md-6 col-lg-4 ">
-                {% include 'activity/_card.html.twig' with {'activity': activity} only %}
+
+                    {% include 'activity/_card.html.twig' with {'activity': activity} only %}
+
             </div>
+            {% endif %}
         {% endfor %}
     </section>
 

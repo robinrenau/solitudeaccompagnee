@@ -28,14 +28,25 @@
         </div>
     </div>
     <main class="container">
-        <h2 class="h2-responsive" style="margin-top: 20px" >Toutes les activités à {{  city.label }} ({{ city.activities|length }} {% if city.activities|length > 1 %} résultats{% else %} résultat{% endif %})</h2>
+        <h2 class="h2-responsive margin-activity"  >Toutes les activités à {{  city.label }} {% set count = 0 %}
+            {% for activity in city.activities %}
+
+                {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
+            ({{ count }} {% if count > 1 %} résultats{% else %} résultat{% endif %})</h2>
 
         {# Boucle sur toutes les activités qui concernent la ville #}
         <section class="row projects">
             {% for activity in city.activities |sort((a, b) => a.eventdate <=> b.eventdate) %}
+                {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
                 <div class="col-md-6 col-lg-4">
-                    {% include 'activity/_card.html.twig' with {'activity': activity} only %}
+
+                        {% include 'activity/_card.html.twig' with {'activity': activity} only %}
+
                 </div>
+                {% endif %}
             {% endfor %}
         </section>
 

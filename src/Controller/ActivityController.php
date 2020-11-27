@@ -24,11 +24,13 @@ class ActivityController extends AbstractController
      */
     public function index(Request $request, ActivityRepository $repo, PaginatorInterface $paginator): Response
     {
-        //création d'une variable pour le formulaire de recherche d'une activité via l'input search
+        // Création d'une variable pour le formulaire de recherche d'une activité via l'input search
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
-        $donnees = $repo->findBy([], ['eventdate' => 'asc']);
+        $now = new \DateTime();
+
+        $donnees = $repo->getByDate($now);
 
 
         //Recherche dans le titre des activités avec l'input saisie par l'utilisateur;

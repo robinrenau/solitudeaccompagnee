@@ -1,20 +1,10 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
-
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
 import 'bootstrap';
 import axios from 'axios';
 
 
-// code pour l'ajax participation
+// code ajax participation
 document.querySelectorAll('a.js-participation').forEach(function(link){
     function OnClickBtnParticipation(event){
         event.preventDefault();
@@ -43,7 +33,7 @@ document.querySelectorAll('a.js-participation').forEach(function(link){
 });
 
 
-// Code upload photo profil
+// Code upload profil photo
 $('.dropdown-toggle').dropdown();
 $('.custom-file-input').on('change', function(event) {
     var inputFile = event.currentTarget;

@@ -14,6 +14,7 @@ class ActivitySearchType extends AbstractType
         $builder
             ->add('title')
 
+
         ;
     }
 

@@ -16,6 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CommentController extends AbstractController
 {
+    public function __construct(){
+        date_default_timezone_set("Europe/Paris");
+    }
 
     /**
      * @Route("/new/{id}", name="comment_new", methods={"GET","POST"})

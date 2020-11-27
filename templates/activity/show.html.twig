@@ -7,27 +7,27 @@
 
 {% block body %}
 
-    <div class="col-detail-activity jumbotron text-center hoverable p-4">
+    <div class="col-detail-activity jumbotron hoverable p-4">
         <div class="row">
             <div class="col-md-12 col-lg-5">
                 {# Bloc informations d'une activité#}
-                <div class="view overlay " style="margin-top: 15px">
+                <div class="view overlay margin-activity-show" >
                     {# Affichage du titre de l'activité#}
-                    <h3 class="h3-responsive">{{ activity.title }}</h3>
+                    <h3 class="h3-responsive text-center">{{ activity.title }}</h3>
                     {# Affichage de la photo de la catégorie concerné par l'activité#}
                     <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}"
-                         class="img-fluid mx-auto d-block img-activity" style="max-width: 300px; max-height: 300px"
+                         class="img-fluid mx-auto d-block img-activity"
                          alt="{{ activity.title }}">
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
-                <div class="green-text">
+                <div class="green-text text-center">
                     {# badge date de l'activité, catégorie et ville#}
-                    <span class="badge badge-pill badge-info" style="margin-right: 10px; margin-top: 15px"><i
+                    <span class="badge badge-pill badge-info margin-icon1 margin-activity-show" ><i
                                 class="fa fa-calendar"></i> {{ activity.eventdate|date ('d-m-Y H:i') }}</span>
 
-                    <span class="badge badge-pill badge-warning" style="margin-right: 10px"><i
+                    <span class="badge badge-pill badge-warning margin-icon1"><i
                                 class="fa fa-google-wallet"></i> {{ activity.category }}</span>
 
                     <span class="badge badge-pill badge-secondary"><i
@@ -43,11 +43,11 @@
                             <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
                                  aria-labelledby="basicInfo-tab">
 
-                                <div class="row" style="margin-top: 20px">
+                                <div class="row margin-activity" >
                                     <div class=" col-md-4 col-sm-12">
                                         {# Affichage description de l'activité#}
-                                        <label class="font-weight-bold global-title"><i class="fa fa-wpexplorer"
-                                                                                        style="margin-right: 5px"></i>Description
+                                        <label class="font-weight-bold global-title"><i class="fa fa-wpexplorer margin-icon2"
+                                                                                        ></i>Description
                                         </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
@@ -60,8 +60,8 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4 ">
                                         {# Affichage de l'adresse de l'activité#}
-                                        <label class="font-weight-bold global-title"><i class="fi-xtluxl-map-marker"
-                                                                                        style="margin-right: 5px"></i>Adresse
+                                        <label class="font-weight-bold global-title"><i class="fi-xtluxl-map-marker margin-icon2"
+                                                                                      ></i>Adresse
                                         </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
@@ -74,16 +74,16 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4 ">
                                         {# Affichage du créateur de l'activité#}
-                                        <label class="font-weight-bold global-title"> <i class="fi-xnluxl-address-card"
-                                                                                         style="margin-right: 5px"></i>
+                                        <label class="font-weight-bold global-title"> <i class="fi-xnluxl-address-card margin-icon2"
+                                                                                         ></i>
                                             Contact </label>
                                     </div>
                                     <div class="col-md-8 col-sm-12">
-                                        <p class="font-weight-normal"><i class="fa fa-user-o"
-                                                                         style="margin-right: 10px"></i>
+                                        <p class="font-weight-normal"><i class="fa fa-user-o margin-icon1"
+                                                                         ></i>
                                             {{ activity.user.firstname }} {{ activity.user.lastname }}</p>
-                                        <p class="font-weight-normal"><i class="fa fa-envelope-o"
-                                                                         style="margin-right: 10px"></i> {{ activity.user.email }}
+                                        <p class="font-weight-normal"><i class="fa fa-envelope-o margin-icon1"
+                                                                         ></i> {{ activity.user.email }}
                                         </p>
                                     </div>
                                 </div>
@@ -93,11 +93,10 @@
                     </div>
                 </div>
                 {# Bloc pour participer à une activité#}
-                <div class="row">
+                <div class="row ">
                     <div>
-                        <span class="js-label global-title font-weight-bold"
-                              style="margin-left: 10px; color:black"><i class="fi-xtluxl-user-plus"
-                                                                        style="margin-right: 5px"></i>Participer ? </span>
+                        <span class="js-label global-title font-weight-bold margin-participation"
+                              ><i class="fi-xtluxl-user-plus margin-icon2" ></i>Participer ? </span>
 
                         <a href="{{ path('activity_participation', {'id':activity.id}) }}" class="btn btn-home btn-participation js-participation
                             {% if app.user.id != activity.user.id %}
@@ -122,7 +121,7 @@
                         </a>
                     </div>
 
-                    <div class="js-participation" style="margin-left: 20px">
+                    <div class="js-participation margin-number-participation" >
                         <p class="font-weight-bold"> Nombre de participants</p>
                         <p><span id="js-participations">{{ activity.participations | length }}</span>
                             / {{ activity.maxParticipants }}</p>
@@ -143,10 +142,10 @@
                 {% for participation in activity.participations %}
                     <div class="col-md-6 col-lg-4 card hoverable "
                          style=" text-align: center; justify-content: center; margin-top: 10px ">
-                        <p style="margin-top: 10px"><i class="fa fa-user"
-                                                       style="margin-right: 10px"></i> {{ participation.user.firstname }} {{ participation.user.lastname }}
+                        <p style="margin-top: 10px"><i class="fa fa-user margin-icon1"
+                                                       ></i> {{ participation.user.firstname }} {{ participation.user.lastname }}
                         </p>
-                        <p><i class="fa fa-envelope" style="margin-right: 10px"></i> {{ participation.user.email }}</p>
+                        <p><i class="fa fa-envelope margin-icon1"></i> {{ participation.user.email }}</p>
                     </div>
                 {% endfor %}
 
@@ -178,15 +177,17 @@
                                 <div class="comment-text w-100">
                                     <h6 class="font-medium">{{ comment.user.firstname }} {{ comment.user.lastname }}</h6>
                                     <span class="m-b-15 d-block">{{ comment.content }}</span>
-                                    <div class="comment-footer"><span
-                                                class="text-muted float-right">{{ comment.createdAt|date ("d/m/Y H:i") }}</span>{% if app.user.id != comment.user.id %}
-                                    {% else %}
-                                        <div class="btn-comment">
-                                            <a href="{{ path('comment_edit', {'id': comment.id} ) }}"
-                                               class="btn btn-light-blue"><i style="color: white"
-                                                                             class="fa fa-edit"></i></a>
-                                            {{ include('comment/_delete_form.html.twig') }}
-                                        </div>
+
+                                        <div class="comment-footer"><span
+                                                    class="text-muted float-right" style="font-size: 13px">{{ comment.createdAt|date ("d/m/Y H:i") }}</span>{% if app.user.id != comment.user.id %}
+                                        {% else %}
+                                            <div class="btn-comment" >
+                                                <a href="{{ path('comment_edit', {'id': comment.id} ) }}"
+                                                   class="btn btn-light-blue"><i style="color: white"
+                                                                                 class="fa fa-edit"></i></a>
+                                                {{ include('comment/_delete_form.html.twig') }}
+                                            </div>
+
                                         {% endif %}  </div>
                                 </div>
                             </div>

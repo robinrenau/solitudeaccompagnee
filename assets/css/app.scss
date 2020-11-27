@@ -6,9 +6,6 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-
-
-
 @font-face {
     font-family: "Moon";
     src: url("../../public/uploads/fonts/Moon_Light.otf")
@@ -21,10 +18,12 @@ $fa-font-path: "~font-awesome/fonts";
     font-family: "Roboto-Thin";
     src: url("../../public/uploads/fonts/Roboto-Thin.ttf")
 }
+// Style global
 body {
     background-color: #F2E9E1;
     font-family: Roboto;
 }
+
 .badge-participation{
      background-color: white;
      width: 160px;
@@ -104,6 +103,8 @@ body {
     border: 3px solid #F1E9E1;
     border-radius: 10%;
     margin-top: 20px;
+    max-width: 300px;
+    max-height: 300px;
 }
 .link-logout{
     font-family: Moon;
@@ -118,6 +119,33 @@ body {
 .link-header{
     margin-left: 35px;
     font-family: Moon;
+}
+.margin-category{
+    margin:30px;
+}
+.margin-city{
+    margin-top:30px;
+}
+.margin-activity-index{
+    margin-top:18px
+}
+.margin-activity{
+    margin-top:20px;
+}
+.margin-icon1{
+    margin-right: 10px;
+}
+.margin-activity-show{
+    margin-top: 15px;
+}
+.margin-icon2{
+    margin-right: 5px;
+}
+.margin-participation{
+    margin-left:10px;
+}
+.margin-number-participation{
+    margin-left:20px;
 }
 .text-index{
     color: black;
@@ -140,7 +168,7 @@ body {
     width: 100%;
 }
 
-// scss card activity
+// style carte activité
 
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
 
@@ -306,7 +334,7 @@ $seance: #7623A2;
     }
 }
 
-// css page user
+// style page utilisateur
 
 .background-user{
     background-color :#F5D5CB ;
@@ -325,7 +353,7 @@ $seance: #7623A2;
     color: #F2E9E1;
 }
 
-//CSS 403 FORDIBBEN
+// css pages erreurs
 
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
@@ -369,7 +397,7 @@ html,body{
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
-// style of jumbotron at /home
+// style du jumbotron page home
 
 .bb{
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);

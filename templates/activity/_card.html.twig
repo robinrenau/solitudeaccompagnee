@@ -1,4 +1,4 @@
-<div class="card_activity " style="margin-top: 20px" aria-labelledby="event card">
+<div class="card_activity margin-activity" aria-labelledby="event card">
     <div class="card_activity__filter">
         {# Affichage de la photo de la catégorie concerné par l'activité#}
         <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card_activity__photo"
@@ -13,10 +13,10 @@
         <p>{{ activity.address }}</p><br>
         {# badge catégorie et date de l'activité#}
         <span class="badge badge-pill badge-primary"  title="Catégorie">
-                        <i class="fa fa-tag" style="margin-right: 10px"></i>{{ activity.category.label }}
+                        <i class="fa fa-tag margin-icon1"></i>{{ activity.category.label }}
                     </span><br>
         <span class="badge badge-pill badge-info" title="Date de l'activité">
-                        <i class="fa fa-calendar" style="margin-right: 10px"></i>
+                        <i class="fa fa-calendar margin-icon1" ></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
         {# Bouton détail de l'activité#}
