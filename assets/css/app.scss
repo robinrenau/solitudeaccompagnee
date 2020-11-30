@@ -46,6 +46,12 @@ body {
     background-color: #FFBFAE;
     color: black ;
 }
+
+.bg-cover {
+    background-size: cover !important;
+}
+
+
 .btn-index{
     background-color:#FFBFAE ;
     color: black;
@@ -121,7 +127,7 @@ body {
     font-family: Moon;
 }
 .margin-category{
-    margin:30px;
+    margin-top:30px;
 }
 .margin-city{
     margin-top:30px;

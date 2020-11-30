@@ -6,40 +6,37 @@
 {% endblock %}
 
 {% block body %}
-    <div class="card md-2 margin-category">
-        <div class="row no-gutters">
-            <div class="col-md-12">
-                {# Bloc info de la catégorie#}
-                <div class="card-body">
-                    <div class="row">
-                        {# Affichage de l'image de la catégorie#}
-                        <div class="col-md-3 ">
-                            <img src="{{ asset('uploads/categories/' ~ category.picture) }}" class="img-fluid" alt="...">
+    <div class="container mt-3 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-12" id="grid-column">
+                <div class="jumbotron p-0 ">
+                    {# Jumbotron détail d'une ville#}
+                    <div class="view overlay rounded-top">
+                        <img src="{{ asset('uploads/categories/' ~ category.headerphoto) }}" width="1080" height="350" class="bg-cover" alt="Sample image">
+                        <div>
+                            <div class="mask rgba-white-slight"></div>
                         </div>
-                        <div class="col-md-9 ">
-                            {# Affichage du label de la catégorie#}
-                            <h5 class="card-title" style="font-size: 30px">Catégorie {{ category.label }}</h5>
-                            <p class="card-text" style="font-size: 20px">Ici, retrouvez toutes les activités qui
-                                concernent la catégorie {{ category.label }}.</p>
-                        </div>
+                    </div>
+
+                    <div class="card-body text-center mb-3">
+
+                        <h3 class="card-title h3 my-4 global-title" ><strong>{{category.label}}</strong></h3>
 
                     </div>
-                </div>
-                <div class="card-footer">
-                    <p>Toutes les activités dans la catégorie "{{ category.label }}"
-                        {% set count = 0 %}
-                        {% for activity in category.activities %}
-
-                        {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
-                            {% set count = count + 1 %}
-                        {% endif %}
-                        {% endfor %}
-                        ({{ count }} {% if count > 1 %} résultats{% else %} résultat{% endif %})</p>
-
                 </div>
             </div>
         </div>
     </div>
+<main class="container">
+    <h2 class="h2-responsive margin-activity"  > Toutes les activités dans la catégorie "{{ category.label }}"
+        {% set count = 0 %}
+        {% for activity in category.activities %}
+
+            {% if "now"|date('Y-m-d') <=  activity.eventdate|date('Y-m-d') %}
+                {% set count = count + 1 %}
+            {% endif %}
+        {% endfor %}
+        ({{ count }} {% if count > 1 %} résultats{% else %} résultat{% endif %})</h2>
 
     <section class="row">
         {# Affichage de toutes les activités qui concernent la catégorie#}
@@ -53,6 +50,6 @@
             {% endif %}
         {% endfor %}
     </section>
-
+</main>
 
 {% endblock %}

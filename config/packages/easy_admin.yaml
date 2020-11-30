@@ -14,11 +14,13 @@ easy_admin:
         fields:
           - 'label'
           - { property: 'pictureFile', type: 'vich_image' }
+          - { property: 'headerphotoFile', type: 'vich_image' }
 
       edit:
         fields:
           - 'label'
           - { property: 'pictureFile', type: 'vich_image' }
+          - { property: 'headerphotoFile', type: 'vich_image' }
     City:
       class: App\Entity\City
       list:

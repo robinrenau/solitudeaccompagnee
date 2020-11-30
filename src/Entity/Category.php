@@ -51,6 +51,18 @@ class Category
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $headerphoto;
+
+    /**
+     * @Vich\UploadableField(mapping="category_images", fileNameProperty="headerphoto")
+     * @var File
+     */
+    private $headerphotoFile;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -146,5 +158,35 @@ class Category
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function getHeaderphoto(): ?string
+    {
+        return $this->headerphoto;
+    }
+
+    public function setHeaderphoto(?string $headerphoto): self
+    {
+        $this->headerphoto = $headerphoto;
+
+        return $this;
+    }
+
+    public function setHeaderphotoFile(File $headerphoto = null)
+    {
+        $this->headerphotoFile = $headerphoto;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($headerphoto) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getHeaderphotoFile()
+    {
+        return $this->headerphotoFile;
     }
 }

@@ -8,11 +8,11 @@
 {% block body %}
     <div class="container mt-3 text-center">
         <div class="row justify-content-center">
-            <div class="col-md-8" id="grid-column">
+            <div class="col-md-12" id="grid-column">
                 <div class="jumbotron p-0 ">
                     {# Jumbotron détail d'une ville#}
                     <div class="view overlay rounded-top">
-                        <img src="{{ asset('uploads/cities/' ~ city.headerphoto) }}" class="img-fluid" alt="Sample image">
+                        <img src="{{ asset('uploads/cities/' ~ city.headerphoto) }}" width="1080" height="350" class="bg-cover" alt="Sample image">
                         <div>
                             <div class="mask rgba-white-slight"></div>
                         </div>
