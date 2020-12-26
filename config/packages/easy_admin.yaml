@@ -3,7 +3,7 @@ easy_admin:
     date: 'd/m/Y'
     datetime: 'd/m/Y H:i'
   entities:
-    #        # List the entity class name you want to manage
+  # List the entity class name you want to manage
     Category:
       class: App\Entity\Category
       list:
