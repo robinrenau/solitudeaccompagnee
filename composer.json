@@ -57,8 +57,8 @@
         "symfony/debug-bundle": "^5.1",
         "symfony/maker-bundle": "^1.21",
         "symfony/phpunit-bridge": "^5.1",
-        "symfony/var-dumper": "^5.1",
-        "ext-http": "*"
+        "symfony/var-dumper": "^5.1"
+
     },
     "config": {
         "optimize-autoloader": true,
