@@ -10,73 +10,46 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass=CityRepository::class)
- * @Vich\Uploadable
- */
+#[ORM\Entity(repositoryClass: CityRepository::class)]
+#[Vich\Uploadable]
 class City
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $picture;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $picture = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="city", orphanRemoval=true)
-     */
-    private $activities;
+    #[Vich\UploadableField(mapping: 'city_images', fileNameProperty: 'picture')]
+    private ?File $pictureFile = null;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $lat;
+    #[ORM\OneToMany(mappedBy: 'city', targetEntity: Activity::class, orphanRemoval: true)]
+    private Collection $activities;
 
-    /**
-     * @Gedmo\Slug(fields={"label"})
-     * @ORM\Column(type="string", unique=true, length=255)
-     */
-    private $slug;
+    #[ORM\Column(type: 'float')]
+    private ?float $lat = null;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $lng;
+    #[ORM\Column(type: 'float')]
+    private ?float $lng = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $label;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $label = null;
 
-    /**
-     * @Vich\UploadableField(mapping="city_images", fileNameProperty="picture")
-     * @var File
-     */
-    private $pictureFile;
+    #[Gedmo\Slug(fields: ['label'])]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private ?string $slug = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $headerphoto;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $headerphoto = null;
 
-    /**
-     * @Vich\UploadableField(mapping="city_images", fileNameProperty="headerphoto")
-     * @var File
-     */
-    private $headerphotoFile;
+    #[Vich\UploadableField(mapping: 'city_images', fileNameProperty: 'headerphoto')]
+    private ?File $headerphotoFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
     {
@@ -96,7 +69,6 @@ class City
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -108,43 +80,88 @@ class City
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
-
         return $this;
     }
-    public function setPictureFile(File $picture = null)
-    {
-        $this->pictureFile = $picture;
 
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($picture) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getPictureFile()
+    public function getPictureFile(): ?File
     {
         return $this->pictureFile;
     }
 
-    public function setHeaderphotoFile(File $headerphoto = null)
+    public function setPictureFile(?File $pictureFile): void
     {
-        $this->headerphotoFile = $headerphoto;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($headerphoto) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
+        $this->pictureFile = $pictureFile;
+        if ($pictureFile) {
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
-    public function getHeaderphotoFile()
+    public function getHeaderphoto(): ?string
+    {
+        return $this->headerphoto;
+    }
+
+    public function setHeaderphoto(?string $headerphoto): self
+    {
+        $this->headerphoto = $headerphoto;
+        return $this;
+    }
+
+    public function getHeaderphotoFile(): ?File
     {
         return $this->headerphotoFile;
+    }
+
+    public function setHeaderphotoFile(?File $headerphotoFile): void
+    {
+        $this->headerphotoFile = $headerphotoFile;
+        if ($headerphotoFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+        return $this;
+    }
+
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    public function setLng(float $lng): self
+    {
+        $this->lng = $lng;
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
     }
 
     /**
@@ -161,85 +178,22 @@ class City
             $this->activities[] = $activity;
             $activity->setCity($this);
         }
-
         return $this;
     }
 
     public function removeActivity(Activity $activity): self
     {
-        if ($this->activities->contains($activity)) {
-            $this->activities->removeElement($activity);
-            // set the owning side to null (unless already changed)
+        if ($this->activities->removeElement($activity)) {
             if ($activity->getCity() === $this) {
                 $activity->setCity(null);
             }
         }
-
-        return $this;
-    }
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    public function getLat(): ?float
-    {
-        return $this->lat;
-    }
-
-    public function setLat(float $lat): self
-    {
-        $this->lat = $lat;
-
         return $this;
     }
 
-    public function getLng(): ?float
+    public function __toString(): string
     {
-        return $this->lng;
+        return (string) $this->name;
     }
-
-    public function setLng(float $lng): self
-    {
-        $this->lng = $lng;
-
-        return $this;
-    }
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function getHeaderphoto(): ?string
-    {
-        return $this->headerphoto;
-    }
-
-    public function setHeaderphoto(?string $headerphoto): self
-    {
-        $this->headerphoto = $headerphoto;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
 }
+

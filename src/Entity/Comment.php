@@ -5,47 +5,31 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=CommentRepository::class)
- * @ORM\HasLifecycleCallbacks()
- */
+#[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Comment
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
+    #[ORM\Column(type: 'text')]
+    private ?string $content = null;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $content;
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $createdAt = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Activity::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $activity;
+    #[ORM\ManyToOne(targetEntity: Activity::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Activity $activity = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function getContent(): ?string
     {
@@ -55,19 +39,17 @@ class Comment
     public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -79,7 +61,6 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -91,17 +72,15 @@ class Comment
     public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
-
         return $this;
-
     }
 
-
-    /**
- * @ORM\PrePersist()
- */
-    public function prePersist() {
-        $this->setCreatedAt(new \DateTime());
+    #[ORM\PrePersist]
+    public function prePersist(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
     }
-
 }
+

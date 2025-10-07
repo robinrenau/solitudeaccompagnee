@@ -5,32 +5,26 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/comment")
- */
+#[Route('/comment')]
 class CommentController extends AbstractController
 {
-    public function __construct(){
+    public function __construct()
+    {
         date_default_timezone_set("Europe/Paris");
     }
 
-    /**
-     * @Route("/new/{id}", name="comment_new", methods={"GET","POST"})
-     */
+    #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Activity $activity): Response
     {
-        //création d'un nouveau commentaire
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        //Enregistrement de cette création dans la bdd
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());
@@ -40,23 +34,20 @@ class CommentController extends AbstractController
 
             return $this->redirectToRoute('activity_show', ['slug' => $activity->getSlug()]);
         }
+
         return $this->render('comment/new.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
         ]);
     }
 
-
-
-    /**
-     * @Route("/{id}/edit", name="comment_edit", methods={"GET","POST"})
-     */
+    #[Route('/{id}/edit', name: 'comment_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comment $comment): Response
     {
-        // condition d'accès à l'edit d'un commentaire :
         if ($this->getUser() != $comment->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier ce commentaire !");
         }
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -72,9 +63,7 @@ class CommentController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="comment_delete", methods={"DELETE"})
-     */
+    #[Route('/{id}', name: 'comment_delete', methods: ['DELETE'])]
     public function delete(Request $request, Comment $comment): Response
     {
         if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
@@ -86,3 +75,4 @@ class CommentController extends AbstractController
         return $this->redirectToRoute('activity_show', ['slug' => $comment->getActivity()->getSlug()]);
     }
 }
+

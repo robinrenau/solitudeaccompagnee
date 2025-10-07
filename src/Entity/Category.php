@@ -10,58 +10,37 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
- * @Vich\Uploadable
- */
+#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[Vich\Uploadable]
 class Category
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $label;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $label = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="category", orphanRemoval=true)
-     */
-    private $activities;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Activity::class, orphanRemoval: true)]
+    private Collection $activities;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $picture;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $picture = null;
 
-    /**
-     * @Vich\UploadableField(mapping="category_images", fileNameProperty="picture")
-     * @var File
-     */
-    private $pictureFile;
+    #[Vich\UploadableField(mapping: 'category_images', fileNameProperty: 'picture')]
+    private ?File $pictureFile = null;
 
-    /**
-     * @Gedmo\Slug(fields={"label"})
-     * @ORM\Column(type="string", unique=true, length=255)
-     */
-    private $slug;
+    #[Gedmo\Slug(fields: ['label'])]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private ?string $slug = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
-     */
-    private $headerphoto;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $headerphoto = null;
 
-    /**
-     * @Vich\UploadableField(mapping="category_images", fileNameProperty="headerphoto")
-     * @var File
-     */
-    private $headerphotoFile;
+    #[Vich\UploadableField(mapping: 'category_images', fileNameProperty: 'headerphoto')]
+    private ?File $headerphotoFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
     {
@@ -72,23 +51,7 @@ class Category
     {
         return $this->id;
     }
-    public function setPictureFile(File $picture = null)
-    {
-        $this->pictureFile = $picture;
 
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($picture) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getPictureFile()
-    {
-        return $this->pictureFile;
-    }
     public function getLabel(): ?string
     {
         return $this->label;
@@ -97,7 +60,6 @@ class Category
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
         return $this;
     }
 
@@ -115,20 +77,16 @@ class Category
             $this->activities[] = $activity;
             $activity->setCategory($this);
         }
-
         return $this;
     }
 
     public function removeActivity(Activity $activity): self
     {
-        if ($this->activities->contains($activity)) {
-            $this->activities->removeElement($activity);
-            // set the owning side to null (unless already changed)
+        if ($this->activities->removeElement($activity)) {
             if ($activity->getCategory() === $this) {
                 $activity->setCategory(null);
             }
         }
-
         return $this;
     }
 
@@ -140,24 +98,20 @@ class Category
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
-
         return $this;
     }
-    public function __toString()
+
+    public function getPictureFile(): ?File
     {
-        return $this->getLabel();
+        return $this->pictureFile;
     }
 
-    public function getSlug(): ?string
+    public function setPictureFile(?File $pictureFile): void
     {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
+        $this->pictureFile = $pictureFile;
+        if ($pictureFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
     public function getHeaderphoto(): ?string
@@ -168,25 +122,36 @@ class Category
     public function setHeaderphoto(?string $headerphoto): self
     {
         $this->headerphoto = $headerphoto;
-
         return $this;
     }
 
-    public function setHeaderphotoFile(File $headerphoto = null)
-    {
-        $this->headerphotoFile = $headerphoto;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($headerphoto) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getHeaderphotoFile()
+    public function getHeaderphotoFile(): ?File
     {
         return $this->headerphotoFile;
     }
+
+    public function setHeaderphotoFile(?File $headerphotoFile): void
+    {
+        $this->headerphotoFile = $headerphotoFile;
+        if ($headerphotoFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->label;
+    }
 }
+

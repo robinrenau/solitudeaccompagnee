@@ -7,76 +7,49 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- */
-class User implements UserInterface
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ["email"], message: "There is already an account with this email")]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: "integer")]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
+    #[ORM\Column(type: "string", length: 180, unique: true)]
+    private ?string $email = null;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
+    #[ORM\Column(type: "json")]
+    private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     * @Assert\NotCompromisedPassword(
-     *     message = "This password has previously appeared in a data breach. Please choose a more secure alternative."
-     * )
-     */
+    #[ORM\Column(type: "string")]
+    #[Assert\NotCompromisedPassword(
+        message: "This password has previously appeared in a data breach. Please choose a more secure alternative."
+    )]
+    private ?string $password = null;
 
-    private $password;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $lastname = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastname;
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $firstname = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstname;
+    #[ORM\Column(type: "date")]
+    private ?\DateTimeInterface $dateofbirth = null;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $dateofbirth;
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: Activity::class, orphanRemoval: true)]
+    private Collection $activities;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Activity::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $activities;
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $comments;
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: ActivityParticipation::class)]
+    private Collection $participations;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ActivityParticipation::class, mappedBy="user")
-     */
-    private $participations;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $profilPicture;
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private ?string $profilPicture = null;
 
     public function __construct()
     {
@@ -98,69 +71,41 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
+    public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return $this->password ?? '';
     }
 
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
+    public function eraseCredentials(): void
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        // Clear temporary sensitive data if any
     }
 
     public function getLastname(): ?string
@@ -171,7 +116,6 @@ class User implements UserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
-
         return $this;
     }
 
@@ -183,7 +127,6 @@ class User implements UserInterface
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -195,13 +138,9 @@ class User implements UserInterface
     public function setDateofbirth(\DateTimeInterface $dateofbirth): self
     {
         $this->dateofbirth = $dateofbirth;
-
         return $this;
     }
 
-    /**
-     * @return Collection|Activity[]
-     */
     public function getActivities(): Collection
     {
         return $this->activities;
@@ -213,26 +152,19 @@ class User implements UserInterface
             $this->activities[] = $activity;
             $activity->setUser($this);
         }
-
         return $this;
     }
 
     public function removeActivity(Activity $activity): self
     {
-        if ($this->activities->contains($activity)) {
-            $this->activities->removeElement($activity);
-            // set the owning side to null (unless already changed)
+        if ($this->activities->removeElement($activity)) {
             if ($activity->getUser() === $this) {
                 $activity->setUser(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection|Comment[]
-     */
     public function getComments(): Collection
     {
         return $this->comments;
@@ -244,31 +176,19 @@ class User implements UserInterface
             $this->comments[] = $comment;
             $comment->setUser($this);
         }
-
         return $this;
     }
 
     public function removeComment(Comment $comment): self
     {
-        if ($this->comments->contains($comment)) {
-            $this->comments->removeElement($comment);
-            // set the owning side to null (unless already changed)
+        if ($this->comments->removeElement($comment)) {
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
             }
         }
-
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getEmail();
-    }
-
-    /**
-     * @return Collection|ActivityParticipation[]
-     */
     public function getParticipations(): Collection
     {
         return $this->participations;
@@ -280,20 +200,16 @@ class User implements UserInterface
             $this->participations[] = $participation;
             $participation->setUser($this);
         }
-
         return $this;
     }
 
     public function removeParticipation(ActivityParticipation $participation): self
     {
-        if ($this->participations->contains($participation)) {
-            $this->participations->removeElement($participation);
-            // set the owning side to null (unless already changed)
+        if ($this->participations->removeElement($participation)) {
             if ($participation->getUser() === $this) {
                 $participation->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -305,7 +221,12 @@ class User implements UserInterface
     public function setProfilPicture(?string $profilPicture): self
     {
         $this->profilPicture = $profilPicture;
-
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->email ?? '';
+    }
 }
+

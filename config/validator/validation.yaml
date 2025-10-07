@@ -6,14 +6,12 @@ App\Entity\User:
           max: 30
           minMessage: 'Votre prénom doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre prénom ne peut pas être plus long que {{ limit }} caractères'
-          allowEmptyString: false
     lastname:
       - Length:
           min: 2
           max: 30
           minMessage: 'Votre nom doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre nom ne peut pas être plus long que {{ limit }} caractères'
-          allowEmptyString: false
     dateofbirth:
       - LessThan:
           value: -50 years
@@ -27,21 +25,18 @@ App\Entity\Activity:
           max: 50
           minMessage: 'Votre titre doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre titre ne peut pas être plus long que {{ limit }} caractères'
-          allowEmptyString: false
     description:
       - Length:
           min: 2
           max: 400
           minMessage: 'Votre description doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre description ne peut pas être plus longue que {{ limit }} caractères'
-          allowEmptyString: false
     address:
       - Length:
           min: 2
           max: 100
           minMessage: 'Votre adresse doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre adresse ne peut pas être plus longue que {{ limit }} caractères'
-          allowEmptyString: false
     eventdate:
         - GreaterThan:
             value: today
@@ -54,4 +49,3 @@ App\Entity\Comment:
           max: 300
           minMessage: 'Votre commentaire doit contenir plus de {{ limit }} caractères'
           maxMessage: 'Votre commentaire ne peut pas être plus long que {{ limit }} caractères'
-          allowEmptyString: false
