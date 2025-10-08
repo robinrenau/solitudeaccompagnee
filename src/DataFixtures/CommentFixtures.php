@@ -6,22 +6,24 @@ use App\Entity\Comment;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\User;
+use App\Entity\Activity;
 
 class CommentFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void 
     {
         $comment1 = new Comment();
-        $comment1->setUser($this->getReference("user-bloulin"));
+        $comment1->setUser($this->getReference("user-bloulin", User::class));
         $comment1->setContent("Je suis très content de participer avec vous à ce tournoi même si mon niveau laisse à désirer .");
-        $comment1->setActivity($this->getReference("act-palet"));
+        $comment1->setActivity($this->getReference("act-palet", Activity::class));
         $comment1->setCreatedAt(new \DateTime("2020-10-07 21:41:00"));
         $manager->persist($comment1);
 
         $comment2 = new Comment();
-        $comment2->setUser($this->getReference("user-jdupont"));
+        $comment2->setUser($this->getReference("user-jdupont", User::class));
         $comment2->setContent("Je serai ravi de participer à cet atelier mais malheureusement je ne pourrai pas être présent :( ");
-        $comment2->setActivity($this->getReference("act-couture"));
+        $comment2->setActivity($this->getReference("act-couture", Activity::class));
         $comment2->setCreatedAt(new \DateTime("2020-10-06 19:45:00"));
         $manager->persist($comment2);
 
@@ -36,7 +38,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
     /**
      * @inheritDoc
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return[
             UserFixtures::class,

@@ -33,13 +33,13 @@ class ActivityType extends AbstractType
             ])
             ->add('eventdate', DateTimeType::class, [
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable',
                 'attr' => [
                     'class' => 'datetimepicker5',
                     'data-provide' => 'datetimepicker',
                     'html5' => false,
                 ],
-               'data'=> (new \DateTime('10/30/2020 13:00:00'))
-
+                'data' => new \DateTimeImmutable('2020-10-30 13:00:00'),
             ])
             ->add('address', TextType::class, [
                 'label' => "Adresse",

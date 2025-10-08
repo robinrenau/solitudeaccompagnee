@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Comment;
 use App\Form\CommentType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/comment')]
 class CommentController extends AbstractController
 {
-    public function __construct()
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
         date_default_timezone_set("Europe/Paris");
+        $this->entityManager = $entityManager;
     }
 
     #[Route('/new/{id}', name: 'comment_new', methods: ['GET', 'POST'])]
@@ -26,13 +30,14 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());
             $comment->setActivity($activity);
-            $entityManager->persist($comment);
-            $entityManager->flush();
+            $this->entityManager->persist($comment);
+            $this->entityManager->flush();
 
-            return $this->redirectToRoute('activity_show', ['slug' => $activity->getSlug()]);
+            return $this->redirectToRoute('activity_show', [
+                'slug' => $activity->getSlug(),
+            ]);
         }
 
         return $this->render('comment/new.html.twig', [
@@ -44,7 +49,7 @@ class CommentController extends AbstractController
     #[Route('/{id}/edit', name: 'comment_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comment $comment): Response
     {
-        if ($this->getUser() != $comment->getUser()) {
+        if ($this->getUser() !== $comment->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier ce commentaire !");
         }
 
@@ -52,9 +57,11 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->entityManager->flush();
 
-            return $this->redirectToRoute('activity_show', ['slug' => $comment->getActivity()->getSlug()]);
+            return $this->redirectToRoute('activity_show', [
+                'slug' => $comment->getActivity()->getSlug(),
+            ]);
         }
 
         return $this->render('comment/edit.html.twig', [
@@ -63,16 +70,18 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'comment_delete', methods: ['DELETE'])]
+    #[Route('/{id}', name: 'comment_delete', methods: ['POST'])]
     public function delete(Request $request, Comment $comment): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($comment);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
+            $this->entityManager->remove($comment);
+            $this->entityManager->flush();
         }
 
-        return $this->redirectToRoute('activity_show', ['slug' => $comment->getActivity()->getSlug()]);
+        return $this->redirectToRoute('activity_show', [
+            'slug' => $comment->getActivity()->getSlug(),
+        ]);
     }
 }
+
 

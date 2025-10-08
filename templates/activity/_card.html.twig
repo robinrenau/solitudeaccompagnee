@@ -1,14 +1,12 @@
-<div class="card_activity margin-activity" aria-labelledby="event card">
-    <div class="card_activity__filter">
+<div class="card margin-activity" aria-labelledby="event card">
+    <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
         {# Affichage de la photo de la catégorie concerné par l'activité#}
-        <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="card_activity__photo"
+        <img src="{{ asset('uploads/categories/' ~ activity.category.picture) }}" class="img-fluid"
          alt="{{ activity.title }}">
     </div>
-    <div class="card_activity__container">
+    <div class="card-body">
         {# Affichage du titre de l'activité#}
         <h4 class="card-title">{{ activity.title }}</h4>
-        {# Affichage de la date de création de l'activité#}
-        <time> Créé le : {{ activity.CreatedAt|date ("d/m/Y") }} </time>
         {# Affichage de l'adresse de l'activité'#}
         <p>{{ activity.address }}</p><br>
         {# badge catégorie et date de l'activité#}
@@ -19,14 +17,10 @@
                         <i class="fa fa-calendar margin-icon1" ></i>
                         {{ activity.eventdate|date('d/m/Y') }}
                     </span>
-        {# Bouton détail de l'activité#}
-        <div class="card_activity__buttons">
-            <a href="{{ path('activity_show', {'slug': activity.slug} )}}" class="card_activity__buttons btn primary" role="button" aria-haspopup="false">
+            <a href="{{ path('activity_show', {'slug': activity.slug} )}}" class="btn btn-primary" role="button" aria-haspopup="false">
                 Details
                 <div class="card__fill"></div>
             </a>
-
-        </div>
     </div>
 </div>
 

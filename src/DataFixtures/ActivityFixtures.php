@@ -6,20 +6,23 @@ use App\Entity\Activity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\User;
+use App\Entity\Category;
+use App\Entity\City;
 
 class ActivityFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $couture = new Activity();
-        $couture->setUser($this->getReference("user-bloulin"));
+        $couture->setUser($this->getReference("user-bloulin", User::class));
         $couture->setMaxParticipants(10);
         $couture->setTitle("Après-midi couture");
-        $couture->setCity($this->getReference("city-vitre"));
+        $couture->setCity($this->getReference("city-vitre", City::class));
         $couture->setCreatedAt(new \DateTime('04/10/2020'));
         $couture ->setEventdate(new \DateTime('12/30/2025 13:00:00'));
         $couture->setDescription("Venez passer avec moi une petite après midi couture. Au programme, petit café en debut d'après midi puis atelier couture avec initiation pour les débutants ! ");
-        $couture->setCategory($this->getReference("cat-atelier"));
+        $couture->setCategory($this->getReference("cat-atelier", Category::class));
         $couture->setAddress("12 rue des lilas, 35500 VITRE");
 
         $manager->persist($couture);
@@ -27,14 +30,14 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference("act-couture", $couture);
 
         $palet = new Activity();
-        $palet->setUser($this->getReference("user-mmartin"));
+        $palet->setUser($this->getReference("user-mmartin", User::class));
         $palet->setMaxParticipants(3);
         $palet->setTitle("Tournoi de palets breton");
-        $palet->setCity($this->getReference("city-fougeres"));
+        $palet->setCity($this->getReference("city-fougeres", City::class));
         $palet->setCreatedAt(new \DateTime('11/10/2020'));
         $palet ->setEventdate(new \DateTime('12/12/2025 13:00:00'));
         $palet->setDescription("J'organise chez moi un petit tournoi de palets le 02 novembre ! ");
-        $palet->setCategory($this->getReference("cat-loisir"));
+        $palet->setCategory($this->getReference("cat-loisir", Category::class));
         $palet->setAddress("14 bis lotissement des roseaux, 35300 FOUGERES");
 
         $manager->persist($palet);
@@ -42,14 +45,14 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference("act-palet", $palet);
 
         $rencontre = new Activity();
-        $rencontre->setUser($this->getReference("user-jdupont"));
+        $rencontre->setUser($this->getReference("user-jdupont", User::class));
         $rencontre->setMaxParticipants(14);
         $rencontre->setTitle("Matinée discussion et débat");
-        $rencontre->setCity($this->getReference("city-redon"));
+        $rencontre->setCity($this->getReference("city-redon", City::class));
         $rencontre->setCreatedAt(new \DateTime('04/10/2020'));
         $rencontre ->setEventdate(new \DateTime('11/30/2025 08:00:00'));
         $rencontre->setDescription("Bonjour. Le 10 novembre, j'organise à la salle de la commune de Redon, une petite matinée discussion, debat ou encore rencontre pour échanger sur nos déboires de tout les jours, mais aussi pour ceux qui peuvent se sentir seul au quotidien !  ");
-        $rencontre->setCategory($this->getReference("cat-renc"));
+        $rencontre->setCategory($this->getReference("cat-renc", Category::class));
         $rencontre ->setAddress("Maison des fêtes, 9 rue de Galerne, 35600 REDON");
 
         $manager->persist($rencontre);
@@ -57,14 +60,14 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference("act-rencontre", $rencontre);
 
         $footing = new Activity();
-        $footing->setUser($this->getReference("user-jdupont"));
+        $footing->setUser($this->getReference("user-jdupont", User::class));
         $footing->setMaxParticipants(7);
         $footing->setTitle("Footing tranquille au parc Bréquigny");
-        $footing->setCity($this->getReference("city-rennes"));
+        $footing->setCity($this->getReference("city-rennes", City::class));
         $footing->setCreatedAt(new \DateTime('04/10/2020'));
         $footing ->setEventdate(new \DateTime('10/30/2025 08:00:00'));
         $footing->setDescription("Bonjour. Jeudi prochain, j'organise un petit footing tranquille au parc de Bréquigny pour les amateurs de sport :) ");
-        $footing->setCategory($this->getReference("cat-loisir"));
+        $footing->setCategory($this->getReference("cat-loisir", Category::class));
         $footing ->setAddress("Rue d'Angleterre, 35200 RENNES");
 
         $manager->persist($footing);
@@ -72,14 +75,14 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference("act-footing", $footing);
 
         $lithotherapie = new Activity();
-        $lithotherapie->setUser($this->getReference("user-bloulin"));
+        $lithotherapie->setUser($this->getReference("user-bloulin", User::class));
         $lithotherapie->setMaxParticipants(10);
         $lithotherapie->setTitle("Découverte de la lithotherapie ");
-        $lithotherapie->setCity($this->getReference("city-vitre"));
+        $lithotherapie->setCity($this->getReference("city-vitre", City::class));
         $lithotherapie->setCreatedAt(new \DateTime('04/10/2020'));
         $lithotherapie ->setEventdate(new \DateTime('11/07/2025 13:00:00'));
         $lithotherapie->setDescription("Atelier pour la découverte de soi et pour confectionner le bracelet qui vous ressemble et qui vous accompagnera  ");
-        $lithotherapie->setCategory($this->getReference("cat-atelier"));
+        $lithotherapie->setCategory($this->getReference("cat-atelier", Category::class));
         $lithotherapie ->setAddress("12 rue des lilas, 35500 VITRE");
 
         $manager->persist($lithotherapie);
@@ -88,14 +91,14 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
 
         $theatre = new Activity();
-        $theatre->setUser($this->getReference("user-mmartin"));
+        $theatre->setUser($this->getReference("user-mmartin", User::class));
         $theatre->setMaxParticipants(6);
         $theatre->setTitle("Pièce de théâtre");
-        $theatre->setCity($this->getReference("city-rennes"));
+        $theatre->setCity($this->getReference("city-rennes", City::class));
         $theatre->setCreatedAt(new \DateTime('04/10/2020'));
         $theatre ->setEventdate(new \DateTime('11/08/2025  20:00:00'));
         $theatre->setDescription("Venez partager avec moi une pièce de théâtre, la comédie 'Bonsoir Madame Pinson'. rendz-vous devant le theatre de Rennes dimanche prochain !  ");
-        $theatre->setCategory($this->getReference("cat-loisir"));
+        $theatre->setCategory($this->getReference("cat-loisir", Category::class));
         $theatre ->setAddress("1 Rue Saint-Hélier, 35000 RENNES");
 
         $manager->persist($theatre);
@@ -104,15 +107,15 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 
 
         $rencontre2 = new Activity();
-        $rencontre2->setUser($this->getReference("user-jdupont"));
+        $rencontre2->setUser($this->getReference("user-jdupont", User::class));
         $rencontre2->setMaxParticipants(9);
         $rencontre2->setTitle("Petit verre du lundi");
-        $rencontre2->setCity($this->getReference("city-redon"));
+        $rencontre2->setCity($this->getReference("city-redon", City::class));
         $rencontre2->setCreatedAt(new \DateTime('04/10/2020'));
         $rencontre2 ->setEventdate(new \DateTime('11/18/2025  20:00:00'));
         $rencontre2->setDescription("Pourquoi ne pas commencer la semaine par venir boire un verre, histoire de se détendre de la plus dure journée de la semaine, mais aussi de parler du week-end écoulé.Pour rappel, prenez bien votre masque (obligatoire dans Rennes).
 La sortie pourra évoluer selon les règles sanitaires demandées.  ");
-        $rencontre2->setCategory($this->getReference("cat-renc"));
+        $rencontre2->setCategory($this->getReference("cat-renc", Category::class));
         $rencontre2 ->setAddress("10 Rue des Douves, 35600 REDON");
 
         $manager->persist($rencontre2);
@@ -128,7 +131,7 @@ La sortie pourra évoluer selon les règles sanitaires demandées.  ");
     /**
      * @inheritDoc
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return[
             UserFixtures::class,

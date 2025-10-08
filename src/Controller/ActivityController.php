@@ -8,6 +8,7 @@ use App\Form\ActivitySearchType;
 use App\Form\ActivityType;
 use App\Repository\ActivityParticipationRepository;
 use App\Repository\ActivityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class ActivityController extends AbstractController
         $searchForm = $this->createForm(ActivitySearchType::class);
         $searchForm->handleRequest($request);
 
-        $now = new \DateTime();
+        $now = new \DateTimeImmutable();
         $donnees = $repo->getByDate($now);
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
@@ -31,7 +32,7 @@ class ActivityController extends AbstractController
             $donnees = $repo->search($title);
 
             if ($donnees === null) {
-                $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvé, essayez en un autre.');
+                $this->addFlash('erreur', 'Aucune activité contenant ce mot clé dans le titre n\'a été trouvée, essayez-en un autre.');
             }
         }
 
@@ -43,19 +44,18 @@ class ActivityController extends AbstractController
 
         return $this->render('activity/index.html.twig', [
             'activities' => $activities,
-            'searchForm' => $searchForm->createView()
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 
     #[Route('/new', name: 'activity_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $activity = new Activity();
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $activity->setUser($this->getUser());
             $entityManager->persist($activity);
             $entityManager->flush();
@@ -78,22 +78,24 @@ class ActivityController extends AbstractController
     }
 
     #[Route('/{id}/participation', name: 'activity_participation')]
-    public function participation(Activity $activity, ActivityParticipationRepository $participationRepo): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
+    public function participation(
+        Activity $activity,
+        ActivityParticipationRepository $participationRepo,
+        EntityManagerInterface $entityManager
+    ): Response {
         $user = $this->getUser();
 
         if (!$user) {
             return $this->json([
                 'code' => 403,
-                'message' => "Unauthorized"
+                'message' => 'Unauthorized',
             ], 403);
         }
 
         if ($activity->participateByUser($user)) {
             $participation = $participationRepo->findOneBy([
                 'activity' => $activity,
-                'user' => $user
+                'user' => $user,
             ]);
             $entityManager->remove($participation);
             $entityManager->flush();
@@ -101,7 +103,7 @@ class ActivityController extends AbstractController
             return $this->json([
                 'code' => 200,
                 'message' => 'Participation annulée',
-                'participations' => $participationRepo->count(['activity' => $activity])
+                'participations' => $participationRepo->count(['activity' => $activity]),
             ], 200);
         }
 
@@ -112,13 +114,13 @@ class ActivityController extends AbstractController
 
         return $this->json([
             'code' => 200,
-            'message' => "Participation bien prise en compte",
-            'participations' => $participationRepo->count(['activity' => $activity])
+            'message' => 'Participation bien prise en compte',
+            'participations' => $participationRepo->count(['activity' => $activity]),
         ], 200);
     }
 
     #[Route('/{id}/edit', name: 'activity_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Activity $activity): Response
+    public function edit(Request $request, Activity $activity, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser() != $activity->getUser()) {
             throw $this->createAccessDeniedException("Vous n'avez pas le droit de modifier cette activité !");
@@ -128,7 +130,7 @@ class ActivityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('user_show', ['id' => $activity->getUser()->getId()]);
         }
@@ -140,10 +142,9 @@ class ActivityController extends AbstractController
     }
 
     #[Route('/{id}', name: 'activity_delete', methods: ['DELETE'])]
-    public function delete(Request $request, Activity $activity): Response
+    public function delete(Request $request, Activity $activity, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($activity);
             $entityManager->flush();
         }
@@ -151,4 +152,3 @@ class ActivityController extends AbstractController
         return $this->redirectToRoute('user_show', ['id' => $activity->getUser()->getId()]);
     }
 }
-

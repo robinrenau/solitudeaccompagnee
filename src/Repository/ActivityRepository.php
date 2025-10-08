@@ -26,21 +26,17 @@ class ActivityRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute();
     }
-    public function getByDate(\Datetime $date)
+    public function getByDate(\DateTimeInterface $date)
     {
-        $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+        $from = new \DateTimeImmutable($date->format('Y-m-d') . ' 00:00:00');
 
-
-        $qb = $this->createQueryBuilder("Activity");
+        $qb = $this->createQueryBuilder('Activity');
         $qb
             ->andWhere('Activity.eventdate >= :from')
             ->orderBy('Activity.eventdate', 'ASC')
-            ->setParameter('from', $from )
+            ->setParameter('from', $from);
 
-        ;
-        $result = $qb->getQuery()->getResult();
-
-        return $result;
+        return $qb->getQuery()->getResult();
     }
     // /**
     //  * @return Activity[] Returns an array of Activity objects
